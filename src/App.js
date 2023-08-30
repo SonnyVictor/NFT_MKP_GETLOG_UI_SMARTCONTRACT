@@ -1,19 +1,34 @@
-import './App.css';
-import {   Routes , Route } from 'react-router-dom';
-import routes from './pages/index'
-
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import routes from "./pages/index";
+import { Web3ReactProvider } from "@web3-react/core";
+import { getLibrary, Web3ProviderNetwork } from "./context/web3provider";
+import { RefreshContextProvider } from "./context/RefreshContext";
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import Loader from "./components/Loader";
 
 function App() {
-
-    return (
-        <Routes >
-            {
-            routes.map((data,index) => (
-                <Route onUpdate={() => window.scrollTo(0, 0)} exact={true} path={data.path} element={data.component} key={index} />
-            ))
-            }
-      </Routes>
-    );
+  return (
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <Web3ProviderNetwork getLibrary={getLibrary}>
+          <RefreshContextProvider>
+            <Suspense fallback={<Loader />}>
+              <Routes>
+                {routes.map((data, index) => (
+                  <Route
+                    onUpdate={() => window.scrollTo(0, 0)}
+                    exact={true}
+                    path={data.path}
+                    element={data.component}
+                    key={index}
+                  />
+                ))}
+              </Routes>
+            </Suspense>
+          </RefreshContextProvider>
+        </Web3ProviderNetwork>
+      </Web3ReactProvider>
+  );
 }
 
 export default App;
