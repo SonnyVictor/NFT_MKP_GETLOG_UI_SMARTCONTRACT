@@ -1,14 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import Header from '../components/header/Header';
 import Footer from '../components/footer/Footer';
 import TodayPicks from '../components/layouts/explore-01/TodayPicks'
 import todayPickData from '../assets/fake-data/data-today-pick';
+import HeaderStyle2 from '../components/header/HeaderStyle2';
 
 const Explore01 = () => {
     return (
         <div>
-            <Header />
+            <HeaderStyle2/>
             <section className="flat-title-page inner">
                 <div className="overlay"></div>
                 <div className="themesflat-container">

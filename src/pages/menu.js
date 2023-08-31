@@ -9,11 +9,11 @@ const menus = [
     name: "Marketplace",
     links: "/marketplace",
   },
-  {
-    id: 3,
-    name: "Mint NFT",
-    links: "/mint-nft",
-  },
+  // {
+  //   id: 3,
+  //   name: "Mint NFT",
+  //   links: "/mint-nft",
+  // },
   {
     id: 4,
     name: "ArbNFT AI",

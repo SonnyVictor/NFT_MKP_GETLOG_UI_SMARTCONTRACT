@@ -15,6 +15,7 @@ import img5 from '../assets/images/avatar/avt-7.jpg'
 import img6 from '../assets/images/avatar/avt-8.jpg'
 import img7 from '../assets/images/avatar/avt-2.jpg'
 import imgdetail1 from '../assets/images/box-item/images-item-details.jpg'
+import HeaderStyle2 from '../components/header/HeaderStyle2';
 
 const ItemDetails01 = () => {
     const [dataHistory] = useState(
@@ -23,49 +24,49 @@ const ItemDetails01 = () => {
                 img: img1,
                 name:"Mason Woodward",
                 time: "8 hours ago",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 priceChange: "$12.246"
             },
             {
                 img: img2,
                 name:"Mason Woodward",
                 time: "at 06/10/2021, 3:20 AM",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 priceChange: "$12.246"
             },
             {
                 img: img3,
                 name:"Mason Woodward",
                 time: "8 hours ago",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 priceChange: "$12.246"
             },
             {
                 img: img4,
                 name:"Mason Woodward",
                 time: "8 hours ago",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 priceChange: "$12.246"
             },
             {
                 img: img5,
                 name:"Mason Woodward",
                 time: "8 hours ago",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 priceChange: "$12.246"
             },
             {
                 img: img6,
                 name:"Mason Woodward",
                 time: "8 hours ago",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 priceChange: "$12.246"
             },
         ]
     )
     return (
         <div className='item-details'>
-            <Header />
+            <HeaderStyle2 />
             <section className="flat-title-page inner">
                 <div className="overlay"></div>
                 <div className="themesflat-container">
@@ -102,7 +103,7 @@ const ItemDetails01 = () => {
                                     <div className="meta-item">
                                         <div className="left">
                                             <span className="viewed eye">225</span>
-                                            <span to="/login" className="liked heart wishlist-button mg-l-8"><span className="number-like">100</span></span>
+                                            <span  className="liked heart wishlist-button mg-l-8"><span className="number-like">100</span></span>
                                         </div>
                                         <div className="right">
                                             <Link to="#" className="share"></Link>
@@ -117,7 +118,7 @@ const ItemDetails01 = () => {
                                                 </div>
                                                 <div className="info">
                                                     <span>Owned By</span>
-                                                    <h6> <Link to="/author-02">Ralph Garraway</Link> </h6>
+                                                    <h6> Ralph Garraway </h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -128,7 +129,7 @@ const ItemDetails01 = () => {
                                                 </div>
                                                 <div className="info">
                                                     <span>Create By</span>
-                                                    <h6> <Link to="/author-02">Freddie Carpenter</Link> </h6>
+                                                    <h6> Freddie Carpenter </h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,7 +143,7 @@ const ItemDetails01 = () => {
                                             <span className="heading">Current Bid</span>
                                             <div className="price">
                                                 <div className="price-box">
-                                                    <h5> 4.89 ETH</h5>
+                                                    <h5> 4.89 opBNB</h5>
                                                     <span>= $12.246</span>
                                                 </div>
                                             </div>
@@ -154,7 +155,7 @@ const ItemDetails01 = () => {
                                             </Countdown>
                                         </div>
                                     </div>
-                                    <Link to="/wallet-connect" className="sc-button loadmore style bag fl-button pri-3"><span>Place a bid</span></Link>
+                                    <div className="sc-button loadmore style bag fl-button pri-3"><span>Place a bid</span></div>
                                     <div className="flat-tabs themesflat-tabs">
                                     <Tabs>
                                         <TabList>
@@ -209,7 +210,7 @@ const ItemDetails01 = () => {
                                                                     </div>
                                                                     <div className="author-infor">
                                                                         <div className="name">
-                                                                            <h6> <Link to="/author-02">Mason Woodward </Link></h6> <span> place a bid</span>
+                                                                            <h6> Mason Woodward </h6> <span> place a bid</span>
                                                                         </div>
                                                                         <span className="time">8 hours ago</span>
                                                                     </div>

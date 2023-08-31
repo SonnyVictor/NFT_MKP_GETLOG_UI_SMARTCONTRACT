@@ -28,7 +28,7 @@ import imgCollection1 from '../images/avatar/avt-18.jpg'
 const todayPickData = [
     {
         img: img1,
-        title: "The RenaiXance Rising the sun ",
+        title: "lumia nft 0-01",
         tags: "bsc",
         imgAuthor: imga1,
         nameAuthor: "SalvadorDali",
@@ -40,7 +40,7 @@ const todayPickData = [
     },
     {
         img: img2,
-        title: "Space babe - Night 2/25 ",
+        title: "lumia nft 0-02",
         tags: "bsc",
         imgAuthor: imga2,
         nameAuthor: "Trista Francis",
@@ -53,7 +53,7 @@ const todayPickData = [
     },
     {
         img: img3,
-        title: "CyberPrimal 042 LAN",
+        title: "lumia nft 0-03",
         tags: "bsc",
         imgAuthor: imga3,
         nameAuthor: "Freddie Carpenter",
@@ -65,7 +65,7 @@ const todayPickData = [
     },
     {
         img: img4,
-        title: "Crypto Egg Stamp #5 ",
+        title: "lumia nft 0-04",
         tags: "bsc",
         imgAuthor: imga4,
         nameAuthor: "Tyler Covington",
@@ -77,7 +77,7 @@ const todayPickData = [
     },
     {
         img: img5,
-        title: "Travel Monkey Club #45 ",
+        title: "lumia nft 0-05",
         tags: "bsc",
         imgAuthor: imga5,
         nameAuthor: "SalvadorDali",
@@ -89,7 +89,7 @@ const todayPickData = [
     },
     {
         img: img6,
-        title: "Sir. Lion Swag #371 ",
+        title: "lumia nft 0-06",
         tags: "bsc",
         imgAuthor: imga6,
         nameAuthor: "Trista Francis",
@@ -101,7 +101,7 @@ const todayPickData = [
     },
     {
         img: img7,
-        title: "Cyber Doberman #766",
+        title: "lumia nft 0-07",
         tags: "bsc",
         imgAuthor: imga7,
         nameAuthor: "Freddie Carpenter",
@@ -113,7 +113,7 @@ const todayPickData = [
     },
     {
         img: img8,
-        title: "Living Vase 01 by Lanz...",
+        title: "lumia nft 0-08",
         tags: "bsc",
         imgAuthor: imga8,
         nameAuthor: "Freddie Carpenter",
@@ -125,7 +125,7 @@ const todayPickData = [
     },
     {
         img: img9,
-        title: "The RenaiXance Rising the sun ",
+        title: "lumia nft 0-09",
         tags: "bsc",
         imgAuthor: imga1,
         nameAuthor: "SalvadorDali",
@@ -137,7 +137,7 @@ const todayPickData = [
     },
     {
         img: img10,
-        title: "Space babe - Night 2/25 ",
+        title: "lumia nft 0-10",
         tags: "bsc",
         imgAuthor: imga2,
         nameAuthor: "Trista Francis",
@@ -150,7 +150,7 @@ const todayPickData = [
     },
     {
         img: img11,
-        title: "CyberPrimal 042 LAN",
+        title: "lumia nft 0-11",
         tags: "bsc",
         imgAuthor: imga3,
         nameAuthor: "Freddie Carpenter",
@@ -162,7 +162,7 @@ const todayPickData = [
     },
     {
         img: img12,
-        title: "Crypto Egg Stamp #5 ",
+        title: "lumia nft 0-12",
         tags: "bsc",
         imgAuthor: imga4,
         nameAuthor: "Tyler Covington",
@@ -174,7 +174,7 @@ const todayPickData = [
     },
     {
         img: img13,
-        title: "Travel Monkey Club #45 ",
+        title: "lumia nft 0-13",
         tags: "bsc",
         imgAuthor: imga5,
         nameAuthor: "SalvadorDali",
@@ -186,7 +186,7 @@ const todayPickData = [
     },
     {
         img: img14,
-        title: "Sir. Lion Swag #371 ",
+        title: "lumia nft 0-14",
         tags: "bsc",
         imgAuthor: imga6,
         nameAuthor: "Trista Francis",
@@ -198,7 +198,7 @@ const todayPickData = [
     },
     {
         img: img15,
-        title: "Cyber Doberman #766",
+        title: "lumia nft 0-15",
         tags: "bsc",
         imgAuthor: imga7,
         nameAuthor: "Freddie Carpenter",
@@ -210,7 +210,7 @@ const todayPickData = [
     },
     {
         img: img16,
-        title: "Living Vase 01 by Lanz...",
+        title: "lumia nft 0-16",
         tags: "bsc",
         imgAuthor: imga8,
         nameAuthor: "Freddie Carpenter",

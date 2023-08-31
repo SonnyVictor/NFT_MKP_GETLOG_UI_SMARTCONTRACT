@@ -107,17 +107,20 @@ const TodayPicks = (props) => {
                   } `}
                 >
                   <div className="card-media">
-                    <Link to="/item-details-01">
+                    <Link to="/item-details">
                       <img src={item.img} alt="axies" />
                     </Link>
-                    <Link to="/login" className="wishlist-button heart">
+                    {/* <Link to="/login" className="wishlist-button heart">
                       <span className="number-like">{item.wishlist}</span>
-                    </Link>
+                    </Link> */}
+                    <div className="wishlist-button heart">
+                      <span className="number-like">{item.wishlist}</span>
+                    </div>
                     <div className="coming-soon">{item.feature}</div>
                   </div>
                   <div className="card-title">
                     <h5 className="style2">
-                      <Link to="/item-details-01">"{item.title}"</Link>
+                      <div>{item.title}</div>
                     </h5>
                     <div className="tags">{item.tags}</div>
                   </div>
@@ -130,7 +133,7 @@ const TodayPicks = (props) => {
                         <span>Owned By</span>
                         <h6>
                           {" "}
-                          <Link to="/authors-02">{item.nameAuthor}</Link>{" "}
+                          <div>{item.nameAuthor}</div>{" "}
                         </h6>
                       </div>
                     </div>
@@ -146,9 +149,9 @@ const TodayPicks = (props) => {
                     >
                       <span>Place Bid</span>
                     </button>
-                    <Link to="/activity-01" className="view-history reload">
+                    <div className="view-history reload">
                       View History
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>
