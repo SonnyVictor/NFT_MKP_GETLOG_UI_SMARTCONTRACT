@@ -12,6 +12,9 @@ import 'swiper/scss/pagination';
 import img1 from '../../../assets/images/box-item/image-box-26.jpg'
 import img2 from '../../../assets/images/box-item/image-box-27.jpg'
 import img3 from '../../../assets/images/box-item/image-box-28.jpg'
+import img4 from '../../../assets/images/box-item/image-box-29.jpg'
+import img5 from '../../../assets/images/box-item/image-box-30.jpg'
+import img6 from '../../../assets/images/box-item/image-box-31.jpg'
 import imga1 from '../../../assets/images/avatar/avt-11.jpg'
 import imga2 from '../../../assets/images/avatar/avt-12.jpg'
 import imga3 from '../../../assets/images/avatar/avt-13.jpg'
@@ -21,56 +24,56 @@ const LiveAuction = () => {
         [
             {
                 img: img1,
-                title: "Hamlet Contemplates ...",
+                title: "Lumia nft Luffy 1",
                 tags: "bsc",
                 imgAuthor: imga1,
                 nameAuthor: "SalvadorDali",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 wishlist: "100",
             },
             {
                 img: img2,
-                title: "Triumphant Awakening...",
+                title: "Lumia nft Luffy 2",
                 tags: "bsc",
                 imgAuthor: imga2,
                 nameAuthor: "Trista Francis",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 wishlist: "100",
             },
             {
                 img: img3,
-                title: "Triumphant Awakening...",
+                title: "Lumia nft Luffy 3",
                 tags: "bsc",
                 imgAuthor: imga3,
                 nameAuthor: "Trista Francis",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 wishlist: "100",
             },
             {
-                img: img1,
-                title: "Triumphant Awakening...",
+                img: img4,
+                title: "Lumia nft Luffy 4",
                 tags: "bsc",
                 imgAuthor: imga1,
                 nameAuthor: "SalvadorDali",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 wishlist: "100",
             },
             {
-                img: img2,
-                title: "Triumphant Awakening...",
+                img: img5,
+                title: "Lumia nft Luffy 5",
                 tags: "bsc",
                 imgAuthor: imga2,
                 nameAuthor: "Trista Francis",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 wishlist: "100",
             },
             {
-                img: img3,
-                title: "Triumphant Awakening...",
+                img: img6,
+                title: "Lumia nft Luffy 6",
                 tags: "bsc",
                 imgAuthor: imga3,
                 nameAuthor: "Trista Francis",
-                price: "4.89 ETH",
+                price: "4.89 opBNB",
                 wishlist: "100",
             },
 
@@ -134,7 +137,7 @@ const LiveAuction = () => {
                                                                         </div>
                                                                     </div>
                                                                     <div className="card-title">
-                                                                        <h5><Link to="/item-details-01">"{item.title}</Link></h5>
+                                                                        <h5><Link to="/item-details-01">{item.title}</Link></h5>
                                                                         <div className="tags">{item.tags}</div>
                                                                     </div>
                                                                     <div className="meta-info">

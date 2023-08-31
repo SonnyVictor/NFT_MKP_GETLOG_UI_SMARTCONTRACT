@@ -14,16 +14,16 @@ import Create from "../components/layouts/home-2/Create";
 const Home05 = () => {
 //   const [data, setData] = useState();
 //   const [listEvent, setListEvent] = useState(null);
-//   const handleSaveData = (isdata: any) => {
+//   const handleSaveData = (isdata) => {
 //     setData(isdata);
 //   };
-//   const [listNftFull, setListNftFull] = useState < any > [];
+//   const [listNftFull, setListNftFull] = useState([]);
 //   const getAllNftListMarketPlace = async () => {
 //     try {
 //       let transition = await getAllValueMarketPlace();
 
 //       const items = await Promise.all(
-//         transition.map(async (i: any) => {
+//         transition.map(async (i) => {
 //           var tokenURI = await getImageNFT(i.tokenId);
 //           var nameNFT = await getNameNFT();
 //           let price = ethers.utils.formatUnits(i.price.toString(), "ether");

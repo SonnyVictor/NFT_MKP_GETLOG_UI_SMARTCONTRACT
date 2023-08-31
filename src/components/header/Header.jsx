@@ -2,9 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import menus from "../../pages/menu";
 import DarkMode from "./DarkMode";
-import logoheader from "../../assets/images/logo/logo.png";
-import logoheader2x from "../../assets/images/logo/logo@2x.png";
-import logodark from "../../assets/images/logo/logo_dark.png";
+import logoheader from "../../assets/images/logo/Logo.svg";
+import logodark from "../../assets/images/logo/Logo.svg";
 import logodark2x from "../../assets/images/logo/logo_dark@2x.png";
 import imgsun from "../../assets/images/icon/sun.png";
 import avt from "../../assets/images/avatar/avt-2.jpg";
@@ -59,7 +58,7 @@ const Header = () => {
                 <div id="site-logo" className="clearfix">
                   <div id="site-logo-inner">
                     <Link to="/" rel="home" className="main-logo">
-                      <img
+                      {/* <img
                         className="logo-dark"
                         id="logo_header"
                         src={logodark}
@@ -72,7 +71,7 @@ const Header = () => {
                         src={logoheader}
                         srcSet={`${logoheader2x}`}
                         alt="nft-gaming"
-                      />
+                      /> */}
                     </Link>
                   </div>
                 </div>

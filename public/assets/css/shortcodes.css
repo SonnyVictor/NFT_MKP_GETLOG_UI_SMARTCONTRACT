@@ -631,6 +631,8 @@
   object-fit: cover;
   -webkit-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  max-width: 100%;
+  max-height: 453px;
 }
 
 .sc-card-article .meta-info,
@@ -1048,6 +1050,9 @@
 }
 .sc-card-product .card-media img {
   width: 100%;
+  max-height: 453px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
 }
 
 .sc-card-product .card-title {

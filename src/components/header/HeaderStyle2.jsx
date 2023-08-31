@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useContext, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import menus from "../../pages/menu";
 import DarkMode from "./DarkMode";
-import logodark from "../../assets/images/logo/logo_dark.png";
+import logodark from "../../assets/images/logo/Logo.svg";
 import avt from "../../assets/images/avatar/avt-2.jpg";
 import coin from "../../assets/images/logo/coin.svg";
 import { Modal, Dropdown, message, Select } from "antd";

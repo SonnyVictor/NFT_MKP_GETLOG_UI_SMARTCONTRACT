@@ -7,6 +7,13 @@ import {
 
 export const NetworkContextName = "NETWORK";
 
+export const CHAIN_ID_MARKET_TESTNET = 421613;
+export const arb_Address_MarketPlace_TestNet_Contract = {
+  421613: "0xA7eD1dEb29fd0B39E72026de4e0730Da103AD8E8",
+};
+export const arb_Address_NFT_LUFFY_TESTNET_CONTRACT = {
+  421613: "0x21e02De785De12eE13591fa80DC4e06A350415B4",
+};
 export const MAPPING_CHAINID: any = {
   bep: "0x38",
   erc: "0x1",
