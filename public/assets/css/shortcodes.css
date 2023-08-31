@@ -373,9 +373,19 @@
 }
 
 .sc-button.style.wallet span::before {
-  content: "\e917";
+  content: "\e917";   
 }
-
+.select-network span::before{
+  background-image: url('/assets/icon/BNBIcon.png');
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left: 0px;
+  content: '';
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 .sc-button.style.bag span::before {
   content: "\e901";
   -webkit-transition: all 0.05s ease;
@@ -396,6 +406,7 @@
 /*hover button */
 .fl-button {
   position: relative;
+  cursor: pointer;
 }
 
 .fl-button i,
@@ -5452,7 +5463,7 @@ button.accordion-button {
 }
 
 .header_1.header_2 #main-nav {
-  left: 42.4%;
+  left: 35.4%;
 }
 
 .header_2 #main-nav > ul > li {
@@ -5462,7 +5473,7 @@ button.accordion-button {
 
 .question-form {
   position: absolute;
-  width: 28.7%;
+  width: 20.7%;
   top: 50%;
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
@@ -5875,6 +5886,7 @@ button.accordion-button {
 .home-5 .flat-title-page .swiper-slide,
 .home-7 .flat-title-page .swiper-slide {
   height: auto !important;
+  max-width: 250px;
 }
 .home-7 .swiper.swiper-initialized.swiper-vertical.swiper-pointer-events {
   height: 778px;

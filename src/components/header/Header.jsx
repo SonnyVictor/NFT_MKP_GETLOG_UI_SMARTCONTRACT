@@ -153,7 +153,7 @@ const Header = () => {
                     <div className="sc-button header-slider style style-1 wallet fl-button pri-1">
                       <span>
                         {/* Wallet connect */}
-                        {/* <ConnectWallet /> */}
+                        <ConnectWallet />
                       </span>
                     </div>
                   </div>

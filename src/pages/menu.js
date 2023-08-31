@@ -19,11 +19,6 @@ const menus = [
         links: '/arbnft-ai',
     },
     {
-        id: 5,
-        name: 'Eligibility',
-        links: '/eligibility',
-    },
-    {
         id: 7,
         name: 'Whitepaper',
         links: '/whitepaper',

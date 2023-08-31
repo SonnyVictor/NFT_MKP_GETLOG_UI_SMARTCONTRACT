@@ -6,13 +6,15 @@ import { getLibrary, Web3ProviderNetwork } from "./context/web3provider";
 import { RefreshContextProvider } from "./context/RefreshContext";
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import Loader from "./components/Loader";
+import { ModalConfirmProvider } from "./components/ProviderPopUp/confirm";
 
 function App() {
   return (
-      <Web3ReactProvider getLibrary={getLibrary}>
-        <Web3ProviderNetwork getLibrary={getLibrary}>
-          <RefreshContextProvider>
-            <Suspense fallback={<Loader />}>
+    <Web3ReactProvider getLibrary={getLibrary}>
+      <Web3ProviderNetwork getLibrary={getLibrary}>
+        <RefreshContextProvider>
+          <Suspense fallback={<Loader />}>
+            <ModalConfirmProvider>
               <Routes>
                 {routes.map((data, index) => (
                   <Route
@@ -24,10 +26,11 @@ function App() {
                   />
                 ))}
               </Routes>
-            </Suspense>
-          </RefreshContextProvider>
-        </Web3ProviderNetwork>
-      </Web3ReactProvider>
+            </ModalConfirmProvider>
+          </Suspense>
+        </RefreshContextProvider>
+      </Web3ProviderNetwork>
+    </Web3ReactProvider>
   );
 }
 

@@ -28,17 +28,17 @@ export const CHAINID_CONVERT: any = {
 // wallet list
 export const WALLET_LIST = [
   { icon: Metamask, title: "Meta Mask", connectorId: "injected" },
-  {
-    icon: BinanceWallet,
-    title: "Binance chain",
-    connectorId: "bsc",
-  },
+  // {
+  //   icon: BinanceWallet,
+  //   title: "Binance chain",
+  //   connectorId: "bsc",
+  // },
   {
     icon: WalletConnect,
     title: "Wallet Connect",
     connectorId: "walletconnect",
   },
-  { icon: TrustWallet, title: "Trust Wallet", connectorId: "walletconnect" },
+  // { icon: TrustWallet, title: "Trust Wallet", connectorId: "walletconnect" },
 ];
 export const NEED_A_PLACEHOLDER = WALLET_LIST.length % 2 !== 0;
 

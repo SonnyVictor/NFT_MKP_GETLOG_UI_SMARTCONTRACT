@@ -4,9 +4,10 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/scss';
 import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
-import img1 from '../../assets/images/box-item/item-h5.1.png'
-import img2 from '../../assets/images/box-item/item-h5.2.png'
-import img3 from '../../assets/images/box-item/item-h5.3.png'
+import img1 from '../../assets/images/slider/Luffy1.jpg'
+import img2 from '../../assets/images/slider/Luffy2.jpg'
+import img3 from '../../assets/images/slider/Luffy3.jpg'
+import img4 from '../../assets/images/slider/Luffy4.jpg'
 
 const SliderStyle2 = () => {
     const subtitle = 'NFT MARKETPLACE'
@@ -68,7 +69,7 @@ const SliderStyle2 = () => {
                         <SwiperSlide><img src={img3} alt="Axies" /></SwiperSlide>
                         <SwiperSlide><img src={img1} alt="Axies" /></SwiperSlide>
                         <SwiperSlide><img src={img3} alt="Axies" /></SwiperSlide>
-                        <SwiperSlide><img src={img1} alt="Axies" /></SwiperSlide>
+                        <SwiperSlide><img src={img4} alt="Axies" /></SwiperSlide>
 
                     </Swiper>
                     <Swiper
@@ -109,7 +110,7 @@ const SliderStyle2 = () => {
                         <SwiperSlide><img src={img2} alt="Axies" /></SwiperSlide>
                         <SwiperSlide><img src={img3} alt="Axies" /></SwiperSlide>
                         <SwiperSlide><img src={img1} alt="Axies" /></SwiperSlide>
-                        <SwiperSlide><img src={img2} alt="Axies" /></SwiperSlide>
+                        <SwiperSlide><img src={img4} alt="Axies" /></SwiperSlide>
 
                     </Swiper>
                    
