@@ -24,10 +24,11 @@ import FAQ from "./FAQ";
 import Contact01 from "./Contact01";
 import Contact02 from "./Contact02";
 import ArbNFTPage from "./ArbNFTPage";
+import MinNft from "./MinNft";
 
 const routes = [
   { path: "/", component: <Home05 /> },
-  { path: "/marketplace", component: <Explore01 /> },
+  // { path: "/marketplace", component: <Explore01 /> },
   // { path: "/explore-02", component: <Explore02 /> },
   // { path: "/explore-03", component: <Explore03 /> },
   // { path: "/explore-04", component: <Explore04 /> },
@@ -42,11 +43,11 @@ const routes = [
   // { path: "/authors-01", component: <Authors01 /> },
   // { path: "/authors-02", component: <Authors02 /> },
   // { path: "/wallet-connect", component: <WalletConnect /> },
-  // { path: "/create-item", component: <CreateItem /> },
+  { path: "/create-item", component: <CreateItem /> },
   // { path: "/edit-profile", component: <EditProfile /> },
   // { path: "/ranking", component: <Ranking /> },
   // { path: "/no-result", component: <NoResult /> },
-  // { path: "/faq", component: <FAQ /> },
+  { path: "/mint-nft", component: < MinNft /> },
   // { path: "/contact-01", component: <Contact01 /> },
   // { path: "/contact-02", component: <Contact02 /> },
   { path: "/arbnft-ai", component: <ArbNFTPage /> },

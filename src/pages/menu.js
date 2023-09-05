@@ -4,16 +4,16 @@ const menus = [
     name: "Home",
     links: "/",
   },
-  {
-    id: 2,
-    name: "Marketplace",
-    links: "/marketplace",
-  },
   // {
-  //   id: 3,
-  //   name: "Mint NFT",
-  //   links: "/mint-nft",
+  //   id: 2,
+  //   name: "Marketplace",
+  //   links: "/marketplace",
   // },
+  {
+    id: 3,
+    name: "Mint NFT",
+    links: "/mint-nft",
+  },
   {
     id: 4,
     name: "ArbNFT AI",

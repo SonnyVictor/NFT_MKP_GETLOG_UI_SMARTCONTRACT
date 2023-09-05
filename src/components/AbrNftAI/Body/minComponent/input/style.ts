@@ -9,13 +9,12 @@ export const Wapper = styled.div`
     outline: none;
   }
   h1 {
-    font-family: SVNDetermination;
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
     line-height: 133%;
     letter-spacing: -0.02em;
-    color: #1ce4ff;
+    color: #fff;
     margin-bottom: 26px;
   }
   h6 {
@@ -179,7 +178,7 @@ export const ProgressSlide = styled.div`
       height: 24px;
       background: #fff;
       cursor: pointer;
-      border: 1px solid #1bddff;
+      border: 1px solid #181b81;
       border-radius: 50%;
     }
     ::-moz-range-progress {
@@ -220,7 +219,7 @@ export const BtnGroup = styled.div`
       border: 1px solid #fff;
     }
     :last-child {
-      background-color: #1bddff;
+      background-color: #181b81;
       color: #000;
       margin-left: 12px;
     }
