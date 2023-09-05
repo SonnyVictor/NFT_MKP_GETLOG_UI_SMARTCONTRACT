@@ -214,17 +214,14 @@ const InputComponent = ({ onSetImage }: any) => {
       </BoxTowElm>
       <BtnGroup>
         <button
-          style={{
-            background: "transparent",
-          }}
+          // style={{
+          //   background: "transparent",
+          // }}
           onClick={handleReset}
         >
           Reset
         </button>
         <button
-          style={{
-            border: "none",
-          }}
           onClick={handleSubmit}
         >
           Submit{" "}

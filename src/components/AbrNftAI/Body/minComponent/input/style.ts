@@ -215,13 +215,16 @@ export const BtnGroup = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    :first-child {
-      border: 1px solid #fff;
-    }
+    border: 1px solid #fff;
+    background-color: #fff;
+    color: #000;
     :last-child {
-      background-color: #181b81;
-      color: #000;
       margin-left: 12px;
+    border: 1px solid #fff;
+    }
+    :hover {
+      background-color: var(--primary-color3);
+      color: #fff;
     }
   }
   @media only screen and (max-width: 768px) {
