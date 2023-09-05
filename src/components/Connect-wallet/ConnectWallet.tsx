@@ -38,7 +38,7 @@ const ConnectWallet = () => {
   function handleChain(value: any, e: any) {
     if (account !== undefined) {
       handleConnect("1");
-
+      // @ts-ignore
       const _chainId = MAPPING_CHAINID[value];
       switchNetworkChain(_chainId, value).then((res) => {
         // actions1.updateChain(value);
@@ -121,9 +121,9 @@ const ConnectWallet = () => {
       case 42161:
         return "ETH";
         break;
-        case 97:
-          return "tBNB";
-          break;
+      case 97:
+        return "tBNB";
+        break;
       default:
         return "BNB";
     }
@@ -161,7 +161,7 @@ const ConnectWallet = () => {
 
   return (
     <>
-     {isMobile ? (
+      {isMobile ? (
         <div className="filter-chain mobile">
           <Select
             value={initialValue}
@@ -196,7 +196,7 @@ const ConnectWallet = () => {
             placeholder="Select network"
           >
             <>
-            <Option key="beptest" value="beptest">
+              <Option key="beptest" value="beptest">
                 <img src="/images/bnb.png?v=3" alt="" />
                 BNB TEST
               </Option>

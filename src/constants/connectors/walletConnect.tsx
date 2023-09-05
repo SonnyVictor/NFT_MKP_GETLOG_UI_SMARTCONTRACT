@@ -1,155 +1,153 @@
-import { AbstractConnector } from '@web3-react/abstract-connector';
-import warning from 'tiny-warning';
-import WalletConnectProvider from '@walletconnect/web3-provider';
-import Web3 from 'web3';
-
+import { AbstractConnector } from "@web3-react/abstract-connector";
+import warning from "tiny-warning";
+import WalletConnectProvider from "@walletconnect/web3-provider";
+import Web3 from "web3";
 
 export class NoBscProviderError extends Error {
-	constructor() {
-		super();
-		this.name = this.constructor.name;
-		this.message = 'No BSC provider was found on window.BinanceChain.';
-	}
+  constructor() {
+    super();
+    this.name = this.constructor.name;
+    this.message = "No BSC provider was found on window.BinanceChain.";
+  }
 }
 
 export class UserRejectedRequestError extends Error {
-	constructor() {
-		super();
-		this.name = this.constructor.name;
-		this.message = 'The user rejected the request.';
-	}
+  constructor() {
+    super();
+    this.name = this.constructor.name;
+    this.message = "The user rejected the request.";
+  }
 }
 
 export class WalletConnector extends AbstractConnector {
+  provider: any;
 
-	provider: any;
+  constructor(kwargs: any) {
+    super(kwargs);
 
-	constructor(kwargs: any) {
-		super(kwargs);
+    this.handleNetworkChanged = this.handleNetworkChanged.bind(this);
+    this.handleChainChanged = this.handleChainChanged.bind(this);
+    this.handleAccountsChanged = this.handleAccountsChanged.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+  }
 
-		this.handleNetworkChanged = this.handleNetworkChanged.bind(this);
-		this.handleChainChanged = this.handleChainChanged.bind(this);
-		this.handleAccountsChanged = this.handleAccountsChanged.bind(this);
-		this.handleClose = this.handleClose.bind(this);
-	}
+  handleChainChanged(chainId: any) {
+    this.emitUpdate({ chainId, provider: this.provider });
+  }
 
-	handleChainChanged(chainId: any) {
-		this.emitUpdate({ chainId, provider: this.provider });
-	}
+  handleAccountsChanged(accounts: any) {
+    if (accounts.length === 0) {
+      this.emitDeactivate();
+    } else {
+      this.emitUpdate({ account: accounts[0] });
+    }
+  }
 
-	handleAccountsChanged(accounts: any) {
-		if (accounts.length === 0) {
-			this.emitDeactivate();
-		} else {
-			this.emitUpdate({ account: accounts[0] });
-		}
-	}
+  handleClose() {
+    this.emitDeactivate();
+  }
 
-	handleClose() {
-		this.emitDeactivate();
-	}
+  handleNetworkChanged(networkId: any) {
+    this.emitUpdate({ chainId: networkId, provider: this.provider });
+  }
 
-	handleNetworkChanged(networkId: any) {
-		this.emitUpdate({ chainId: networkId, provider: this.provider });
-	}
+  async activate() {
+    this.provider = new WalletConnectProvider({
+      rpc: {
+        56: "https://bsc-dataseed.binance.org",
+        97: "https://data-seed-prebsc-1-s1.binance.org:8545",
+        5611: "https://opbnb-testnet-rpc.bnbchain.org",
+      },
+      infuraId: "8c05040c9f4748d489ab9a485bf52e06",
+      bridge: "https://bridge.walletconnect.org",
+      qrcode: true,
+      pollingInterval: 15000,
+      qrcodeModalOptions: {
+        mobileLinks: [
+          "rainbow",
+          "metamask",
+          "argent",
+          "trust",
+          "imtoken",
+          "pillar",
+        ],
+      },
+    });
 
+    this.provider.enable();
 
+    const web3 = new Web3(this.provider as any);
+    const accounts = await web3.eth.getAccounts();
 
-	async activate() {
-		this.provider = new WalletConnectProvider({
-			rpc: {
-				56: 'https://bsc-dataseed.binance.org',
-				97: 'https://data-seed-prebsc-1-s1.binance.org:8545'
-			},
-			infuraId: '8c05040c9f4748d489ab9a485bf52e06',
-			bridge: 'https://bridge.walletconnect.org',
-			qrcode: true,
-			pollingInterval: 15000,
-			qrcodeModalOptions: {
-				mobileLinks: [
-				  "rainbow",
-				  "metamask",
-				  "argent",
-				  "trust",
-				  "imtoken",
-				  "pillar",
-				],
-			}
-		});
+    if (this.provider.on) {
+      this.provider.on("chainChanged", this.handleChainChanged);
+      this.provider.on("accountsChanged", this.handleAccountsChanged);
+      // this.provider.on('disconnect', this.handleClose);
+      this.provider.on("connect", this.handleNetworkChanged);
+    }
 
-		this.provider.enable();
+    let account = accounts[0];
 
+    return { provider: this.provider, ...(account ? { account } : {}) };
+  }
 
-		const web3 = new Web3(this.provider as any);
-		const accounts = await web3.eth.getAccounts();
+  async getProvider() {
+    return this.provider;
+  }
 
-		if (this.provider.on) {
-			this.provider.on('chainChanged', this.handleChainChanged);
-			this.provider.on('accountsChanged', this.handleAccountsChanged);
-			// this.provider.on('disconnect', this.handleClose);
-			this.provider.on('connect', this.handleNetworkChanged);
-		}
+  //@ts-ignore
+  async getChainId() {
+    if (!this.provider) {
+      throw new NoBscProviderError();
+    }
 
-		let account = accounts[0];
+    let chainId;
+    try {
+      const web3 = new Web3(this.provider as any);
+      chainId = await await web3.eth.getChainId();
+    } catch {
+      warning(
+        false,
+        "eth_chainId was unsuccessful, falling back to net_version"
+      );
+    }
 
-		return { provider: this.provider, ...(account ? { account } : {}) };
-	}
+    return chainId;
+  }
 
-	async getProvider() {
-		return this.provider;
-	}
+  //@ts-ignore
+  async getAccount() {
+    if (!this.provider) {
+      throw new NoBscProviderError();
+    }
 
-	//@ts-ignore
-	async getChainId() {
-		if (!this.provider) {
-			throw new NoBscProviderError();
-		}
+    let account;
+    try {
+      const web3 = new Web3(this.provider as any);
+      const accounts = await web3.eth.getAccounts();
+      account = accounts && accounts.length > 0 ? accounts[0] : null;
+    } catch {
+      warning(false, "eth_accounts was unsuccessful, falling back to enable");
+    }
 
-		let chainId;
-		try {
-			const web3 = new Web3(this.provider as any);
-			chainId = await await web3.eth.getChainId();
-		} catch {
-			warning(false, 'eth_chainId was unsuccessful, falling back to net_version');
-		}
+    return account;
+  }
 
-		return chainId;
-	}
+  deactivate() {
+    // this.provider.disconnect();
+  }
 
-	//@ts-ignore
-	async getAccount() {
-		if (!this.provider) {
-			throw new NoBscProviderError();
-		}
+  async isAuthorized() {
+    if (!this.provider) {
+      return false;
+    }
 
-		let account;
-		try {
-			const web3 = new Web3(this.provider as any);
-			const accounts = await web3.eth.getAccounts();
-			account = accounts && accounts.length > 0 ? accounts[0] : null;
-		} catch {
-			warning(false, 'eth_accounts was unsuccessful, falling back to enable');
-		}
-
-
-		return account;
-	}
-
-	deactivate() {
-		// this.provider.disconnect();
-	}
-
-	async isAuthorized() {
-		if (!this.provider) {
-			return false;
-		}
-
-		try {
-			const web3 = new Web3(this.provider as any);
-			const accounts = await web3.eth.getAccounts();
-			return accounts.length > 0;
-		} catch {
-			return false;
-		}
-	}
+    try {
+      const web3 = new Web3(this.provider as any);
+      const accounts = await web3.eth.getAccounts();
+      return accounts.length > 0;
+    } catch {
+      return false;
+    }
+  }
 }
