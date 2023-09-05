@@ -983,21 +983,17 @@ const TopSeller = () => {
                           <div className="box-item" key={index}>
                             <div className="sc-author-box style-3">
                               <div className="author-avatar">
-                                <Link to="/authors-02">
-                                  <img
-                                    src={item.coverUrl}
-                                    alt="Axies"
-                                    className="avatar"
-                                  />
-                                </Link>
+                                <img
+                                  src={item.coverUrl}
+                                  alt="Axies"
+                                  className="avatar"
+                                />
                                 <div className="badge">
                                   <i className="ripple"></i>
                                 </div>
                               </div>
                               <div className="author-infor">
-                                <h5>
-                                  <Link to="/authors-02">{item.title}</Link>
-                                </h5>
+                                <h5>{item.title}</h5>
                                 <span className="price">
                                   {item.floorPrice} BNB
                                 </span>

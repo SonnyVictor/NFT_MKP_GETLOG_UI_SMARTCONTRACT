@@ -1,0 +1,540 @@
+[
+  {
+    "type": "constructor",
+    "inputs": [
+      {
+        "name": "_nft",
+        "type": "address",
+        "internalType": "contract IERC721Enumerable"
+      }
+    ],
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "BuyNFT",
+    "type": "event",
+    "inputs": [
+      {
+        "name": "_from",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "_tokenId",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_price",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_timeBuy",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false,
+    "signature": "0x7f1f50e630774899de8224e2755705b9bbc4a5eaa9c5c5819f950d049f6df175"
+  },
+  {
+    "name": "MarketplaceItemCreated",
+    "type": "event",
+    "inputs": [
+      {
+        "name": "_itemId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_tokenId",
+        "type": "uint256",
+        "indexed": true,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_seller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "_owner",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "_price",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_timeStart",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_timeEnd",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_sold",
+        "type": "bool",
+        "indexed": false,
+        "internalType": "bool"
+      }
+    ],
+    "anonymous": false,
+    "signature": "0xd95631535651c70a1497fec4877e22850d2cf9fc99e31ade6bbe4c0bfa241f29"
+  },
+  {
+    "name": "OwnershipTransferred",
+    "type": "event",
+    "inputs": [
+      {
+        "name": "previousOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      },
+      {
+        "name": "newOwner",
+        "type": "address",
+        "indexed": true,
+        "internalType": "address"
+      }
+    ],
+    "anonymous": false,
+    "signature": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
+  },
+  {
+    "name": "SetNFT",
+    "type": "event",
+    "inputs": [
+      {
+        "name": "_nft",
+        "type": "address",
+        "indexed": false,
+        "internalType": "contract IERC721"
+      }
+    ],
+    "anonymous": false,
+    "signature": "0xf8525b9383ba5cc1b196c9a879bcbe7911913876aaff159ec424e1bb6136fff2"
+  },
+  {
+    "name": "SetTax",
+    "type": "event",
+    "inputs": [
+      {
+        "name": "_taxService",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_taxCreator",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false,
+    "signature": "0x066acf8dc86fdf444456fd1e73b5e50347cdef064ca99b9e5b59964463730da8"
+  },
+  {
+    "name": "UnListNFTOnSale",
+    "type": "event",
+    "inputs": [
+      {
+        "name": "_seller",
+        "type": "address",
+        "indexed": false,
+        "internalType": "address"
+      },
+      {
+        "name": "_tokenId",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_timeUnList",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false,
+    "signature": "0x225e1fc92e26906459342a3b8533010a781c776b3841a7ee22eb3e35fddd2fb8"
+  },
+  {
+    "name": "UpdatePriceNftOnSale",
+    "type": "event",
+    "inputs": [
+      {
+        "name": "_tokenId",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_price",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      },
+      {
+        "name": "_timeUpdate",
+        "type": "uint256",
+        "indexed": false,
+        "internalType": "uint256"
+      }
+    ],
+    "anonymous": false,
+    "signature": "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2"
+  },
+  {
+    "name": "buyNft",
+    "type": "function",
+    "inputs": [
+      { "name": "itemId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "payable": true,
+    "signature": "0x243adbdd",
+    "stateMutability": "payable"
+  },
+  {
+    "name": "countCurrentNFTListed",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "uint256", "value": "0", "internalType": "uint256" }
+    ],
+    "constant": true,
+    "signature": "0xd355b30d",
+    "stateMutability": "view"
+  },
+  {
+    "name": "createMarketplaceItem",
+    "type": "function",
+    "inputs": [
+      { "name": "_tokenId", "type": "uint256", "internalType": "uint256" },
+      { "name": "_price", "type": "uint256", "internalType": "uint256" },
+      { "name": "_time", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "signature": "0x4564f21b",
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "fetchItemsOnSale",
+    "type": "function",
+    "inputs": [
+      { "name": "_addr", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "components": [
+          { "name": "itemId", "type": "uint256", "internalType": "uint256" },
+          { "name": "tokenId", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "seller",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "owner",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          { "name": "price", "type": "uint256", "internalType": "uint256" },
+          { "name": "timeStart", "type": "uint256", "internalType": "uint256" },
+          { "name": "timeEnd", "type": "uint256", "internalType": "uint256" },
+          { "name": "sold", "type": "bool", "internalType": "bool" },
+          { "name": "currentList", "type": "bool", "internalType": "bool" }
+        ],
+        "internalType": "struct OpBnbNFTMarketPlaceListSellBuy.MarketplaceItem[]"
+      }
+    ],
+    "constant": true,
+    "signature": "0x6f44fc90",
+    "stateMutability": "view"
+  },
+  {
+    "name": "fetchMarketplaceItems",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "value": [],
+        "components": [
+          { "name": "itemId", "type": "uint256", "internalType": "uint256" },
+          { "name": "tokenId", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "seller",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "owner",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          { "name": "price", "type": "uint256", "internalType": "uint256" },
+          { "name": "timeStart", "type": "uint256", "internalType": "uint256" },
+          { "name": "timeEnd", "type": "uint256", "internalType": "uint256" },
+          { "name": "sold", "type": "bool", "internalType": "bool" },
+          { "name": "currentList", "type": "bool", "internalType": "bool" }
+        ],
+        "internalType": "struct OpBnbNFTMarketPlaceListSellBuy.MarketplaceItem[]"
+      }
+    ],
+    "constant": true,
+    "signature": "0x01ae591a",
+    "stateMutability": "view"
+  },
+  {
+    "name": "fetchMyNFTsBought",
+    "type": "function",
+    "inputs": [
+      { "name": "_add", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple[]",
+        "components": [
+          { "name": "itemId", "type": "uint256", "internalType": "uint256" },
+          { "name": "tokenId", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "seller",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          {
+            "name": "owner",
+            "type": "address",
+            "internalType": "address payable"
+          },
+          { "name": "price", "type": "uint256", "internalType": "uint256" },
+          { "name": "timeStart", "type": "uint256", "internalType": "uint256" },
+          { "name": "timeEnd", "type": "uint256", "internalType": "uint256" },
+          { "name": "sold", "type": "bool", "internalType": "bool" },
+          { "name": "currentList", "type": "bool", "internalType": "bool" }
+        ],
+        "internalType": "struct OpBnbNFTMarketPlaceListSellBuy.MarketplaceItem[]"
+      }
+    ],
+    "constant": true,
+    "signature": "0xeb4cdc85",
+    "stateMutability": "view"
+  },
+  {
+    "name": "getAddressOwnerARBNFT",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "value": "0x6A292cacEfaD3d1898184379f428ac9fd61a7804",
+        "internalType": "address"
+      }
+    ],
+    "constant": true,
+    "signature": "0x8309dd6a",
+    "stateMutability": "view"
+  },
+  {
+    "name": "getItemSold",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "uint256", "value": "0", "internalType": "uint256" }
+    ],
+    "constant": true,
+    "signature": "0x39547d80",
+    "stateMutability": "view"
+  },
+  {
+    "name": "getNFT",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "value": "0x79592cD2CedAfcC7E0747814B2A9ec8044C5B400",
+        "internalType": "contract IERC721Enumerable"
+      }
+    ],
+    "constant": true,
+    "signature": "0x88a6360e",
+    "stateMutability": "view"
+  },
+  {
+    "name": "getPaused",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      { "name": "", "type": "bool", "value": false, "internalType": "bool" }
+    ],
+    "constant": true,
+    "signature": "0x6805b84b",
+    "stateMutability": "view"
+  },
+  {
+    "name": "getTax",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256",
+        "value": { "0": "2", "1": "7" },
+        "internalType": "uint256"
+      },
+      { "name": "", "type": "uint256", "internalType": "uint256" }
+    ],
+    "constant": true,
+    "signature": "0x54b762a6",
+    "stateMutability": "view"
+  },
+  {
+    "name": "onERC721Received",
+    "type": "function",
+    "inputs": [
+      { "name": "", "type": "address", "internalType": "address" },
+      { "name": "", "type": "address", "internalType": "address" },
+      { "name": "", "type": "uint256", "internalType": "uint256" },
+      { "name": "", "type": "bytes", "internalType": "bytes" }
+    ],
+    "outputs": [{ "name": "", "type": "bytes4", "internalType": "bytes4" }],
+    "constant": true,
+    "signature": "0x150b7a02",
+    "stateMutability": "pure"
+  },
+  {
+    "name": "owner",
+    "type": "function",
+    "inputs": [],
+    "outputs": [
+      {
+        "name": "",
+        "type": "address",
+        "value": "0x6A292cacEfaD3d1898184379f428ac9fd61a7804",
+        "internalType": "address"
+      }
+    ],
+    "constant": true,
+    "signature": "0x8da5cb5b",
+    "stateMutability": "view"
+  },
+  {
+    "name": "renounceOwnership",
+    "type": "function",
+    "inputs": [],
+    "outputs": [],
+    "signature": "0x715018a6",
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "setAddressOwnerARBNFT",
+    "type": "function",
+    "inputs": [
+      { "name": "_add", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "signature": "0x5c9d2003",
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "setNft",
+    "type": "function",
+    "inputs": [
+      {
+        "name": "_nft",
+        "type": "address",
+        "internalType": "contract IERC721Enumerable"
+      }
+    ],
+    "outputs": [],
+    "signature": "0xf3c13387",
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "setPaused",
+    "type": "function",
+    "inputs": [{ "name": "_paused", "type": "bool", "internalType": "bool" }],
+    "outputs": [],
+    "signature": "0x16c38b3c",
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "setTax",
+    "type": "function",
+    "inputs": [
+      { "name": "_taxService", "type": "uint256", "internalType": "uint256" },
+      { "name": "_taxCreator", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "signature": "0x667f6526",
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "transferOwnership",
+    "type": "function",
+    "inputs": [
+      { "name": "newOwner", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [],
+    "signature": "0xf2fde38b",
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "unListNftOnSale",
+    "type": "function",
+    "inputs": [
+      { "name": "_itemId", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "signature": "0xff4cdd2d",
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "updatePriceNftOnSale",
+    "type": "function",
+    "inputs": [
+      { "name": "itemId", "type": "uint256", "internalType": "uint256" },
+      { "name": "_price", "type": "uint256", "internalType": "uint256" }
+    ],
+    "outputs": [],
+    "signature": "0x098375a9",
+    "stateMutability": "nonpayable"
+  },
+  {
+    "name": "withdraw",
+    "type": "function",
+    "inputs": [],
+    "outputs": [],
+    "payable": true,
+    "signature": "0x3ccfd60b",
+    "stateMutability": "payable"
+  }
+]
