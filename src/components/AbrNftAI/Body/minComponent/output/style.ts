@@ -3,13 +3,12 @@ import styled from "styled-components";
 export const Wapper = styled.div`
   width: 50%;
   h1 {
-    font-family: SVNDetermination;
     font-style: normal;
     font-weight: 400;
     font-size: 36px;
     line-height: 133%;
     letter-spacing: -0.02em;
-    color: #1ce4ff;
+    color: #fff;
     margin-bottom: 26px;
   }
   @media only screen and (max-width: 768px) {
@@ -125,34 +124,34 @@ export const BoxBtnGroup = styled.div<{
           0 0 0.4px #fff,
           0 0 1.1px #fff,
           0 0 1.9px #fff,
-          0 0 4px #1BDDFF,
-          0 0 8px #1BDDFF,
-          0 0 9px #1BDDFF,
-          0 0 10px #1BDDFF,
-          0 0 15px #1BDDFF;
+          0 0 4px #181b81,
+          0 0 8px #181b81,
+          0 0 9px #181b81,
+          0 0 10px #181b81,
+          0 0 15px #181b81;
       }
       0% {
         box-shadow:
         0 0 0.2px #fff,
         0 0 0.4px #fff,
         0 0 0.6px #fff,
-        0 0 1px #1BDDFF,
-        0 0 4.5px #1BDDFF,
-        0 0 5.5px #1BDDFF,
-        0 0 7px #1BDDFF,
-        0 0 8px #1BDDFF;
+        0 0 1px #181b81,
+        0 0 4.5px #181b81,
+        0 0 5.5px #181b81,
+        0 0 7px #181b81,
+        0 0 8px #181b81;
       }
     }
     :nth-child(2) {
       border: 1px solid ${({ downloadable }) =>
-        downloadable ? "#1BDDFF" : "#535353"};
+        downloadable ? "#181b81" : "#535353"};
       ${({ downloadable }) =>
         downloadable ? "animation: pulsate 1.5s infinite alternate;" : ""}
       cursor: ${({ downloadable }) => (downloadable ? "pointer" : "no-drop")};
     }
     :nth-child(3) {
       border: 1px solid ${({ maybeMint }) =>
-        maybeMint ? "#1BDDFF" : "#535353"};
+        maybeMint ? "#181b81" : "#535353"};
       ${({ maybeMint }) =>
         maybeMint ? "animation: pulsate 1.5s infinite alternate;" : ""}
       cursor: ${({ maybeMint }) => (maybeMint ? "pointer" : "no-drop")};
