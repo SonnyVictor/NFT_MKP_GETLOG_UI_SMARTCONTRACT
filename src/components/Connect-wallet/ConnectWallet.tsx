@@ -274,7 +274,6 @@ const ConnectWallet = () => {
                   );
                 })}
               </>
-
               {NEED_A_PLACEHOLDER && <div className={walletItemClass} />}
             </div>
           </>

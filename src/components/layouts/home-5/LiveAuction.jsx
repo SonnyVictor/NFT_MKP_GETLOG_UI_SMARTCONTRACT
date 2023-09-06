@@ -119,17 +119,10 @@ const LiveAuction = () => {
                           <div className="slider-item">
                             <div className="sc-card-product">
                               <div className="card-media">
-                                <Link to="/item-details-01">
-                                  <img src={item.img} alt="axies" />
-                                </Link>
-                                <Link
-                                  to="/login"
-                                  className="wishlist-button heart"
-                                >
-                                  <span className="number-like">
-                                    {item.wishlist}
-                                  </span>
-                                </Link>
+                                <img src={item.img} alt="axies" />
+                                <span className="number-like">
+                                  {item.wishlist}
+                                </span>
                                 <div className="featured-countdown">
                                   <span className="slogan"></span>
                                   <Countdown date={Date.now() + 500000000}>
@@ -138,7 +131,7 @@ const LiveAuction = () => {
                                 </div>
                                 <div className="button-place-bid">
                                   <button
-                                    onClick={() => setModalShow(true)}
+                                    // onClick={() => setModalShow(true)}
                                     className="sc-button style-place-bid style bag fl-button pri-3"
                                   >
                                     <span>Place Bid</span>
@@ -146,11 +139,7 @@ const LiveAuction = () => {
                                 </div>
                               </div>
                               <div className="card-title">
-                                <h5>
-                                  <Link to="/item-details-01">
-                                    {item.title}
-                                  </Link>
-                                </h5>
+                                <h5>{item.title}</h5>
                                 <div className="tags">{item.tags}</div>
                               </div>
                               <div className="meta-info">
@@ -160,12 +149,7 @@ const LiveAuction = () => {
                                   </div>
                                   <div className="info">
                                     <span>Creator</span>
-                                    <h6>
-                                      {" "}
-                                      <Link to="/authors-02">
-                                        {item.nameAuthor}
-                                      </Link>{" "}
-                                    </h6>
+                                    <h6>{item.nameAuthor}</h6>
                                   </div>
                                 </div>
                                 <div className="price">

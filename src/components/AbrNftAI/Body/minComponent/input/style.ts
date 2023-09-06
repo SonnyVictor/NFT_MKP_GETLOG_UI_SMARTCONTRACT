@@ -10,7 +10,7 @@ export const Wapper = styled.div`
   }
   h1 {
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 36px;
     line-height: 133%;
     letter-spacing: -0.02em;
@@ -32,7 +32,7 @@ export const Wapper = styled.div`
     transform: translateY(-50%);
     position: absolute;
     padding: 0px 8px;
-    background-color: #2d2e37;
+    background-color: rgb(20, 20, 31);
     width: fit-content;
   }
   @media only screen and (max-width: 768px) {
@@ -104,7 +104,7 @@ export const BoxOneElm = styled.div<{
       top: 0px;
       right: 0px;
       transform: translateX(100%);
-      background-color: #2d2e37;
+      background-color: rgb(20, 20, 31);
       padding-right: 8px;
     }
   }
@@ -163,6 +163,7 @@ export const ProgressSlide = styled.div`
     transition: opacity 0.2s;
     padding: 0px;
     border: none;
+    -webkit-appearance: none;
     ::-webkit-slider-runnable-track {
       background: #fff;
       height: 8px;
@@ -188,6 +189,22 @@ export const ProgressSlide = styled.div`
     }
     ::-webkit-slider-runnable-track {
       boder-radius: 10px !important;
+    }
+    ::-moz-range-thumb {
+      width: 8px;
+      height: 8px;
+      background: #43e5f7 !important;
+      cursor: pointer;
+    }
+
+    ::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: #43e5f7;
+      height: 20px;
+      width: 20px;
+      transform: translateY(-6px);
+      border-radius: 50%;
     }
   }
 `;
@@ -220,7 +237,7 @@ export const BtnGroup = styled.div`
     color: #000;
     :last-child {
       margin-left: 12px;
-    border: 1px solid #fff;
+      border: 1px solid #fff;
     }
     :hover {
       background-color: var(--primary-color3);

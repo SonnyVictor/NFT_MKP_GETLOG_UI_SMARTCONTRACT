@@ -38,10 +38,10 @@ export const Container = styled.div`
 export const ContentBox = styled.div`
   display: flex;
   width: 100%;
-  h3{
-    font-size: 28px ;
+  h3 {
+    font-size: 28px;
   }
-  li{
+  li {
     font-size: 14px;
     line-height: 150%;
   }
@@ -141,7 +141,7 @@ export const BoxCoppyContrac = styled.div`
       }
       :active {
         transform: translateY(3%);
-        span{
+        span {
           opacity: 1;
           transition: all 0s linear;
         }
@@ -151,12 +151,12 @@ export const BoxCoppyContrac = styled.div`
 `;
 
 export const ButnSubMit = styled.button`
-    width: 100%;
-    background-color: transparent;
-    color: #000;
-    transition: all 0.3s linear;
-    :hover{
-        background-color: var(--primary-color3);
-        color: #fff;
-    }
-`
+  width: 100%;
+  /* background-color: transparent; */
+  /* color: var(--primary-color3) !important ; */
+  /* transition: all 0.3s linear; */
+  :hover {
+    /* background-color: var(--primary-color3); */
+    /* color: #fff !important ; */
+  }
+`;
