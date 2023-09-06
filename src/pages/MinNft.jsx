@@ -143,7 +143,7 @@ const MinNft = () => {
     const [copySuccess, setCopySuccess] = useState('');
     const copyToClipboard = async (text) => {
       if (!navigator.clipboard) {
-        return alert('Trình duyệt của bạn không hỗ trợ copy clipboard');
+        return alert('Your browser does not support clipboard copy.');
       }
       try {
         await navigator.clipboard.writeText(text);
@@ -216,17 +216,8 @@ const MinNft = () => {
                 </div>
               </BoxCoppyContrac>
               <div style={{marginBottom:'12px'}}>
-                <ButnSubMit
-                  // isDisabled
-                //   isLoading={loading}
-                //   onClick={fixedMintNft}
-                //   w="100%"
-                //   maxW="590px"
-                //   h="60px"
-                //   bg="#fff"
-                  color="#000000"
-                >
-                  {TitleMint}
+                <ButnSubMit className={`sc-button style ${account ? 'bag' : 'wallet'} fl-button pri-3 no-bg `} >
+                  <span>{TitleMint}</span>
                 </ButnSubMit>
               </div>
               <h3>Price Mint : 0.009 ETH</h3>

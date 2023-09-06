@@ -4,7 +4,7 @@ export const Wapper = styled.div`
   width: 50%;
   h1 {
     font-style: normal;
-    font-weight: 400;
+    font-weight: 600;
     font-size: 36px;
     line-height: 133%;
     letter-spacing: -0.02em;
