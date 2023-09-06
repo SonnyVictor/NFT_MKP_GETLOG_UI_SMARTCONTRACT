@@ -33,7 +33,10 @@ const routes = [
   // { path: "/explore-03", component: <Explore03 /> },
   // { path: "/explore-04", component: <Explore04 /> },
   // { path: "/live-auctions", component: <LiveAuctions /> },
-  { path: "/item-details", component: <ItemDetails01 /> },
+  {
+    path: "/details",
+    component: <ItemDetails01 />,
+  },
   // { path: "/item-details-02", component: <ItemDetails02 /> },
   { path: "/activity-01", component: <Activity01 /> },
   { path: "/activity-02", component: <Activity02 /> },

@@ -11,7 +11,6 @@ import HeaderStyle2 from "../components/header/HeaderStyle2";
 import {
   ContractNFT,
   getImageNFT,
-  getTokenURI,
 } from "../../src/integrateContract/contract/";
 import { useActiveWeb3React } from "../hooks";
 
@@ -72,18 +71,15 @@ const Authors02 = () => {
           return i;
         })
       );
-      setDataNFT(testItems);
+      setDataNFT([...testItems]);
     } catch (error) {
       console.log(error);
       setIsLoading(false);
     }
   };
-
   useEffect(() => {
     getItemsNFTProfile();
-
-    // getItemsNFTProfile();
-  }, []);
+  }, [account, menuTab]);
   return (
     <div className="authors-2">
       <HeaderStyle2 />
@@ -173,6 +169,7 @@ const Authors02 = () => {
                   <Tab key={index}>{item.name}</Tab>
                 ))}
               </TabList>
+
               <div className="content-tab">
                 <div className="content-inner">
                   <div className="row">
@@ -183,9 +180,15 @@ const Authors02 = () => {
                       >
                         <div className="sc-card-product explode ">
                           <div className="card-media">
-                            <Link to="/item-details-01">
-                              <img src={item?.img} alt="Axies" />
-                            </Link>
+                            <img
+                              src={`data:image/svg+xml;utf8,${encodeURIComponent(
+                                item?.img
+                              )}`}
+                              alt="NFT Image"
+                              width="200px"
+                              height="200px"
+                            />
+
                             <div className="button-place-bid ">
                               <button
                                 onClick={() => {
@@ -197,53 +200,21 @@ const Authors02 = () => {
                                 <span>List Sell</span>
                               </button>
                             </div>
-                            <Link to="/login" className="wishlist-button heart">
-                              <span className="number-like">
-                                {" "}
-                                {item?.token_id}
-                              </span>
-                            </Link>
+
+                            <span className="number-like">
+                              {" "}
+                              {item?.token_id.toString()}
+                            </span>
                           </div>
                           <div className="card-title mg-bt-16">
-                            <h5>
-                              <Link to="/item-details-01">"{item?.name}"</Link>
-                            </h5>
+                            <h5>{item?.name}</h5>
                           </div>
+                          <h5>TokenId #{item?.token_id}</h5>
                           <div className="meta-info">
                             <div className="author">
-                              <div className="avatar">
-                                <div
-                                  dangerouslySetInnerHTML={{
-                                    __html: item?.img,
-                                  }}
-                                />
-                              </div>
-                              <div className="info">
-                                <span>Creator</span>
-                                <h6>
-                                  {" "}
-                                  {/* <Link to="/author-02">
-                                          {item.nameAuthor}
-                                        </Link>{" "} */}
-                                </h6>
-                              </div>
+                              <div className="avatar"></div>
+                              <div className="info"></div>
                             </div>
-                            <div className="tags">{item.tags}</div>
-                          </div>
-                          <div className="card-bottom style-explode">
-                            <div className="price">
-                              <span>Current Bid</span>
-                              <div className="price-details">
-                                {/* <h5>{data.price}</h5>
-                                      <span>= {data.priceChange}</span> */}
-                              </div>
-                            </div>
-                            <Link
-                              to="/activity-01"
-                              className="view-history reload"
-                            >
-                              View History
-                            </Link>
                           </div>
                         </div>
                       </div>
