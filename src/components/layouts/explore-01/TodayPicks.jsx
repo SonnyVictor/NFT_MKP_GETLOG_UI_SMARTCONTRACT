@@ -147,11 +147,9 @@ const TodayPicks = (props) => {
                       onClick={() => setModalShow(true)}
                       className="sc-button style bag fl-button pri-3 no-bg"
                     >
-                      <span>Place Bid</span>
+                      <span>Buy</span>
                     </button>
-                    <div className="view-history reload">
-                      View History
-                    </div>
+                    <div className="view-history reload">View History</div>
                   </div>
                 </div>
               </div>

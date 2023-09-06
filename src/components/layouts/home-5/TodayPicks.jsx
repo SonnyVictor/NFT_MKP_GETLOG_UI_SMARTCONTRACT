@@ -7,10 +7,16 @@ import img2 from "../../../assets/images/icon/rainbow.png";
 import img3 from "../../../assets/images/icon/photo.png";
 import img4 from "../../../assets/images/icon/itunes.png";
 import CardModal from "../CardModal";
-
+import { ImageNft } from "./TodayPicksStyle";
+import CardModalBuy from "../CardModalBuy";
+import { convertTime } from "../../../utils/formartTime";
+import { shortenAddress } from "../../../utils/formartAddress";
+import { convertTimeEnd } from "../../../utils/formartTime";
+import { convertendTime } from "../../../utils/formartTime";
+import Countdown from "react-countdown";
+import ItemDetails01 from "../../../pages/ItemDetails01";
 const TodayPicks = (props) => {
   const data = props.data;
-
   const [visible, setVisible] = useState(8);
   const showMoreItems = () => {
     setVisible((prevValue) => prevValue + 4);
@@ -30,7 +36,7 @@ const TodayPicks = (props) => {
                 </Link>
               </div>
             </div>
-            <div className="col-md-12">
+            {/* <div className="col-md-12">
               <div className="tf-soft">
                 <div className="soft-left">
                   <Dropdown>
@@ -307,7 +313,7 @@ const TodayPicks = (props) => {
                   </Dropdown>
                 </div>
               </div>
-            </div>
+            </div> */}
             {data.slice(0, visible).map((item, index) => (
               <div
                 key={index}
@@ -319,42 +325,54 @@ const TodayPicks = (props) => {
                   } `}
                 >
                   <div className="card-media">
-                    <img src={item.img} alt="axies" />
-                    <Link to="/login" className="wishlist-button heart">
-                      <span className="number-like">{item.wishlist}</span>
-                    </Link>
-                    <div className="coming-soon">{item.feature}</div>
+                    <img
+                      src={`data:image/svg+xml;utf8,${encodeURIComponent(
+                        item?.tokenIMG
+                      )}`}
+                      alt="NFT Image"
+                      width="200px"
+                      height="200px"
+                    />
                   </div>
                   <div className="card-title">
-                    <h5 className="style2">"{item.title}"</h5>
-                    <div className="tags">{item.tags}</div>
+                    <h5 className="style2">
+                      "{item?.symbolNFT + " #" + item?.tokenId}"
+                    </h5>
+                    <div className="tags">
+                      {/* <Countdown date={Date.now() + Number(item?.endTime)}>
+                        <span>You are good to go!</span>
+                      </Countdown> */}
+                      {convertendTime(item?.endTime)}
+                    </div>
                   </div>
                   <div className="meta-info">
                     <div className="author">
-                      <div className="avatar">
-                        <img src={item.imgAuthor} alt="axies" />
-                      </div>
                       <div className="info">
-                        <span>Owned By</span>
+                        <span>Seller</span>
                         <h6>
-                          {" "}
                           <Link to="/authors-02">{item.nameAuthor}</Link>{" "}
+                          <span>{shortenAddress(item?.seller)}</span>
                         </h6>
                       </div>
                     </div>
                     <div className="price">
-                      <span>Current Bid</span>
-                      <h5> {item.price}</h5>
+                      <span>Price List</span>
+                      <h5> {item.price} opBNB </h5>
                     </div>
                   </div>
                   <div className="card-bottom">
-                    <button
-                      onClick={() => setModalShow(true)}
-                      className="sc-button style bag fl-button pri-3 no-bg"
+                    <Link to={`/details?id=${item?.tokenId}`}>
+                      <button
+                        onClick={() => setModalShow(true)}
+                        className="sc-button style bag fl-button pri-3 no-bg"
+                      >
+                        <span>Buy NFT</span>
+                      </button>
+                    </Link>
+                    <Link
+                      to={`/details?id=${item?.tokenId}`}
+                      className="view-history reload"
                     >
-                      <span>Place Bid</span>
-                    </button>
-                    <Link to="/activity-01" className="view-history reload">
                       View History
                     </Link>
                   </div>
@@ -376,7 +394,7 @@ const TodayPicks = (props) => {
           </div>
         </div>
       </section>
-      <CardModal show={modalShow} onHide={() => setModalShow(false)} />
+      {/* <CardModalBuy show={modalShow} onHide={() => setModalShow(false)} /> */}
     </Fragment>
   );
 };
