@@ -7,142 +7,45 @@ import {
   BoxCoppyContrac,
   ButnSubMit,
 } from "./MinNftStyle";
-import { useToast } from "react-toastify";
-import { useState, useMemo, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import { useState, useMemo, useEffect, useContext } from "react";
 import { getProvider } from "../services/lib/ethers";
 import { ethers } from "ethers";
 import { useActiveWeb3React } from "../hooks";
+import { ModalConfirmContext } from "../components/ProviderPopUp/confirm";
+import { ConnectPopUp } from "../components/Modal/ModalConnectWallet";
+import { SignerContractNFT } from "../integrateContract/contract";
+import "react-toastify/dist/ReactToastify.css";
 
-const contractAddress = "";
-const ABI_MINT = "";
+const ContractMint = "0x79592cD2CedAfcC7E0747814B2A9ec8044C5B400";
 
 const MinNft = () => {
-  // const toast = useToast();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState();
   const [local, setLocal] = useState("");
   const [total, setTotal] = useState(0);
+  const [copySuccess, setCopySuccess] = useState("");
+  const { onOpen } = useContext(ModalConfirmContext);
+  const [isLoading, setIsLoading] = useState(false);
+
   const changeTotal = (value) => {
     setTotal(value);
   };
 
-  // const [account, setAccount] = useState();
-  // const { onCopy, value, setValue, hasCopied } = useClipboard(contractAddress);
-  // const { connect } = useConnect({
-  //   connector: new MetaMaskConnector(),
-  // });
-  const [isDefinitelyConnected, setIsDefinitelyConnected] = useState(false);
-
   const { account } = useActiveWeb3React();
-
-  useEffect(() => {
-    setIsDefinitelyConnected(!account);
-  }, [account]);
-
-  async function mintNFT() {
-    try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      setLoading(true);
-      const signer = provider.getSigner();
-
-      const contract = new ethers.Contract(contractAddress, ABI_MINT, signer);
-      await contract.mint({ value: 9000000000000000 }).then((res) => {
-        res.wait().then((res2) => {
-          if (res2.status === 1) {
-            //   toast({
-            //     position: "top-right",
-            //     title: "NFT Minted",
-            //     description: "Your NFT has been successfully minted!",
-            //     status: "success",
-            //     duration: 5000,
-            //     isClosable: true,
-            //   });
-            setLoading(false);
-            getInfoMintUser(contractAddress, account);
-          }
-        });
-      });
-    } catch (error) {
-      // console.log('error',error)
-      setLoading(false);
-      // toast({
-      //   title: "Error",
-      //   // description: "Failed",
-      //   description: `${error?.data?.message.substring(0, 32) + "..."}`,
-      //   status: "error",
-      //   duration: 5000,
-      //   isClosable: true,
-      // });
-    }
-  }
-
-  const fixedMintNft = () => {
-    if (!account) {
-      // connect();
-    } else {
-      mintNFT();
-    }
-  };
 
   const TitleMint = useMemo(() => {
     if (account) {
-      return "Mint NFT";
+      if (isLoading) {
+        return "Loading...";
+      } else {
+        return "Mint NFT";
+      }
     } else {
       return "Connect Wallet";
     }
-  }, [account]);
+  }, [account, isLoading]);
 
-  async function getInfoMintUser(contractAddress, userAddress) {
-    try {
-      const provider = await getProvider();
-      const contract = new ethers.Contract(contractAddress, ABI_MINT, provider);
-      const data = await contract.getInfoMintUser(userAddress);
-      const svg = await contract.genImgSVG(data.tokenId.toNumber());
-      return {
-        mintDate: data.mintDate.toNumber(),
-        tokenId: data.tokenId.toNumber(),
-        img: svg,
-      };
-    } catch (error) {
-      //console.log("error", error);
-    }
-    return {};
-  }
-  async function numClaimed(contractAddress) {
-    try {
-      const provider = await getProvider();
-      const contract = new ethers.Contract(contractAddress, ABI_MINT, provider);
-      const numClaimed = await contract.numClaimed();
-      return numClaimed;
-    } catch (error) {
-      return 0;
-    }
-    return 0;
-  }
-  useEffect(() => {
-    account &&
-      contractAddress &&
-      getInfoMintUser(contractAddress, account).then((res) => {
-        setData(res);
-      });
-    numClaimed(contractAddress).then((data) => {
-      if (data) {
-        changeTotal(data.toNumber());
-      }
-    });
-  }, [account]);
-
-  // useEffect(() => {
-  //   (async () => {
-  //     const provider = await getProvider();
-  //     if (provider) {
-  //       const accounts: any = await provider.listAccounts();
-  //       setAccount(accounts[0]);
-  //     }
-  //   })();
-  // }, []);
-
-  const [copySuccess, setCopySuccess] = useState("");
   const copyToClipboard = async (text) => {
     if (!navigator.clipboard) {
       return alert("Your browser does not support clipboard copy.");
@@ -152,6 +55,59 @@ const MinNft = () => {
       setCopySuccess("copied!");
     } catch (err) {
       setCopySuccess("Cannot copy!");
+    }
+  };
+
+  const handleClickSubmit = async () => {
+    if (account) {
+      setIsLoading(true);
+      const contract = await SignerContractNFT();
+      contract
+        .mint()
+        .then((res) => {
+          setIsLoading(false);
+          toast("Mint Nft successfully", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        })
+        .catch((err) => {
+          if (err && err.code === 4001) {
+            toast.error("You rejected transaction", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          } else {
+            toast.error(
+              "An error occurred while processing your request. Please try again later.",
+              {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              }
+            );
+          }
+          setIsLoading(false);
+        });
+    } else {
+      onOpen(<ConnectPopUp />);
     }
   };
 
@@ -165,8 +121,6 @@ const MinNft = () => {
               <img src="./assets/images/backgroundMint.png" alt="" />
             </GifLayout>
           </Layout>
-          {/* <Gif totalNFTminted={total} /> */}
-          {/* <Content changeTotal={changeTotal} /> */}
           <div style={{ width: "100%", position: "relative" }}>
             <div style={{ maxWidth: "600px", margin: "0px auto" }}>
               <h3 style={{ paddingBottom: "12px" }}>ARBA #???</h3>
@@ -203,14 +157,8 @@ const MinNft = () => {
               <BoxCoppyContrac>
                 <h4>Smart Contract</h4>
                 <div>
-                  <h3>0x272128041de36C9239E2291133d3a2752c45c02c</h3>
-                  <button
-                    onClick={() =>
-                      copyToClipboard(
-                        "0x272128041de36C9239E2291133d3a2752c45c02c"
-                      )
-                    }
-                  >
+                  <h3>{ContractMint}</h3>
+                  <button onClick={() => copyToClipboard(ContractMint)}>
                     📑
                     <span>{copySuccess}</span>
                   </button>
@@ -221,11 +169,12 @@ const MinNft = () => {
                   className={`sc-button style ${
                     account ? "bag" : "wallet"
                   } fl-button pri-3 no-bg `}
+                  onClick={handleClickSubmit}
                 >
                   <span>{TitleMint}</span>
                 </ButnSubMit>
               </div>
-              <h3>Price Mint : 0.009 ETH</h3>
+              <h3>Price Mint : 0.009 BNB</h3>
               <div style={{ paddingTop: "12px" }}>
                 {/* <Activity
                   contractAddress={contractAddress}
@@ -237,6 +186,7 @@ const MinNft = () => {
           </div>
         </ContentBox>
       </Container>
+      <ToastContainer />
     </div>
   );
 };

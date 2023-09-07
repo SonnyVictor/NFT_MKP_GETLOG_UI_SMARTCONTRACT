@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Modal } from "react-bootstrap";
+import { Modal, ToastContainer } from "react-bootstrap";
 import {
   approveContractNFT,
   listSellContractNFT,
@@ -9,10 +9,10 @@ import {
 } from "../../integrateContract/contract";
 import { ethers } from "ethers";
 import LoadingComponent from "../Loading";
-
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 const CardModalUpdatePrice = (props) => {
-  console.log(props.data);
-  const [inputValue, setInputValue] = useState(0);
+  const [inputValue, setInputValue] = useState();
   const [isTime, setTime] = useState("2592000");
   const [isLoading, setIsLoading] = useState(false);
   const [valueTimes, setValueTimes] = useState(0);
@@ -26,15 +26,56 @@ const CardModalUpdatePrice = (props) => {
     setIsLoading(true);
     try {
       const parsePrice = ethers.utils.parseEther(price.toString());
-      await upDatePriceNFTMarketPlace(tokenId, parsePrice);
-      setIsLoading(false);
+      await upDatePriceNFTMarketPlace(tokenId, parsePrice).then((res) => {
+        setIsLoading(false);
+        toast("Update Price Nft successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }).catch((err) => {
+          if (err && err.code === 4001) {
+            toast.error("You rejected transaction", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+          } else {
+            toast.error(
+              "An error occurred while processing your request. Please try again later.",
+              {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              }
+            );
+          }
+          setIsLoading(false);
+        });
+        setIsLoading(false);
+      });
     } catch (error) {
-      console.log("error", error);
+      console.log("fail Error", error);
     }
   };
 
   return (
     <>
+      <ToastContainer />
       {isLoading && (
         <div
           style={{
@@ -69,7 +110,7 @@ const CardModalUpdatePrice = (props) => {
             <span>Setting price</span>
             <input
               type="text"
-              className="form-control"
+              className="form-control "
               placeholder="0.00 BNB"
               value={inputValue}
               onChange={handleInputChange}
@@ -104,7 +145,7 @@ const CardModalUpdatePrice = (props) => {
             <p> Total Receive amount:</p>
             <p className="text-right price color-popup">
               {" "}
-              {inputValue - inputValue * 0.007}{" "}
+              {inputValue - inputValue * 0.007 || 0}{" "}
             </p>
           </div>
           <button

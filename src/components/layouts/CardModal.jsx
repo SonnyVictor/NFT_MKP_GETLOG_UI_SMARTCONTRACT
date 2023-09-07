@@ -8,12 +8,14 @@ import {
   address_MKP_LISTBUYSELL_OPBNB_TESTNET,
 } from "../../integrateContract/contract";
 import { ethers } from "ethers";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const CardModal = (props) => {
   const [inputValue, setInputValue] = useState();
   const [isTime, setTime] = useState("2592000");
   const [isLoading, setIsLoading] = useState(false);
   const [valueTimes, setValueTimes] = useState(0);
+
   const handleInputChange = useCallback((e) => {
     e.preventDefault();
     const value = e.target.value;
@@ -34,9 +36,30 @@ const CardModal = (props) => {
         async (res) => {
           if (res?.reason) {
             console.log("faill");
+            toast.error("You rejected transaction", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+
             setIsLoading(false);
           } else {
             await listSellContractNFT(tokenId, parsePrice, time.toString());
+            toast("List NFT successfully", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
             setIsLoading(false);
           }
         }
@@ -48,6 +71,7 @@ const CardModal = (props) => {
 
   return (
     <>
+      <ToastContainer />
       {isLoading && (
         <div
           style={{
@@ -117,7 +141,7 @@ const CardModal = (props) => {
             <p> Total Receive amount:</p>
             <p className="text-right price color-popup">
               {" "}
-              {inputValue - inputValue * 0.007}{" "}
+              {inputValue - inputValue * 0.007 || 0}{" "}
             </p>
           </div>
           <button
@@ -135,7 +159,7 @@ const CardModal = (props) => {
               );
             }}
           >
-            {isLoading ? <LoadingComponent /> : "List Sell"}
+            {isLoading ? <LoadingComponent /> : <div>List Sell</div>}
           </button>
         </div>
       </Modal>
