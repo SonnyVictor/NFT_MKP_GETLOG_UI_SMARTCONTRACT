@@ -39,12 +39,12 @@ const routes = [
   },
   // { path: "/item-details-02", component: <ItemDetails02 /> },
   { path: "/activity-01", component: <Activity01 /> },
-  { path: "/activity-02", component: <Activity02 /> },
+  // { path: "/activity-02", component: <Activity02 /> },
   // { path: "/blog", component: <Blog /> },
   // { path: "/blog-details", component: <BlogDetails /> },
   // { path: "/help-center", component: <HelpCenter /> },
-  { path: "/authors-01", component: <Authors01 /> },
-  { path: "/authors-02", component: <Authors02 /> },
+  // { path: "/authors-01", component: <Authors01 /> },
+  { path: "/profile", component: <Authors02 /> },
   // { path: "/wallet-connect", component: <WalletConnect /> },
   { path: "/create-item", component: <CreateItem /> },
   { path: "/edit-profile", component: <EditProfile /> },
@@ -53,7 +53,7 @@ const routes = [
   { path: "/mint-nft", component: <MinNft /> },
   // { path: "/contact-01", component: <Contact01 /> },
   // { path: "/contact-02", component: <Contact02 /> },
-  { path: "/arbnft-ai", component: <ArbNFTPage /> },
+  { path: "/lumia-nft-ai", component: <ArbNFTPage /> },
 ];
 
 export default routes;

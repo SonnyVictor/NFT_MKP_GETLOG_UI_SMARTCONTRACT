@@ -10,7 +10,7 @@ export const Wapper = styled.div`
   flex-wrap: wrap;
   padding-top: 130px;
   padding-bottom: 50px;
-  :before {
+  /* :before {
     width: 100%;
     height: 100%;
     content: "";
@@ -24,7 +24,7 @@ export const Wapper = styled.div`
     top: 0px;
     left: 0px;
     z-index: -1;
-  }
+  } */
   @media only screen and (max-width: 768px) {
     flex-direction: column;
   }

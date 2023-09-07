@@ -17,11 +17,7 @@ function ArbNFTPage(props: Props) {
   };
 
   return (
-    <div
-      style={{
-        background: "#14141f",
-      }}
-    >
+    <div style={{background: 'linear-gradient(227.3deg, #8a208c 0%, #181b81 100.84%)'}}>
       <HeaderStyle2 />
       <ContainerGb>
         <Wapper>

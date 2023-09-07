@@ -26,14 +26,15 @@ export const Wapper = styled.div`
     display: flex;
     align-items: center;
     font-feature-settings: "pnum" on, "lnum" on;
-    color: #bdbdbd;
+    color: #000;
     top: 0px;
     left: 8px;
     transform: translateY(-50%);
     position: absolute;
     padding: 0px 8px;
-    background-color: rgb(20, 20, 31);
+    background-color: #fff;
     width: fit-content;
+    border-radius: 5px;
   }
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -56,12 +57,12 @@ export const BoxOneElm = styled.div<{
   button {
     width: 100%;
     height: 60px;
-    border: 2px solid ${({ submitError }) => (submitError ? "red" : "#535353")};
+    border: 2px solid ${({ submitError }) => (submitError ? "red" : "#fff")};
     border-radius: 10px;
     padding: 18px 16px;
     background-color: transparent;
     ::placeholder {
-      color: ${({ submitError }) => (submitError ? "red" : "#535353")};
+      color: ${({ submitError }) => (submitError ? "red" : "rgba(255,255,255,0.9)")};
       opacity: ${({ submitError }) => (submitError ? "1" : "0.5")};
     }
   }
@@ -81,7 +82,7 @@ export const BoxOneElm = styled.div<{
     height: ${({ showListSize }) => (showListSize ? "92px" : "0px")};
     overflow: hidden;
     border: ${({ showListSize }) => (showListSize ? "2px" : "0px")} solid
-      #535353;
+    var(--primary-color3);
     padding: ${({ showListSize }) => (showListSize ? "18px 16px" : "0px")};
     position: absolute;
     border-radius: 10px;
@@ -89,11 +90,13 @@ export const BoxOneElm = styled.div<{
     left: 0;
     transform: translateY(100%);
     z-index: 2;
-    background-color: #2d2e37;
+    background-color: rgba(255, 255, 255 , 0.8);
+    backdrop-filter: blur(10px);
     transition: all 0.3s linear;
     li {
       list-style-type: none;
       line-height: 28px;
+      font-weight: 600;
     }
   }
   h6 {
@@ -103,9 +106,10 @@ export const BoxOneElm = styled.div<{
       color: red;
       top: 0px;
       right: 0px;
-      transform: translateX(100%);
-      background-color: rgb(20, 20, 31);
+      transform: translateX(calc(100% - 5px));
+      background-color: #fff;
       padding-right: 8px;
+      border-radius: 0px 5px 5px 0px;
     }
   }
   p {
@@ -114,7 +118,7 @@ export const BoxOneElm = styled.div<{
     font-weight: 400;
     font-size: 12px;
     font-feature-settings: "pnum" on, "lnum" on;
-    color: #535353;
+    color: #fff;
     margin: 6px 0px 26px;
     padding-left: 16px;
   }
@@ -137,14 +141,14 @@ export const BoxTowElm = styled.div`
     font-weight: 400;
     font-size: 12px;
     font-feature-settings: "pnum" on, "lnum" on;
-    color: #535353;
+    color: #fff;
     margin: 6px 0px 26px;
     padding-left: 16px;
   }
   input {
     width: 30%;
     height: 60px;
-    border: 2px solid #535353;
+    border: 2px solid #fff;
     border-radius: 10px;
     padding: 18px 16px;
     background-color: transparent;

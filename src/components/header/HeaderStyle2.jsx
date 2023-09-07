@@ -11,6 +11,7 @@ import WalletItem from "../Connect-wallet/WalletItem";
 import { ModalConfirmContext } from "../ProviderPopUp/confirm";
 import { ConnectPopUp } from "../Modal/ModalConnectWallet";
 import { useActiveWeb3React } from "../../hooks";
+import ProfileBtn from "./Profile";
 const HeaderStyle2 = () => {
   const { pathname } = useLocation();
   const { onOpen, onClose } = useContext(ModalConfirmContext);
@@ -187,9 +188,7 @@ const HeaderStyle2 = () => {
                   <div className="flat-search-btn flex">
                     <div className="sc-btn-top mg-r-12" id="site-header">
                       <div className="sc-button header-slider fl-button pri-1  style-1  select-network">
-                        <span>
-                            opBNB
-                        </span>
+                        <span>opBNB</span>
                       </div>
                     </div>
                     <div className="sc-btn-top mg-r-12" id="site-header">
@@ -248,12 +247,13 @@ const HeaderStyle2 = () => {
                       </div>
                     </div>
                   </div>
+                  <ProfileBtn />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <DarkMode />
+        {/* <DarkMode /> */}
       </header>
     </>
   );
