@@ -10,32 +10,36 @@ import avt from "../assets/images/avatar/avt-author-tab.jpg";
 import HeaderStyle2 from "../components/header/HeaderStyle2";
 import {
   ContractNFT,
+  contractMarketPlace,
   getImageNFT,
+  unListNFT,
 } from "../../src/integrateContract/contract/";
 import { useActiveWeb3React } from "../hooks";
+import { tab } from "@testing-library/user-event/dist/tab";
+import { ethers } from "ethers";
+import {
+  convertTimeEnd,
+  convertUnixTimeToExpirationTime,
+  convertendTime,
+} from "../utils/formartTime";
+import CardModalUnList from "../components/layouts/CardModalUpdatePrice";
+import CardModalUpdatePrice from "../components/layouts/CardModalUpdatePrice";
 
 const Authors02 = () => {
   const { account } = useActiveWeb3React();
   const [menuTab] = useState([
     {
       class: "active",
-      name: "ITEMS",
+      name: "Items",
     },
     {
       class: "",
-      name: "ART",
+      name: "On Sale",
     },
-    {
-      class: "",
-      name: "MUSIC",
-    },
+
     {
       class: "",
       name: "COLLECTIBLES",
-    },
-    {
-      class: "",
-      name: "SPORTS",
     },
   ]);
 
@@ -45,10 +49,13 @@ const Authors02 = () => {
   };
 
   const [modalShow, setModalShow] = useState(false);
+  const [modalShowUpdatePice, setModalShowUpdatePice] = useState(false);
   const [isloading, setIsLoading] = useState(false);
   const [idPopup, setIdPopup] = useState(0);
 
   const [dataNFT, setDataNFT] = useState([]);
+
+  const [dataOnSaleNFT, setDataOnSaleNFT] = useState([]);
 
   const getItemsNFTProfile = async () => {
     setIsLoading(true);
@@ -77,8 +84,52 @@ const Authors02 = () => {
       setIsLoading(false);
     }
   };
+
+  const getItemsNFTOnsale = async () => {
+    setIsLoading(true);
+    try {
+      // address
+      const getcontractNFT = await ContractNFT();
+
+      const getcontractMKP = await contractMarketPlace();
+
+      const itemsOnsales = await getcontractMKP.fetchItemsOnSale(account);
+      const items = await Promise.all(
+        itemsOnsales.map(async (value) => {
+          var tokenURI = await getImageNFT(value.tokenId.toString());
+          var nameNFT = await getcontractNFT.name();
+          var symbolNFT = await getcontractNFT.symbol();
+          let i = {
+            id: value.itemId.toString(),
+            token_id: value.tokenId.toString(),
+            price: value.price.toString(),
+            endTime: value.timeEnd.toString(),
+            name: nameNFT,
+            img: tokenURI,
+            symbol: symbolNFT,
+          };
+          setIsLoading(false);
+          return i;
+        })
+      );
+      setDataOnSaleNFT(items);
+    } catch (error) {
+      console.log("getItemsNFTOnSale", error);
+    }
+  };
+  const unListNFTOnSale = async (id) => {
+    setIsLoading(true);
+    try {
+      await unListNFT(id);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  console.log("DATA NFT", dataNFT);
+  console.log("NFT ONSALE", dataOnSaleNFT);
   useEffect(() => {
     getItemsNFTProfile();
+    getItemsNFTOnsale();
   }, [account, menuTab]);
   return (
     <div className="authors-2">
@@ -173,52 +224,129 @@ const Authors02 = () => {
               <div className="content-tab">
                 <div className="content-inner">
                   <div className="row">
-                    {dataNFT?.map((item, index) => (
-                      <div
-                        key={item?.token_id}
-                        className="col-xl-3 col-lg-4 col-md-6 col-12"
-                      >
-                        <div className="sc-card-product explode ">
-                          <div className="card-media">
-                            <img
-                              src={`data:image/svg+xml;utf8,${encodeURIComponent(
-                                item?.img
-                              )}`}
-                              alt="NFT Image"
-                              width="200px"
-                              height="200px"
-                            />
+                    <TabPanel>
+                      {dataNFT?.map((item, index) => (
+                        <div
+                          key={item?.token_id}
+                          className="col-xl-3 col-lg-4 col-md-6 col-12"
+                        >
+                          <div className="sc-card-product explode ">
+                            <div className="card-media">
+                              <img
+                                src={`data:image/svg+xml;utf8,${encodeURIComponent(
+                                  item?.img
+                                )}`}
+                                alt="NFT Image"
+                                width="200px"
+                                height="200px"
+                              />
 
-                            <div className="button-place-bid ">
-                              <button
-                                onClick={() => {
-                                  setModalShow(true);
-                                  setIdPopup(index);
-                                }}
-                                className="sc-button style-place-bid style bag fl-button pri-3"
-                              >
-                                <span>List Sell</span>
-                              </button>
+                              <div className="button-place-bid ">
+                                <button
+                                  onClick={() => {
+                                    setModalShow(true);
+                                    setIdPopup(index);
+                                  }}
+                                  className="sc-button style-place-bid style bag fl-button pri-3"
+                                >
+                                  <span>List Sell</span>
+                                </button>
+                              </div>
+
+                              <span className="number-like">
+                                {" "}
+                                {item?.token_id.toString()}
+                              </span>
                             </div>
-
-                            <span className="number-like">
-                              {" "}
-                              {item?.token_id.toString()}
-                            </span>
-                          </div>
-                          <div className="card-title mg-bt-16">
-                            <h5>{item?.name}</h5>
-                          </div>
-                          <h5>TokenId #{item?.token_id}</h5>
-                          <div className="meta-info">
-                            <div className="author">
-                              <div className="avatar"></div>
-                              <div className="info"></div>
+                            <div className="card-title mg-bt-16">
+                              <h5>{item?.name}</h5>
+                            </div>
+                            <h5>TokenId #{item?.token_id}</h5>
+                            <div className="meta-info">
+                              <div className="author">
+                                <div className="avatar"></div>
+                                <div className="info"></div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      ))}
+                    </TabPanel>
+
+                    <TabPanel>
+                      {dataOnSaleNFT?.map((item, index) => (
+                        <div
+                          key={item?.token_id}
+                          className="col-xl-3 col-lg-4 col-md-6 col-12"
+                        >
+                          <div className="sc-card-product explode ">
+                            <div className="card-media">
+                              <img
+                                src={`data:image/svg+xml;utf8,${encodeURIComponent(
+                                  item?.img
+                                )}`}
+                                alt="NFT Image"
+                                width="200px"
+                                height="200px"
+                              />
+
+                              <div className="button-place-bid ">
+                                <button
+                                  onClick={() => {
+                                    unListNFTOnSale(item.id);
+                                    setIdPopup(item.id);
+                                  }}
+                                  className="sc-button style-place-bid style bag fl-button pri-3"
+                                >
+                                  <span>UnList Sell</span>
+                                </button>
+                              </div>
+
+                              <span className="number-like">
+                                {" "}
+                                {item?.token_id.toString()}
+                              </span>
+                            </div>
+                            <div className="card-title mg-bt-16">
+                              <h5>{item?.name}</h5>
+                            </div>
+                            <h5>TokenId #{item?.token_id}</h5>
+                            <h5>
+                              Date Remaining
+                              {convertUnixTimeToExpirationTime(item?.endTime)}
+                            </h5>
+
+                            <div className="meta-info">
+                              <div className="author">
+                                <div className="avatar"></div>
+                                <div className="info"></div>
+                              </div>
+                            </div>
+
+                            <div className="card-bottom style-explode">
+                              <div className="price">
+                                <span>Current List</span>
+                                <div className="price-details">
+                                  <h5>
+                                    {ethers.utils.formatEther(item.price)} BNB
+                                  </h5>
+                                  <span>= {item?.priceChange}</span>
+                                </div>
+                              </div>
+                              <button
+                                onClick={() => {
+                                  setModalShowUpdatePice(true);
+                                  setIdPopup(index);
+                                }}
+                                className="btn-primary"
+                              >
+                                UpDate Price
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </TabPanel>
                     {/* {visible < item?.dataContent.length && (
                       <div className="col-md-12 wrap-inner load-more text-center">
                         <Link
@@ -242,6 +370,11 @@ const Authors02 = () => {
         show={modalShow}
         onHide={() => setModalShow(false)}
         data={dataNFT ? dataNFT[idPopup] : {}}
+      />
+      <CardModalUpdatePrice
+        show={modalShowUpdatePice}
+        onHide={() => setModalShowUpdatePice(false)}
+        data={dataOnSaleNFT ? dataOnSaleNFT[idPopup] : {}}
       />
       <Footer />
     </div>

@@ -3319,3 +3319,8 @@ header{
     top        : 0px;
     color      : #fff;
 }
+.inputSelect{
+    min-height: 56px;
+    font-size: 18px !important;
+    font-weight: 600;
+}

@@ -8,7 +8,7 @@ import img3 from "../../../assets/images/icon/photo.png";
 import img4 from "../../../assets/images/icon/itunes.png";
 import CardModal from "../CardModal";
 import { ImageNft } from "./TodayPicksStyle";
-import CardModalBuy from "../CardModalBuy";
+import CardModalBuy from "../CardModalUpdatePrice";
 import { convertTime } from "../../../utils/formartTime";
 import { shortenAddress } from "../../../utils/formartAddress";
 import { convertTimeEnd } from "../../../utils/formartTime";
@@ -357,7 +357,7 @@ const TodayPicks = (props) => {
                     </div>
                     <div className="price">
                       <span>Price List</span>
-                      <h5> {item.price} opBNB </h5>
+                      <h5> {item.price} BNB </h5>
                     </div>
                   </div>
                   <div className="card-bottom">
