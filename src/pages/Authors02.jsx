@@ -10,32 +10,35 @@ import avt from "../assets/images/avatar/avt-author-tab.jpg";
 import HeaderStyle2 from "../components/header/HeaderStyle2";
 import {
   ContractNFT,
+  contractMarketPlace,
   getImageNFT,
+  unListNFT,
 } from "../../src/integrateContract/contract/";
 import { useActiveWeb3React } from "../hooks";
+import { tab } from "@testing-library/user-event/dist/tab";
+import { ethers } from "ethers";
+import {
+  convertTimeEnd,
+  convertUnixTimeToExpirationTime,
+  convertendTime,
+} from "../utils/formartTime";
+import CardModalUpdatePrice from "../components/layouts/CardModalUpdatePrice";
 
 const Authors02 = () => {
   const { account } = useActiveWeb3React();
   const [menuTab] = useState([
     {
       class: "active",
-      name: "ITEMS",
+      name: "Items",
     },
     {
       class: "",
-      name: "ART",
+      name: "On Sale",
     },
-    {
-      class: "",
-      name: "MUSIC",
-    },
+
     {
       class: "",
       name: "COLLECTIBLES",
-    },
-    {
-      class: "",
-      name: "SPORTS",
     },
   ]);
 
@@ -45,10 +48,13 @@ const Authors02 = () => {
   };
 
   const [modalShow, setModalShow] = useState(false);
+  const [modalShowUpdatePice, setModalShowUpdatePice] = useState(false);
   const [isloading, setIsLoading] = useState(false);
   const [idPopup, setIdPopup] = useState(0);
 
   const [dataNFT, setDataNFT] = useState([]);
+
+  const [dataOnSaleNFT, setDataOnSaleNFT] = useState([]);
 
   const getItemsNFTProfile = async () => {
     setIsLoading(true);
@@ -77,149 +83,290 @@ const Authors02 = () => {
       setIsLoading(false);
     }
   };
+
+  const getItemsNFTOnsale = async () => {
+    setIsLoading(true);
+    try {
+      // address
+      const getcontractNFT = await ContractNFT();
+
+      const getcontractMKP = await contractMarketPlace();
+
+      const itemsOnsales = await getcontractMKP.fetchItemsOnSale(account);
+      const items = await Promise.all(
+        itemsOnsales.map(async (value) => {
+          var tokenURI = await getImageNFT(value.tokenId.toString());
+          var nameNFT = await getcontractNFT.name();
+          var symbolNFT = await getcontractNFT.symbol();
+          let i = {
+            id: value.itemId.toString(),
+            token_id: value.tokenId.toString(),
+            price: value.price.toString(),
+            endTime: value.timeEnd.toString(),
+            name: nameNFT,
+            img: tokenURI,
+            symbol: symbolNFT,
+          };
+          setIsLoading(false);
+          return i;
+        })
+      );
+      setDataOnSaleNFT(items);
+    } catch (error) {
+      console.log("getItemsNFTOnSale", error);
+    }
+  };
+  const unListNFTOnSale = async (id) => {
+    setIsLoading(true);
+    try {
+      setIsLoading(false);
+
+      await unListNFT(id);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
+  console.log("DATA NFT", dataNFT);
+  console.log("NFT ONSALE", dataOnSaleNFT);
   useEffect(() => {
     getItemsNFTProfile();
+    getItemsNFTOnsale();
   }, [account, menuTab]);
   return (
-    <div className="authors-2">
-      <HeaderStyle2 />
-      <section className="flat-title-page inner">
-        <div className="overlay"></div>
-        <div className="themesflat-container">
-          <div className="row">
-            <div className="col-md-12">
-              <div className="page-title-heading mg-bt-12">
-                <h1 className="heading text-center">Author</h1>
-              </div>
-              <div className="breadcrumbs style2">
-                <ul>
-                  <li>
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Pages</Link>
-                  </li>
-                  <li>Author</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section className="tf-section authors">
-        <div className="themesflat-container">
-          <div className="flat-tabs tab-authors">
-            <div className="author-profile flex">
-              <div className="feature-profile">
-                <img src={avt} alt="Axies" className="avatar" />
-              </div>
-              <div className="infor-profile">
-                <span>Author Profile</span>
-                <h2 className="title">Trista Francis</h2>
-                <p className="content">
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                  Laborum obcaecati dignissimos quae quo ad iste ipsum officiis
-                  deleniti asperiores sit.
-                </p>
-                <form>
-                  <input
-                    type="text"
-                    className="inputcopy"
-                    defaultValue="DdzFFzCqrhshMSxABCdfrge"
-                    readOnly
-                  />
-                  <button type="button" className="btn-copycode">
-                    <i className="icon-fl-file-1"></i>
-                  </button>
-                </form>
-              </div>
-              <div className="widget-social style-3">
-                <ul>
-                  <li>
-                    <Link to="#">
-                      <i className="fab fa-twitter"></i>
-                    </Link>
-                  </li>
-                  <li className="style-2">
-                    <Link to="#">
-                      <i className="fab fa-telegram-plane"></i>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="#">
-                      <i className="fab fa-youtube"></i>
-                    </Link>
-                  </li>
-                  <li className="mgr-none">
-                    <Link to="#">
-                      <i className="icon-fl-tik-tok-2"></i>
-                    </Link>
-                  </li>
-                </ul>
-                <div className="btn-profile">
-                  <Link to="/login" className="sc-button style-1 follow">
-                    Follow
-                  </Link>
+    <>
+      {isloading && (
+        <div
+          style={{
+            position: "fixed",
+            width: "100vw",
+            height: "100vh",
+            zIndex: "33333333333333333333333333333333",
+            top: "0px",
+            left: "0px",
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+        ></div>
+      )}
+
+      <div className="authors-2">
+        <HeaderStyle2 />
+        <section className="flat-title-page inner">
+          <div className="overlay"></div>
+          <div className="themesflat-container">
+            <div className="row">
+              <div className="col-md-12">
+                <div className="page-title-heading mg-bt-12">
+                  <h1 className="heading text-center">Author</h1>
+                </div>
+                <div className="breadcrumbs style2">
+                  <ul>
+                    <li>
+                      <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                      <Link to="#">Pages</Link>
+                    </li>
+                    <li>Author</li>
+                  </ul>
                 </div>
               </div>
             </div>
-            <Tabs>
-              <TabList>
-                {menuTab.map((item, index) => (
-                  <Tab key={index}>{item.name}</Tab>
-                ))}
-              </TabList>
+          </div>
+        </section>
+        <section className="tf-section authors">
+          <div className="themesflat-container">
+            <div className="flat-tabs tab-authors">
+              <div className="author-profile flex">
+                <div className="feature-profile">
+                  <img src={avt} alt="Axies" className="avatar" />
+                </div>
+                <div className="infor-profile">
+                  <span>Author Profile</span>
+                  <h2 className="title">Trista Francis</h2>
+                  <p className="content">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                    Laborum obcaecati dignissimos quae quo ad iste ipsum
+                    officiis deleniti asperiores sit.
+                  </p>
+                  <form>
+                    <input
+                      type="text"
+                      className="inputcopy"
+                      defaultValue="DdzFFzCqrhshMSxABCdfrge"
+                      readOnly
+                    />
+                    <button type="button" className="btn-copycode">
+                      <i className="icon-fl-file-1"></i>
+                    </button>
+                  </form>
+                </div>
+                <div className="widget-social style-3">
+                  <ul>
+                    <li>
+                      <Link to="#">
+                        <i className="fab fa-twitter"></i>
+                      </Link>
+                    </li>
+                    <li className="style-2">
+                      <Link to="#">
+                        <i className="fab fa-telegram-plane"></i>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="#">
+                        <i className="fab fa-youtube"></i>
+                      </Link>
+                    </li>
+                    <li className="mgr-none">
+                      <Link to="#">
+                        <i className="icon-fl-tik-tok-2"></i>
+                      </Link>
+                    </li>
+                  </ul>
+                  <div className="btn-profile">
+                    <Link to="/login" className="sc-button style-1 follow">
+                      Follow
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <Tabs>
+                <TabList>
+                  {menuTab.map((item, index) => (
+                    <Tab key={index}>{item.name}</Tab>
+                  ))}
+                </TabList>
 
-              <div className="content-tab">
-                <div className="content-inner">
-                  <div className="row">
-                    {dataNFT?.map((item, index) => (
-                      <div
-                        key={item?.token_id}
-                        className="col-xl-3 col-lg-4 col-md-6 col-12"
-                      >
-                        <div className="sc-card-product explode ">
-                          <div className="card-media">
-                            <img
-                              src={`data:image/svg+xml;utf8,${encodeURIComponent(
-                                item?.img
-                              )}`}
-                              alt="NFT Image"
-                              width="200px"
-                              height="200px"
-                            />
+                <div className="content-tab">
+                  <div className="content-inner">
+                    <div className="row">
+                      <TabPanel>
+                        {dataNFT?.map((item, index) => (
+                          <div
+                            key={item?.token_id}
+                            className="col-xl-3 col-lg-4 col-md-6 col-12"
+                          >
+                            <div className="sc-card-product explode ">
+                              <div className="card-media">
+                                <img
+                                  src={`data:image/svg+xml;utf8,${encodeURIComponent(
+                                    item?.img
+                                  )}`}
+                                  alt="NFT Image"
+                                  width="200px"
+                                  height="200px"
+                                />
 
-                            <div className="button-place-bid ">
-                              <button
-                                onClick={() => {
-                                  setModalShow(true);
-                                  setIdPopup(index);
-                                }}
-                                className="sc-button style-place-bid style bag fl-button pri-3"
-                              >
-                                <span>List Sell</span>
-                              </button>
+                                <div className="button-place-bid ">
+                                  <button
+                                    onClick={() => {
+                                      setModalShow(true);
+                                      setIdPopup(index);
+                                    }}
+                                    className="sc-button style-place-bid style bag fl-button pri-3"
+                                  >
+                                    <span>List Sell</span>
+                                  </button>
+                                </div>
+
+                                <span className="number-like">
+                                  {" "}
+                                  {item?.token_id.toString()}
+                                </span>
+                              </div>
+                              <div className="card-title mg-bt-16">
+                                <h5>{item?.name}</h5>
+                              </div>
+                              <h5>TokenId #{item?.token_id}</h5>
+                              <div className="meta-info">
+                                <div className="author">
+                                  <div className="avatar"></div>
+                                  <div className="info"></div>
+                                </div>
+                              </div>
                             </div>
+                          </div>
+                        ))}
+                      </TabPanel>
 
-                            <span className="number-like">
-                              {" "}
-                              {item?.token_id.toString()}
-                            </span>
-                          </div>
-                          <div className="card-title mg-bt-16">
-                            <h5>{item?.name}</h5>
-                          </div>
-                          <h5>TokenId #{item?.token_id}</h5>
-                          <div className="meta-info">
-                            <div className="author">
-                              <div className="avatar"></div>
-                              <div className="info"></div>
+                      <TabPanel>
+                        {dataOnSaleNFT?.map((item, index) => (
+                          <div
+                            key={item?.token_id}
+                            className="col-xl-3 col-lg-4 col-md-6 col-12"
+                          >
+                            <div className="sc-card-product explode ">
+                              <div className="card-media">
+                                <img
+                                  src={`data:image/svg+xml;utf8,${encodeURIComponent(
+                                    item?.img
+                                  )}`}
+                                  alt="NFT Image"
+                                  width="200px"
+                                  height="200px"
+                                />
+
+                                <div className="button-place-bid ">
+                                  <button
+                                    onClick={() => {
+                                      unListNFTOnSale(item.id);
+                                      setIdPopup(item.id);
+                                    }}
+                                    className="sc-button style-place-bid style bag fl-button pri-3"
+                                  >
+                                    <span>UnList Sell</span>
+                                  </button>
+                                </div>
+
+                                <span className="number-like">
+                                  {" "}
+                                  {item?.token_id.toString()}
+                                </span>
+                              </div>
+                              <div className="card-title mg-bt-16">
+                                <h5>{item?.name}</h5>
+                              </div>
+                              <h5>TokenId #{item?.token_id}</h5>
+                              <h5>
+                                Date Remaining
+                                {convertUnixTimeToExpirationTime(item?.endTime)}
+                              </h5>
+
+                              <div className="meta-info">
+                                <div className="author">
+                                  <div className="avatar"></div>
+                                  <div className="info"></div>
+                                </div>
+                              </div>
+
+                              <div className="card-bottom style-explode">
+                                <div className="price">
+                                  <span>Current List</span>
+                                  <div className="price-details">
+                                    <h5>
+                                      {ethers.utils.formatEther(item.price)} BNB
+                                    </h5>
+                                    <span>= {item?.priceChange}</span>
+                                  </div>
+                                </div>
+                                <button
+                                  onClick={() => {
+                                    setModalShowUpdatePice(true);
+                                    setIdPopup(index);
+                                  }}
+                                  className="btn-primary"
+                                >
+                                  UpDate Price
+                                </button>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </div>
-                    ))}
-                    {/* {visible < item?.dataContent.length && (
+                        ))}
+                      </TabPanel>
+                      {/* {visible < item?.dataContent.length && (
                       <div className="col-md-12 wrap-inner load-more text-center">
                         <Link
                           to="#"
@@ -231,20 +378,27 @@ const Authors02 = () => {
                         </Link>
                       </div>
                     )} */}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Tabs>
+              </Tabs>
+            </div>
           </div>
-        </div>
-      </section>
-      <CardModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-        data={dataNFT ? dataNFT[idPopup] : {}}
-      />
-      <Footer />
-    </div>
+        </section>
+        <CardModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          data={dataNFT ? dataNFT[idPopup] : {}}
+        />
+        <CardModalUpdatePrice
+          show={modalShowUpdatePice}
+          onHide={() => setModalShowUpdatePice(false)}
+          data={dataOnSaleNFT ? dataOnSaleNFT[idPopup] : {}}
+        />
+
+        <Footer />
+      </div>
+    </>
   );
 };
 

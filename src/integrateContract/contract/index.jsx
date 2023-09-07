@@ -45,6 +45,18 @@ export const SignerContractNFT = async () => {
   }
 };
 
+export const contractMarketPlace = async () => {
+  try {
+    const provider = await getProviderOrSigner(false);
+    const contractMKP = new ethers.Contract(
+      address_MKP_LISTBUYSELL_OPBNB_TESTNET,
+      ABI_MKP_LISTBUYSELL,
+      provider
+    );
+    return contractMKP;
+  } catch (error) {}
+};
+
 export const getTokenURI = async (id) => {
   try {
     const contract = await ContractNFT();
@@ -176,5 +188,42 @@ export const setbuyNFT = async (tokenId, valuePrice) => {
     return "Successfully buyNFT";
   } catch (error) {
     console.log("error", error);
+  }
+};
+
+export const unListNFT = async (id) => {
+  try {
+    const signer = await getProviderOrSigner(true);
+    const contractMKP = new ethers.Contract(
+      address_MKP_LISTBUYSELL_OPBNB_TESTNET,
+      ABI_MKP_LISTBUYSELL,
+      signer
+    );
+    await contractMKP.unListNftOnSale(id);
+  } catch (error) {
+    console.log("Error", error);
+  }
+};
+
+export const upDatePriceNFTMarketPlace = async (id, price) => {
+  try {
+    const signer = await getProviderOrSigner(true);
+    const contract = new ethers.Contract(
+      address_MKP_LISTBUYSELL_OPBNB_TESTNET,
+      ABI_MKP_LISTBUYSELL,
+      signer
+    );
+    const upPrice = await contract.updatePriceNftOnSale(id, price);
+
+    await upPrice.wait();
+  } catch (error) {
+    console.log("Error", error);
+  }
+};
+
+export const getEventEmitBuyNFTMKP = async () => {
+  try {
+  } catch (error) {
+    console.log(error);
   }
 };

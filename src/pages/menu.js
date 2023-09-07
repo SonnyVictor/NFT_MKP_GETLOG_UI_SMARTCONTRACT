@@ -16,7 +16,7 @@ const menus = [
   },
   {
     id: 4,
-    name: "ArbNFT AI",
+    name: "LumiaNFT AI",
     links: "/arbnft-ai",
   },
   {

@@ -7,7 +7,7 @@ import {
   BoxCoppyContrac,
   ButnSubMit,
 } from "./MinNftStyle";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 import { useState, useMemo, useEffect, useContext } from "react";
 import { getProvider } from "../services/lib/ethers";
 import { ethers } from "ethers";
@@ -15,7 +15,7 @@ import { useActiveWeb3React } from "../hooks";
 import { ModalConfirmContext } from "../components/ProviderPopUp/confirm";
 import { ConnectPopUp } from "../components/Modal/ModalConnectWallet";
 import { SignerContractNFT } from "../integrateContract/contract";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const ContractMint = "0x79592cD2CedAfcC7E0747814B2A9ec8044C5B400";
 
@@ -66,7 +66,7 @@ const MinNft = () => {
         .mint()
         .then((res) => {
           setIsLoading(false);
-          toast('Mint Nft successfully', {
+          toast("Mint Nft successfully", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -75,11 +75,11 @@ const MinNft = () => {
             draggable: true,
             progress: undefined,
             theme: "light",
-            });
+          });
         })
         .catch((err) => {
-          if(err && err.code === 4001){
-            toast.error('You rejected transaction', {
+          if (err && err.code === 4001) {
+            toast.error("You rejected transaction", {
               position: "top-right",
               autoClose: 5000,
               hideProgressBar: false,
@@ -88,18 +88,21 @@ const MinNft = () => {
               draggable: true,
               progress: undefined,
               theme: "light",
-              });
-          }else{
-            toast.error('An error occurred while processing your request. Please try again later.', {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-              });
+            });
+          } else {
+            toast.error(
+              "An error occurred while processing your request. Please try again later.",
+              {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              }
+            );
           }
           setIsLoading(false);
         });
@@ -138,7 +141,7 @@ const MinNft = () => {
                     main characters being men, women, dogs, cats, monkeys... in
                     astronaut costumes with various features in the form of
                     pixels. Each NFTs in the collection is a unique item and no
-                    two items are alike. This Collection is owned by ArbNFT AI
+                    two items are alike. This Collection is owned by LumiaNFT AI
                     Marketplace on the Arbitrum Chain ecosystem.
                   </li>
                 </div>

@@ -28,13 +28,13 @@ import {
 import { ethers } from "ethers";
 import { shortenAddress } from "../utils/formartAddress";
 import { useActiveWeb3React } from "../hooks";
+import axios from "axios";
 
 const ItemDetails01 = () => {
   const { account } = useActiveWeb3React();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
-  console.log(id);
   const [itemTokenId, setItemTokenId] = useState([]);
   const getAllNftListMarketPlace = async () => {
     try {
@@ -128,6 +128,16 @@ const ItemDetails01 = () => {
       priceChange: "$12.246",
     },
   ]);
+
+  const getAllEventNFT = async () => {
+    const address = "0x79592cD2CedAfcC7E0747814B2A9ec8044C5B400";
+    const eventName = "BuyNFT";
+    // const filter = contract.filters.BuyNFT();
+    // const events = await contract.queryFilter(filter);
+    // let contract = new ethers.Contract(contractAddress, _ABI, wsProvider);
+    // console.log("EVENT", events);
+  };
+
   return (
     <div className="item-details">
       <HeaderStyle2 />

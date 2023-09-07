@@ -1,41 +1,44 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Modal } from "react-bootstrap";
-import LoadingComponent from "../Loading";
+import { Modal, ToastContainer } from "react-bootstrap";
 import {
   approveContractNFT,
   listSellContractNFT,
   address_MKP_LISTBUYSELL_OPBNB_TESTNET,
+  upDatePriceNFTMarketPlace,
 } from "../../integrateContract/contract";
 import { ethers } from "ethers";
-import { ToastContainer, toast } from "react-toastify";
+import LoadingComponent from "../Loading";
 import "react-toastify/dist/ReactToastify.css";
-const CardModal = (props) => {
+import { toast } from "react-toastify";
+const CardModalUpdatePrice = (props) => {
   const [inputValue, setInputValue] = useState();
   const [isTime, setTime] = useState("2592000");
   const [isLoading, setIsLoading] = useState(false);
   const [valueTimes, setValueTimes] = useState(0);
-
   const handleInputChange = useCallback((e) => {
     e.preventDefault();
     const value = e.target.value;
     setInputValue(value);
   }, []);
 
-  const onChangeTime = (event) => {
-    event.preventDefault();
-    const time = event.target.value;
-    setTime(time);
-  };
-
-  const listSellNFT = async (addressContractNFT, tokenId, price, time) => {
+  const updatelistSellNFT = async (tokenId, price) => {
     setIsLoading(true);
     try {
       const parsePrice = ethers.utils.parseEther(price.toString());
-      await approveContractNFT(addressContractNFT, tokenId).then(
-        async (res) => {
-          if (res?.reason) {
-            console.log("faill");
+      await upDatePriceNFTMarketPlace(tokenId, parsePrice).then((res) => {
+        setIsLoading(false);
+        toast("Update Price Nft successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        }).catch((err) => {
+          if (err && err.code === 4001) {
             toast.error("You rejected transaction", {
               position: "top-right",
               autoClose: 5000,
@@ -46,26 +49,27 @@ const CardModal = (props) => {
               progress: undefined,
               theme: "light",
             });
-
-            setIsLoading(false);
           } else {
-            await listSellContractNFT(tokenId, parsePrice, time.toString());
-            toast("List NFT successfully", {
-              position: "top-right",
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-              theme: "light",
-            });
-            setIsLoading(false);
+            toast.error(
+              "An error occurred while processing your request. Please try again later.",
+              {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+              }
+            );
           }
-        }
-      );
+          setIsLoading(false);
+        });
+        setIsLoading(false);
+      });
     } catch (error) {
-      console.log("error", error);
+      console.log("fail Error", error);
     }
   };
 
@@ -95,7 +99,7 @@ const CardModal = (props) => {
       >
         <Modal.Header closeButton></Modal.Header>
         <div className="modal-body space-y-20 pd-40">
-          <h3>List Items</h3>
+          <h3>Update Price Items</h3>
           <p className="text-center">
             LumiaNFT Luffy OnePiece{" "}
             <span className="price color-popup">
@@ -106,24 +110,24 @@ const CardModal = (props) => {
             <span>Setting price</span>
             <input
               type="text"
-              className="form-control"
+              className="form-control "
               placeholder="0.00 BNB"
               value={inputValue}
               onChange={handleInputChange}
             />
           </form>
-          <p>
+          {/* <p>
             Duration <span className="color-popup">Time</span>
           </p>
           <select
-            className="form-control inputSelect"
+            className="form-control h-56"
             defaultValue="2592000"
             onChange={onChangeTime}
           >
             <option value="2592000">1 month</option>
             <option value="5184000">2 month</option>
             <option value="7776000">3 month</option>
-          </select>
+          </select> */}
           <div className="hr"></div>
           <div className="d-flex justify-content-between">
             <p> Listing Price:</p>
@@ -151,15 +155,10 @@ const CardModal = (props) => {
             data-dismiss="modal"
             aria-label="Close"
             onClick={() => {
-              listSellNFT(
-                address_MKP_LISTBUYSELL_OPBNB_TESTNET,
-                props.data.token_id.toString(),
-                inputValue,
-                Number(isTime)
-              );
+              updatelistSellNFT(props.data.id.toString(), inputValue);
             }}
           >
-            {isLoading ? <LoadingComponent /> : <div>List Sell</div>}
+            {isLoading ? <LoadingComponent /> : "Update Price Sell"}
           </button>
         </div>
       </Modal>
@@ -167,4 +166,4 @@ const CardModal = (props) => {
   );
 };
 
-export default CardModal;
+export default CardModalUpdatePrice;
