@@ -30,6 +30,20 @@ export const ContractNFT = async () => {
     console.log("error contractNFT", error);
   }
 };
+export const SignerContractNFT = async () => {
+  try {
+    const provider = await getProviderOrSigner(true);
+    const contract = new ethers.Contract(
+      address_NFT_LUFFY_OPBNB_TESTNET,
+      ABI_NFT_LUFFY,
+      provider
+    );
+
+    return contract;
+  } catch (error) {
+    console.log("error contractNFT", error);
+  }
+};
 
 export const getTokenURI = async (id) => {
   try {

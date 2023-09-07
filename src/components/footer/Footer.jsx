@@ -1,7 +1,7 @@
 import React, { useState ,useEffect } from 'react';
 import { Link } from 'react-router-dom'
 import logodark from '../../assets/images/logo/Logo.svg'
-import logofooter from '../../assets/images/logo/Logo.svg'
+import logofooter from '../../assets/images/logo/LogoLight.svg'
 const Footer = () => {
     const accountList = [
         {
