@@ -80,7 +80,7 @@ const ItemDetails01 = () => {
 
   useEffect(() => {
     getAllEventNFT();
-    getAllActivityNFT(id)
+    getAllActivityNFT(id);
   }, []);
 
   const buyNFTTokenId = async (id, valuePrice) => {
@@ -119,9 +119,10 @@ const ItemDetails01 = () => {
         typeEvent: 1,
         event: "Mint",
         time: convertTimeEnd(findUserMint[2].toString()),
-        from: `${findUserMint[0].substring(0, 5)} ... ${findUserMint[0].substring(
-          findUserMint[0].length - 5
-        )}`,
+        from: `${findUserMint[0].substring(
+          0,
+          5
+        )} ... ${findUserMint[0].substring(findUserMint[0].length - 5)}`,
         to: "",
         price: "",
         priceChange: "",
@@ -321,19 +322,28 @@ const ItemDetails01 = () => {
                                       <div className="badge"></div> */}
                                     </div>
 
-                                    <div className="author-infor">
-                                      {trains.map((item, index) => (
-                                        <BoxTrani>
-                                          <div className="name" key={index}>
-                                            <h6> {item.trait_type} </h6>{" "}
-                                            {/* <span> place a bid</span> */}
-                                          </div>
-                                          <span className="time">
-                                            {item.value}
-                                          </span>
-                                        </BoxTrani>
-                                      ))}
-                                    </div>
+                                    <TransTab className="author-infor">
+                                      {trains.map((item, index) => {
+                                        return (
+                                          <>
+                                            {item.value && (
+                                              <BoxTrani>
+                                                <div
+                                                  className="name"
+                                                  key={index}
+                                                >
+                                                  <h6> {item.trait_type} </h6>{" "}
+                                                  {/* <span> place a bid</span> */}
+                                                </div>
+                                                <span className="time">
+                                                  {item.value}
+                                                </span>
+                                              </BoxTrani>
+                                            )}
+                                          </>
+                                        );
+                                      })}
+                                    </TransTab>
                                   </div>
                                 </div>
                               </div>
@@ -363,7 +373,23 @@ export default ItemDetails01;
 const TransTab = styled.div`
   width: 100%;
   display: flex;
-`
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
 const BoxTrani = styled.div`
-  width: 45%;
-`
+  width: calc(50% - 5px);
+  align-self: stretch;
+  display: flex;
+  border-radius: 10px;
+  background: rgba(18, 18, 18, 0.04);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #fff;
+  h6 {
+    font-weight: 600;
+    font-size: 16px;
+  }
+`;

@@ -53,7 +53,7 @@ const routes = [
   { path: "/mint-nft", component: <MinNft /> },
   // { path: "/contact-01", component: <Contact01 /> },
   // { path: "/contact-02", component: <Contact02 /> },
-  { path: "/lumia-nft-ai", component: <ArbNFTPage /> },
+  { path: "/nft-ai", component: <ArbNFTPage /> },
 ];
 
 export default routes;
