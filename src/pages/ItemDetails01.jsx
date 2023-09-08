@@ -7,9 +7,9 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import liveAuctionData from "../assets/fake-data/data-live-auction";
 import LiveAuction from "../components/layouts/LiveAuction";
-import img1 from "../assets/images/avatar/avt-3.jpg";
-import img2 from "../assets/images/avatar/avt-11.jpg";
-import img3 from "../assets/images/avatar/avt-1.jpg";
+import img1 from "../assets/images/IconEvent/mint.svg";
+import img2 from "../assets/images/IconEvent/list.svg";
+import img3 from "../assets/images/IconEvent/buy.svg";
 import img4 from "../assets/images/avatar/avt-5.jpg";
 import img5 from "../assets/images/avatar/avt-7.jpg";
 import img6 from "../assets/images/avatar/avt-8.jpg";
@@ -31,6 +31,8 @@ import { ethers } from "ethers";
 import { shortenAddress } from "../utils/formartAddress";
 import { useActiveWeb3React } from "../hooks";
 import axios from "axios";
+import { convertTimeEnd } from "../utils/formartTime";
+import styled from "styled-components";
 
 const ItemDetails01 = () => {
   const { account } = useActiveWeb3React();
@@ -39,7 +41,7 @@ const ItemDetails01 = () => {
   const id = searchParams.get("id");
   const [itemTokenId, setItemTokenId] = useState([]);
   const [trains, setTrains] = useState([]);
-  const [eventMint, setEventMint] = useState([]);
+  const [eventOfNft, setEventOfNft] = useState([]);
   const getAllNftListMarketPlace = async () => {
     try {
       let transition = await getAllValueMarketPlace();
@@ -67,7 +69,6 @@ const ItemDetails01 = () => {
         })
       );
       const itemTokenId = items.filter((item) => item.tokenId === id);
-
       setItemTokenId(itemTokenId);
     } catch (error) {
       console.log("getAllNftListMarketPlace", error);
@@ -75,9 +76,12 @@ const ItemDetails01 = () => {
   };
   useEffect(() => {
     getAllNftListMarketPlace();
-    getAllEventNFT();
-    getAllActivityNFT(id);
   }, [account, Tab]);
+
+  useEffect(() => {
+    getAllEventNFT();
+    getAllActivityNFT(id)
+  }, []);
 
   const buyNFTTokenId = async (id, valuePrice) => {
     try {
@@ -87,49 +91,16 @@ const ItemDetails01 = () => {
     }
   };
 
-  const [dataHistory] = useState([
-    {
-      img: img1,
-      name: "Mason Woodward",
-      time: "8 hours ago",
-      price: "4.89 opBNB",
-      priceChange: "$12.246",
-    },
-    {
-      img: img2,
-      name: "Mason Woodward",
-      time: "at 06/10/2021, 3:20 AM",
-      price: "4.89 opBNB",
-      priceChange: "$12.246",
-    },
-    {
-      img: img3,
-      name: "Mason Woodward",
-      time: "8 hours ago",
-      price: "4.89 opBNB",
-      priceChange: "$12.246",
-    },
-    {
-      img: img4,
-      name: "Mason Woodward",
-      time: "8 hours ago",
-      price: "4.89 opBNB",
-      priceChange: "$12.246",
-    },
-    {
-      img: img5,
-      name: "Mason Woodward",
-      time: "8 hours ago",
-      price: "4.89 opBNB",
-      priceChange: "$12.246",
-    },
-    {
-      img: img6,
-      name: "Mason Woodward",
-      time: "8 hours ago",
-      price: "4.89 opBNB",
-      priceChange: "$12.246",
-    },
+  const [dataHistory, setDataHistory] = useState([
+    // {
+    //   typeEvent: 1,
+    //   event: "Mint",
+    //   time: "8 hours ago",
+    //   from: "0x000",
+    //   to: "0x123",
+    //   price: "",
+    //   priceChange: "",
+    // },
   ]);
 
   const getAllEventNFT = async () => {
@@ -137,9 +108,25 @@ const ItemDetails01 = () => {
     const getFilters = contractEventNFT.filters.Mint();
     const events = await contractEventNFT.queryFilter(getFilters, 6574800);
     const getArgs = events.map((value) => value.args);
-    const findUserMint = getArgs.find((item) => id === item.tokenId.toString());
-    setEventMint(findUserMint);
-    console.log("EVENT", eventMint);
+    const findUserMint = getArgs.find(
+      (item) => id === item?.tokenId?.toString()
+    );
+    console.log("EVENT", findUserMint);
+    setEventOfNft(findUserMint);
+    setDataHistory([
+      ...dataHistory,
+      {
+        typeEvent: 1,
+        event: "Mint",
+        time: convertTimeEnd(findUserMint[2].toString()),
+        from: `${findUserMint[0].substring(0, 5)} ... ${findUserMint[0].substring(
+          findUserMint[0].length - 5
+        )}`,
+        to: "",
+        price: "",
+        priceChange: "",
+      },
+    ]);
   };
 
   const getAllActivityNFT = async (tokenId) => {
@@ -167,18 +154,7 @@ const ItemDetails01 = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="page-title-heading mg-bt-12">
-                <h1 className="heading text-center">NFT Details #tokenID</h1>
-              </div>
-              <div className="breadcrumbs style2">
-                <ul>
-                  <li>
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link to="#">Explore</Link>
-                  </li>
-                  <li>NFT Details</li>
-                </ul>
+                <h1 className="heading text-center"> Lumia NFT Luffy</h1>
               </div>
             </div>
           </div>
@@ -206,9 +182,7 @@ const ItemDetails01 = () => {
               <div className="col-xl-6 col-md-12">
                 <div className="content-right">
                   <div className="sc-item-details">
-                    <h2 className="style2">
-                      Lumia NFT Luffy #{itemTokenId[0].tokenId}{" "}
-                    </h2>
+                    <h2 className="style2">NFT Details {id ? `#${id}` : ""}</h2>
                     {/* <div className="meta-item">
                       <div className="left">
                         <span className="viewed eye">225</span>
@@ -224,9 +198,6 @@ const ItemDetails01 = () => {
                     <div className="client-infor sc-card-product">
                       <div className="meta-info">
                         <div className="author">
-                          {/* <div className="avatar">
-                            <img src={img6} alt="Axies" />
-                          </div> */}
                           <div className="info">
                             <span>Owned By</span>
                             <h6>{shortenAddress(itemTokenId[0].seller)}</h6>
@@ -235,30 +206,29 @@ const ItemDetails01 = () => {
                       </div>
                       <div className="meta-info">
                         <div className="author">
-                          {/* <div className="avatar">
-                            <img src={img7} alt="Axies" />
-                          </div> */}
                           <div className="info">
                             <span>Create By</span>
-                            <h6> Address</h6>
+                            <h6>
+                              {eventOfNft[0]
+                                ? `${eventOfNft[0].substring(
+                                    0,
+                                    5
+                                  )} ... ${eventOfNft[0].substring(
+                                    eventOfNft[0].length - 5
+                                  )}`
+                                : "--"}
+                            </h6>
                           </div>
                         </div>
                       </div>
                     </div>
-                    {/* <p>
-                      Habitant sollicitudin faucibus cursus lectus pulvinar dolor
-                      non ultrices eget. Facilisi lobortisal morbi fringilla urna
-                      amet sed ipsum vitae ipsum malesuada. Habitant sollicitudin
-                      faucibus cursus lectus pulvinar dolor non ultrices eget.
-                      Facilisi lobortisal morbi fringilla urna amet sed ipsum
-                    </p> */}
                     <div className="meta-item-details style2">
                       <div className="item meta-price">
                         <span className="heading">Price List</span>
                         <div className="price">
                           <div className="price-box">
-                            <h5> {itemTokenId[0].price}BNB</h5>
-                            <span>= $12.246</span>
+                            <h5> {itemTokenId[0]?.price || "--"}BNB</h5>
+                            {/* <span>= $12.246</span> */}
                           </div>
                         </div>
                       </div>
@@ -282,7 +252,6 @@ const ItemDetails01 = () => {
                         <TabList>
                           <Tab>Activity</Tab>
                           <Tab>Traits</Tab>
-                          <Tab>Provenance</Tab>
                         </TabList>
 
                         <TabPanel>
@@ -295,8 +264,14 @@ const ItemDetails01 = () => {
                                       <div className="author-avatar">
                                         <Link to="#">
                                           <img
-                                            src={item.img}
-                                            alt="Axies"
+                                            src={
+                                              item.typeEvent === 1
+                                                ? img1
+                                                : item.typeEvent === 2
+                                                ? img2
+                                                : img3
+                                            }
+                                            alt=""
                                             className="avatar"
                                           />
                                         </Link>
@@ -305,21 +280,24 @@ const ItemDetails01 = () => {
                                       <div className="author-infor">
                                         <div className="name">
                                           <h6>
-                                            <Link to="/author-02">
-                                              {item.name}{" "}
-                                            </Link>
-                                          </h6>{" "}
-                                          <span> place a bid</span>
+                                            <Link to="#">Event:</Link>
+                                          </h6>
+                                          <span> {item.event} </span>
                                         </div>
                                         <span className="time">
-                                          {item.time}
+                                          {item.from
+                                            ? `From: ${item.from}`
+                                            : ""}
+                                          &#160;
+                                          {item.to ? `- To: ${item.to}` : ""}
                                         </span>
                                       </div>
                                     </div>
                                   </div>
                                   <div className="price">
-                                    <h5>{item.price}</h5>
-                                    <span>= {item.priceChange}</span>
+                                    <h5>price: {item.price || "--"}</h5>
+                                    {/* <span>{item.priceChange ? `=${item.priceChange}` : ''}</span> */}
+                                    <span>{item.time || ""}</span>
                                   </div>
                                 </div>
                               </li>
@@ -345,7 +323,7 @@ const ItemDetails01 = () => {
 
                                     <div className="author-infor">
                                       {trains.map((item, index) => (
-                                        <>
+                                        <BoxTrani>
                                           <div className="name" key={index}>
                                             <h6> {item.trait_type} </h6>{" "}
                                             {/* <span> place a bid</span> */}
@@ -353,7 +331,7 @@ const ItemDetails01 = () => {
                                           <span className="time">
                                             {item.value}
                                           </span>
-                                        </>
+                                        </BoxTrani>
                                       ))}
                                     </div>
                                   </div>
@@ -361,25 +339,6 @@ const ItemDetails01 = () => {
                               </div>
                             </li>
                           </ul>
-                        </TabPanel>
-                        <TabPanel>
-                          <div className="provenance">
-                            <p>
-                              Lorem Ipsum is simply dummy text of the printing
-                              and typesetting industry. Lorem Ipsum has been the
-                              industry's standard dummy text ever since the
-                              1500s, when an unknown printer took a galley of
-                              type and scrambled it to make a type specimen
-                              book. It has survived not only five centuries, but
-                              also the leap into electronic typesetting,
-                              remaining essentially unchanged. It was
-                              popularised in the 1960s with the release of
-                              Letraset sheets containing Lorem Ipsum passages,
-                              and more recently with desktop publishing software
-                              like Aldus PageMaker including versions of Lorem
-                              Ipsum.
-                            </p>
-                          </div>
                         </TabPanel>
                       </Tabs>
                     </div>
@@ -400,3 +359,11 @@ const ItemDetails01 = () => {
 };
 
 export default ItemDetails01;
+
+const TransTab = styled.div`
+  width: 100%;
+  he
+`
+const BoxTrani = styled.div`
+  width: 45%;
+`

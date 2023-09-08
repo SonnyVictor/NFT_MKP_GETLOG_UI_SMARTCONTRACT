@@ -336,7 +336,6 @@ const Authors02 = () => {
                                   <div className="info"></div>
                                 </div>
                               </div>
-
                               <div className="card-bottom style-explode">
                                 <div className="price">
                                   <span>Current List</span>

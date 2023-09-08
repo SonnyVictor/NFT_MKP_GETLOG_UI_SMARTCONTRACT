@@ -46,7 +46,7 @@ const routes = [
   // { path: "/authors-01", component: <Authors01 /> },
   { path: "/profile", component: <Authors02 /> },
   // { path: "/wallet-connect", component: <WalletConnect /> },
-  { path: "/create-item", component: <CreateItem /> },
+  // { path: "/create-item", component: <CreateItem /> },
   { path: "/edit-profile", component: <EditProfile /> },
   // { path: "/ranking", component: <Ranking /> },
   // { path: "/no-result", component: <NoResult /> },
