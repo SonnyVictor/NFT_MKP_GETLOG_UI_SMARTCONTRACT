@@ -227,3 +227,12 @@ export const getEventEmitBuyNFTMKP = async () => {
     console.log(error);
   }
 };
+
+export const getDataTokenURI = async (tokenId) => {
+  try {
+    const contract = await ContractNFT();
+    const getActivity = await contract.tokenURI(tokenId);
+
+    return getActivity;
+  } catch (error) {}
+};

@@ -20,6 +20,7 @@ import { useLocation } from "react-router-dom";
 import {
   ContractNFT,
   getAllValueMarketPlace,
+  getDataTokenURI,
   getImageNFT,
   getNameNFT,
   getSymbolNFT,
@@ -37,7 +38,7 @@ const ItemDetails01 = () => {
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
   const [itemTokenId, setItemTokenId] = useState([]);
-
+  const [trains, setTrains] = useState([]);
   const [eventMint, setEventMint] = useState([]);
   const getAllNftListMarketPlace = async () => {
     try {
@@ -75,6 +76,7 @@ const ItemDetails01 = () => {
   useEffect(() => {
     getAllNftListMarketPlace();
     getAllEventNFT();
+    getAllActivityNFT(id);
   }, [account, Tab]);
 
   const buyNFTTokenId = async (id, valuePrice) => {
@@ -129,7 +131,6 @@ const ItemDetails01 = () => {
       priceChange: "$12.246",
     },
   ]);
-  console.log(TabPanel);
 
   const getAllEventNFT = async () => {
     const contractEventNFT = await ContractNFT();
@@ -139,39 +140,24 @@ const ItemDetails01 = () => {
     const findUserMint = getArgs.find((item) => id === item.tokenId.toString());
     setEventMint(findUserMint);
     console.log("EVENT", eventMint);
-
-    // const options = {
-    //   method: "POST",
-    //   headers: {
-    //     accept: "application/json",
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     id: 1,
-    //     jsonrpc: "2.0",
-    //     method: "eth_getLogs",
-    //     params: [
-    //       {
-    //         fromBlock: "0x0",
-    //         toBlock: "latest",
-    //         address: ["0x79592cD2CedAfcC7E0747814B2A9ec8044C5B400"],
-    //         topics: [
-    //           "0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c6fef26394f4c03821c4f",
-    //         ],
-    //       },
-    //     ],
-    //   }),
-    // };
-
-    // fetch(
-    //   "https://opbnb-testnet.nodereal.io/v1/752a9b9dd032492da8b585a548be07cf",
-    //   options
-    // )
-    //   .then((response) => response.json())
-    //   .then((response) => console.log(response))
-    //   .catch((err) => console.error(err));
   };
 
+  const getAllActivityNFT = async (tokenId) => {
+    try {
+      const activity = await getDataTokenURI(tokenId);
+      console.log(activity);
+      const json = window?.atob(activity?.substring(29));
+      if (json) {
+        const result = JSON.parse(json);
+        if (result) {
+          setTrains(result?.attributes);
+        }
+      }
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
+  console.log(trains);
   return (
     <div className="item-details">
       <HeaderStyle2 />
@@ -295,7 +281,7 @@ const ItemDetails01 = () => {
                       <Tabs>
                         <TabList>
                           <Tab>Activity</Tab>
-                          <Tab>Info</Tab>
+                          <Tab>Traits</Tab>
                           <Tab>Provenance</Tab>
                         </TabList>
 
@@ -347,21 +333,28 @@ const ItemDetails01 = () => {
                                 <div className="client">
                                   <div className="sc-author-box style-2">
                                     <div className="author-avatar">
-                                      <Link to="#">
+                                      {/* <Link to="#">
                                         <img
                                           src={img1}
                                           alt="Axies"
                                           className="avatar"
                                         />
                                       </Link>
-                                      <div className="badge"></div>
+                                      <div className="badge"></div> */}
                                     </div>
+
                                     <div className="author-infor">
-                                      <div className="name">
-                                        <h6> Mason Woodward </h6>{" "}
-                                        <span> place a bid</span>
-                                      </div>
-                                      <span className="time">8 hours ago</span>
+                                      {trains.map((item, index) => (
+                                        <>
+                                          <div className="name" key={index}>
+                                            <h6> {item.trait_type} </h6>{" "}
+                                            {/* <span> place a bid</span> */}
+                                          </div>
+                                          <span className="time">
+                                            {item.value}
+                                          </span>
+                                        </>
+                                      ))}
                                     </div>
                                   </div>
                                 </div>
