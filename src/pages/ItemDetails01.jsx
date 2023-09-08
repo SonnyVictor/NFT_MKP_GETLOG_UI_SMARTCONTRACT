@@ -362,7 +362,7 @@ export default ItemDetails01;
 
 const TransTab = styled.div`
   width: 100%;
-  he
+  display: flex;
 `
 const BoxTrani = styled.div`
   width: 45%;
