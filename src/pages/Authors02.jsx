@@ -6,7 +6,7 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import CardModal from "../components/layouts/CardModal";
 
-import avt from "../assets/images/avatar/avt-author-tab.jpg";
+import avt from "../assets/images/avatar/avt-author-tab.png";
 import HeaderStyle2 from "../components/header/HeaderStyle2";
 import {
   ContractNFT,
@@ -34,11 +34,6 @@ const Authors02 = () => {
     {
       class: "",
       name: "On Sale",
-    },
-
-    {
-      class: "",
-      name: "COLLECTIBLES",
     },
   ]);
 
@@ -159,9 +154,9 @@ const Authors02 = () => {
             <div className="row">
               <div className="col-md-12">
                 <div className="page-title-heading mg-bt-12">
-                  <h1 className="heading text-center">Author</h1>
+                  <h1 className="heading text-center">My Profile</h1>
                 </div>
-                <div className="breadcrumbs style2">
+                {/* <div className="breadcrumbs style2">
                   <ul>
                     <li>
                       <Link to="/">Home</Link>
@@ -171,7 +166,7 @@ const Authors02 = () => {
                     </li>
                     <li>Author</li>
                   </ul>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -184,12 +179,12 @@ const Authors02 = () => {
                   <img src={avt} alt="Axies" className="avatar" />
                 </div>
                 <div className="infor-profile">
-                  <span>Author Profile</span>
-                  <h2 className="title">Trista Francis</h2>
+                  <span>Author Profile</span><p className="content">
+                    <br/>
+                  </p>
+                  <h2 className="title"> Lumia Nft </h2>
                   <p className="content">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Laborum obcaecati dignissimos quae quo ad iste ipsum
-                    officiis deleniti asperiores sit.
+                    <br/>
                   </p>
                   <form>
                     <input
@@ -227,7 +222,7 @@ const Authors02 = () => {
                     </li>
                   </ul>
                   <div className="btn-profile">
-                    <Link to="/login" className="sc-button style-1 follow">
+                    <Link to="#" className="sc-button style-1 follow">
                       Follow
                     </Link>
                   </div>

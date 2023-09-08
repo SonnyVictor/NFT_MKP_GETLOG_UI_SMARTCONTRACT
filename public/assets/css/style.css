@@ -1509,7 +1509,9 @@ header{
 #site-logo {
     height: 80px;
 }
-
+.profile-mobile{
+    display: none;
+}
 .flat-search-btn {
     display        : flex;
     padding        : 16px 0;

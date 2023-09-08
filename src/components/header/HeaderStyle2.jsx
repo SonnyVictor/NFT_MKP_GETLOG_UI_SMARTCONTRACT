@@ -12,6 +12,7 @@ import { ModalConfirmContext } from "../ProviderPopUp/confirm";
 import { ConnectPopUp } from "../Modal/ModalConnectWallet";
 import { useActiveWeb3React } from "../../hooks";
 import ProfileBtn from "./Profile";
+import styled from "styled-components";
 const HeaderStyle2 = () => {
   const { pathname } = useLocation();
   const { onOpen, onClose } = useContext(ModalConfirmContext);
@@ -154,7 +155,7 @@ const HeaderStyle2 = () => {
                       </button>
                     </form>
                   </div>
-                  <nav id="main-nav" className="main-nav" ref={menuLeft}>
+                  <NavMb id="main-nav" className="main-nav" ref={menuLeft}>
                     <ul id="menu-primary-menu" className="menu">
                       {menus.map((data, index) => (
                         <li
@@ -183,8 +184,14 @@ const HeaderStyle2 = () => {
                           )}
                         </li>
                       ))}
+                      <ProfileMObile>
+                        <Link to="/profile"> Profile </Link>
+                      </ProfileMObile>
                     </ul>
-                  </nav>
+                    <div className="profile-mobile">
+                      <ProfileBtn />
+                    </div>
+                  </NavMb>
                   <div className="flat-search-btn flex">
                     <div className="sc-btn-top mg-r-12" id="site-header">
                       <div className="sc-button header-slider fl-button pri-1  style-1  select-network">
@@ -247,7 +254,9 @@ const HeaderStyle2 = () => {
                       </div>
                     </div>
                   </div>
-                  <ProfileBtn />
+                  <div className="profile-DesTop">
+                    <ProfileBtn />
+                  </div>
                 </div>
               </div>
             </div>
@@ -260,3 +269,17 @@ const HeaderStyle2 = () => {
 };
 
 export default HeaderStyle2;
+
+const ProfileMObile = styled.li`
+  @media only screen and (min-width: 991px) {
+    display: none;
+  }
+`;
+const NavMb = styled.nav`
+  @media only screen and (max-width: 991px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+`;
