@@ -62,8 +62,6 @@ const Home05 = () => {
     getAllNftListMarketPlace();
   }, []);
 
-  console.log("items", listNftFull);
-
   //   const contextValues = { data, handleSaveData, listNftFull };
   return (
     <div className="home-5">

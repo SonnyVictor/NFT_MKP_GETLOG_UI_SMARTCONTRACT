@@ -18,6 +18,7 @@ import imgdetail1 from "../assets/images/box-item/images-item-details.jpg";
 import HeaderStyle2 from "../components/header/HeaderStyle2";
 import { useLocation } from "react-router-dom";
 import {
+  ContractNFT,
   getAllValueMarketPlace,
   getImageNFT,
   getNameNFT,
@@ -36,6 +37,8 @@ const ItemDetails01 = () => {
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
   const [itemTokenId, setItemTokenId] = useState([]);
+
+  const [eventMint, setEventMint] = useState([]);
   const getAllNftListMarketPlace = async () => {
     try {
       let transition = await getAllValueMarketPlace();
@@ -69,12 +72,10 @@ const ItemDetails01 = () => {
       console.log("getAllNftListMarketPlace", error);
     }
   };
-
-  const render = "render";
-
   useEffect(() => {
     getAllNftListMarketPlace();
-  }, [account]);
+    getAllEventNFT();
+  }, [account, Tab]);
 
   const buyNFTTokenId = async (id, valuePrice) => {
     try {
@@ -128,14 +129,47 @@ const ItemDetails01 = () => {
       priceChange: "$12.246",
     },
   ]);
+  console.log(TabPanel);
 
   const getAllEventNFT = async () => {
-    const address = "0x79592cD2CedAfcC7E0747814B2A9ec8044C5B400";
-    const eventName = "BuyNFT";
-    // const filter = contract.filters.BuyNFT();
-    // const events = await contract.queryFilter(filter);
-    // let contract = new ethers.Contract(contractAddress, _ABI, wsProvider);
-    // console.log("EVENT", events);
+    const contractEventNFT = await ContractNFT();
+    const getFilters = contractEventNFT.filters.Mint();
+    const events = await contractEventNFT.queryFilter(getFilters, 6574800);
+    const getArgs = events.map((value) => value.args);
+    const findUserMint = getArgs.find((item) => id === item.tokenId.toString());
+    setEventMint(findUserMint);
+    console.log("EVENT", eventMint);
+
+    // const options = {
+    //   method: "POST",
+    //   headers: {
+    //     accept: "application/json",
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     id: 1,
+    //     jsonrpc: "2.0",
+    //     method: "eth_getLogs",
+    //     params: [
+    //       {
+    //         fromBlock: "0x0",
+    //         toBlock: "latest",
+    //         address: ["0x79592cD2CedAfcC7E0747814B2A9ec8044C5B400"],
+    //         topics: [
+    //           "0x4c209b5fc8ad50758f13e2e1088ba56a560dff690a1c6fef26394f4c03821c4f",
+    //         ],
+    //       },
+    //     ],
+    //   }),
+    // };
+
+    // fetch(
+    //   "https://opbnb-testnet.nodereal.io/v1/752a9b9dd032492da8b585a548be07cf",
+    //   options
+    // )
+    //   .then((response) => response.json())
+    //   .then((response) => console.log(response))
+    //   .catch((err) => console.error(err));
   };
 
   return (
@@ -260,7 +294,7 @@ const ItemDetails01 = () => {
                     <div className="flat-tabs themesflat-tabs">
                       <Tabs>
                         <TabList>
-                          <Tab>Bid History</Tab>
+                          <Tab>Activity</Tab>
                           <Tab>Info</Tab>
                           <Tab>Provenance</Tab>
                         </TabList>

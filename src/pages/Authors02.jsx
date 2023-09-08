@@ -393,6 +393,7 @@ const Authors02 = () => {
         <CardModalUpdatePrice
           show={modalShowUpdatePice}
           onHide={() => setModalShowUpdatePice(false)}
+          showAction={setModalShowUpdatePice}
           data={dataOnSaleNFT ? dataOnSaleNFT[idPopup] : {}}
         />
 
