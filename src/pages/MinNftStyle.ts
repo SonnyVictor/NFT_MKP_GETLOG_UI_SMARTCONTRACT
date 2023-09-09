@@ -6,7 +6,6 @@ export const Container = styled.div`
   padding-left: 12px;
   padding-right: 12px;
   padding-top: 140px;
-
   @media only screen and (min-width: 835px) {
     padding-left: 24px;
     padding-right: 24px;
@@ -44,6 +43,13 @@ export const ContentBox = styled.div`
   li {
     font-size: 14px;
     line-height: 150%;
+  }
+  @media only screen and (max-width: 970px) {
+    flex-direction: column;
+    align-items: center;
+  }
+  @media only screen and (max-width: 540px) {
+    margin-top: 30px;
   }
 `;
 export const Layout = styled.div`
@@ -86,7 +92,9 @@ export const GifLayout = styled.div`
     top: 20%;
     width: 350px;
   }
-
+  @media only screen and (max-width: 970px) {
+    margin: auto;
+  }
   @media only screen and (max-width: 520px) {
     top: 10%;
     width: 300px;
@@ -148,7 +156,68 @@ export const BoxCoppyContrac = styled.div`
       }
     }
   }
+  @media only screen and (max-width: 540px) {
+    display: none;
+  }
 `;
+
+export const BoxCoppyContracMb = styled.div`
+width: 100%;
+display: none;
+  h4 {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 32px;
+    color: #808080;
+    letter-spacing: -0.02em;
+    margin-bottom: 12px;
+  }
+  div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+    h3 {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 32px;
+      letter-spacing: -0.02em;
+    }
+    button {
+      position: relative;
+      padding: 4px 4px;
+      background-color: transparent;
+      border-radius: 4px;
+      span {
+        overflow: hidden;
+        display: flex;
+        position: absolute;
+        text-align: center;
+        justify-content: center;
+        width: 500%;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%) translateY(-100%);
+        transition: all 1s linear;
+        opacity: 0;
+        color: #45d2c5;
+      }
+      :hover {
+        background-color: var(--primary-color3);
+      }
+      :active {
+        transform: translateY(3%);
+        span {
+          opacity: 1;
+          transition: all 0s linear;
+        }
+      }
+    }
+  }
+  @media only screen and (max-width: 540px) {
+    display: block;
+  }
+`
 
 export const ButnSubMit = styled.button`
   width: 100%;

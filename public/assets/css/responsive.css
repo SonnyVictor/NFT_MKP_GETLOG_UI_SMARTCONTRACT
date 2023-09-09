@@ -395,10 +395,10 @@
     width: fit-content;
     font-size: 18px !important;
   }
-  .sc-btn-top .select-network span::before {
+  /* .sc-btn-top .select-network span::before {
     left: 0px !important;
     transform: none !important;
-  }
+  } */
   .tablet-30 {
     margin-bottom: 30px !important;
   }
