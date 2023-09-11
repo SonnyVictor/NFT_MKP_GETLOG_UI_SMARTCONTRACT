@@ -10,3 +10,16 @@ export const ImageNft = styled.div`
     }
 
 `
+export const Nodata = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  button{
+    :hover{
+        color: #fff !important;
+    }
+  }
+`

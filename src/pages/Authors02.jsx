@@ -23,9 +23,12 @@ import {
   convertendTime,
 } from "../utils/formartTime";
 import CardModalUpdatePrice from "../components/layouts/CardModalUpdatePrice";
+import { Nodata } from "../components/layouts/home-5/TodayPicksStyle";
+import NodataImg from '../assets/images/logo/No-nft.svg'
 
 const Authors02 = () => {
   const { account } = useActiveWeb3React();
+  const [tabIndex, setTabIndex] = useState(0);
   const [menuTab] = useState([
     {
       class: "active",
@@ -190,7 +193,7 @@ const Authors02 = () => {
                     <input
                       type="text"
                       className="inputcopy"
-                      defaultValue="DdzFFzCqrhshMSxABCdfrge"
+                      defaultValue={ account ? `${account.substring(0 , 8)}... ${account.substring(account.length - 8 , account.length)}` : '' }
                       readOnly
                     />
                     <button type="button" className="btn-copycode">
@@ -228,7 +231,7 @@ const Authors02 = () => {
                   </div>
                 </div>
               </div>
-              <Tabs>
+              <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
                 <TabList>
                   {menuTab.map((item, index) => (
                     <Tab key={index}>{item.name}</Tab>
@@ -239,7 +242,7 @@ const Authors02 = () => {
                   <div className="content-inner">
                     <div className="row">
                       <TabPanel>
-                        {dataNFT?.map((item, index) => (
+                        {dataNFT.length ? <>{dataNFT?.map((item, index) => (
                           <div
                             key={item?.token_id}
                             className="col-xl-3 col-lg-4 col-md-6 col-12"
@@ -284,81 +287,89 @@ const Authors02 = () => {
                               </div>
                             </div>
                           </div>
-                        ))}
+                        ))}</> : <Nodata>
+                          <img src={NodataImg} alt=''/>
+                          <Link to='/mint-nft'><button>Go To Min-Nft</button></Link>
+                        </Nodata> }
                       </TabPanel>
 
                       <TabPanel>
-                        {dataOnSaleNFT?.map((item, index) => (
-                          <div
-                            key={item?.token_id}
-                            className="col-xl-3 col-lg-4 col-md-6 col-12"
-                          >
-                            <div className="sc-card-product explode ">
-                              <div className="card-media">
-                                <img
-                                  src={`data:image/svg+xml;utf8,${encodeURIComponent(
-                                    item?.img
-                                  )}`}
-                                  alt="NFT Image"
-                                  width="200px"
-                                  height="200px"
-                                />
-
-                                <div className="button-place-bid ">
-                                  <button
-                                    onClick={() => {
-                                      unListNFTOnSale(item.id);
-                                      setIdPopup(item.id);
-                                    }}
-                                    className="sc-button style-place-bid style bag fl-button pri-3"
-                                  >
-                                    <span>UnList Sell</span>
-                                  </button>
+                        {dataOnSaleNFT.length ? <>{
+                          dataOnSaleNFT?.map((item, index) => (
+                            <div
+                              key={item?.token_id}
+                              className="col-xl-3 col-lg-4 col-md-6 col-12"
+                            >
+                              <div className="sc-card-product explode ">
+                                <div className="card-media">
+                                  <img
+                                    src={`data:image/svg+xml;utf8,${encodeURIComponent(
+                                      item?.img
+                                    )}`}
+                                    alt="NFT Image"
+                                    width="200px"
+                                    height="200px"
+                                  />
+  
+                                  <div className="button-place-bid ">
+                                    <button
+                                      onClick={() => {
+                                        unListNFTOnSale(item.id);
+                                        setIdPopup(item.id);
+                                      }}
+                                      className="sc-button style-place-bid style bag fl-button pri-3"
+                                    >
+                                      <span>UnList Sell</span>
+                                    </button>
+                                  </div>
+  
+                                  <span className="number-like">
+                                    {" "}
+                                    {item?.token_id.toString()}
+                                  </span>
                                 </div>
-
-                                <span className="number-like">
-                                  {" "}
-                                  {item?.token_id.toString()}
-                                </span>
-                              </div>
-                              <div className="card-title mg-bt-16">
-                                <h5>{item?.name}</h5>
-                              </div>
-                              <h5>TokenId #{item?.token_id}</h5>
-                              <h5>
-                                Date Remaining
-                                {convertUnixTimeToExpirationTime(item?.endTime)}
-                              </h5>
-
-                              <div className="meta-info">
-                                <div className="author">
-                                  <div className="avatar"></div>
-                                  <div className="info"></div>
+                                <div className="card-title mg-bt-16">
+                                  <h5>{item?.name}</h5>
                                 </div>
-                              </div>
-                              <div className="card-bottom style-explode">
-                                <div className="price">
-                                  <span>Current List</span>
-                                  <div className="price-details">
-                                    <h5>
-                                      {ethers.utils.formatEther(item.price)} BNB
-                                    </h5>
-                                    <span>= {item?.priceChange}</span>
+                                <h5>TokenId #{item?.token_id}</h5>
+                                <h5>
+                                  Date Remaining
+                                  {convertUnixTimeToExpirationTime(item?.endTime)}
+                                </h5>
+  
+                                <div className="meta-info">
+                                  <div className="author">
+                                    <div className="avatar"></div>
+                                    <div className="info"></div>
                                   </div>
                                 </div>
-                                <button
-                                  onClick={() => {
-                                    setModalShowUpdatePice(true);
-                                    setIdPopup(index);
-                                  }}
-                                  className="btn-primary"
-                                >
-                                  UpDate Price
-                                </button>
+                                <div className="card-bottom style-explode">
+                                  <div className="price">
+                                    <span>Current List</span>
+                                    <div className="price-details">
+                                      <h5>
+                                        {ethers.utils.formatEther(item.price)} BNB
+                                      </h5>
+                                      <span>= {item?.priceChange}</span>
+                                    </div>
+                                  </div>
+                                  <button
+                                    onClick={() => {
+                                      setModalShowUpdatePice(true);
+                                      setIdPopup(index);
+                                    }}
+                                    className="btn-primary"
+                                  >
+                                    UpDate Price
+                                  </button>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))}
+                          ))
+                        }</> : <Nodata>
+                        <img src={NodataImg} alt=''/>
+                        <button onClick={()=>{setTabIndex(0)}} >List Nft</button>
+                      </Nodata> }
                       </TabPanel>
                       {/* {visible < item?.dataContent.length && (
                       <div className="col-md-12 wrap-inner load-more text-center">

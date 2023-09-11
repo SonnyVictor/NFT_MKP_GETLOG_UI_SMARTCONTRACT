@@ -8,26 +8,26 @@ import icon4 from '../../assets/images/icon/Bookmark.png'
 const Create = () => {
     const data = [
         {
-            title: "Set Up Your Wallet",
+            title: "Connect Wallet",
             description: "Wallet that is functional for NFT purchasing. You may have a Coinbase account at this point, but very few are actually set up to buy an NFT.",
             icon : icon1,
             colorbg : "icon-color1"
         },
         {
-            title: "Create Your Collection",
+            title: "Your NFT Collection",
             description: "Setting up your NFT collection and creating NFTs on NFTs is easy! This guide explains how to set up your first collection",
             icon : icon2,
             colorbg : "icon-color2"
         },
         {
-            title: "Add Your NFTs",
+            title: "Gen NFT Image",
             description: "Sed ut perspiciatis un de omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.",
             icon : icon3,
             colorbg : "icon-color3"
         },
         {
-            title: "List Them For Sale",
-            description: "Choose between auctions, fixed-price listings, and declining-price listings. You choose how you want to sell your NFTs!",
+            title: "Buy/Sell NFTs",
+            description: "You can buy/sell your own NFTs on the XRender Marketplace.",
             icon : icon4,
             colorbg : "icon-color4"
         },

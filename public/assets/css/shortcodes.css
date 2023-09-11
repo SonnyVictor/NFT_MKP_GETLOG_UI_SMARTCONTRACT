@@ -267,8 +267,11 @@
   color: #fff;
   background: transparent none repeat scroll 0 0;
 }
-
+.sc-button.style-1 span p{
+  color: #fff;
+}
 .sc-button.style-1:hover span,
+.sc-button.style-1:hover span p,
 .sc-button.style-1:hover span::before {
   color: var(--primary-color3);
 }
@@ -374,6 +377,13 @@
 
 .sc-button.style.wallet span::before {
   content: "\e917";   
+}
+.select-network span {
+  display: flex;
+  align-items: center;
+}
+.select-network span p::hover{
+  color: #5142FC !important;
 }
 .select-network span::before{
   background-image: url('/assets/icon/BNBIcon.png');
