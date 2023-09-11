@@ -6,6 +6,7 @@ import {
   GifLayout,
   BoxCoppyContrac,
   ButnSubMit,
+  BoxCoppyContracMb
 } from "./MinNftStyle";
 import { ToastContainer, toast } from "react-toastify";
 import { useState, useMemo, useEffect, useContext } from "react";
@@ -164,6 +165,16 @@ const MinNft = () => {
                   </button>
                 </div>
               </BoxCoppyContrac>
+              <BoxCoppyContracMb>
+                <h4>Smart Contract</h4>
+                <div>
+                  <h3>{`${ContractMint.substring(0 , 5)} ... ${ContractMint.substring( ContractMint.length - 5 , ContractMint.length)}`}</h3>
+                  <button onClick={() => copyToClipboard(ContractMint)}>
+                    📑
+                    <span>{copySuccess}</span>
+                  </button>
+                </div>
+              </BoxCoppyContracMb>
               <div style={{ marginBottom: "12px" }}>
                 <ButnSubMit
                   className={`sc-button style ${

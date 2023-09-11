@@ -1531,8 +1531,7 @@ header{
     transform        : translateY(-50%);
 }
 .main-logo img {
-    width: 133px;
-    height: 56px;
+    max-width: 175px;
 }
 .main-logo img,
 .main-logo h2 {
@@ -2360,6 +2359,10 @@ header{
     color           : #7A798A;
 }
 
+.is_dark .widget-social.style-1 a svg path{
+    fill: #fff;
+}
+
 .is_dark .widget-social.style-1 a {
     background-color: #343444;
     color: #ffffff;
@@ -2369,7 +2372,9 @@ header{
     color: var(--primary-color);
     background-color: var(--primary-color3);
 }
-
+.widget-social.style-1 a :hover svg path{
+    fill: #fff;
+}
 .is_dark .widget-social.style-1 a:hover {
     color: #ffffff;
     background-color: var(--primary-color3);

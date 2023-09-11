@@ -1779,7 +1779,7 @@
   box-sizing: inherit;
 }
 .home-5 .flat-title-page .swiper {
-  transform: rotate(330deg);
+  transform: translateX(20%) rotate(330deg);
   overflow: visible;
   padding: 0 25px;
 }

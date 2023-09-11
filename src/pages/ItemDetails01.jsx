@@ -19,6 +19,8 @@ import HeaderStyle2 from "../components/header/HeaderStyle2";
 import { useLocation } from "react-router-dom";
 import {
   ContractNFT,
+  address_MKP_LISTBUYSELL_OPBNB_TESTNET,
+  contractMarketPlace,
   getAllValueMarketPlace,
   getDataTokenURI,
   getImageNFT,
@@ -74,15 +76,14 @@ const ItemDetails01 = () => {
       console.log("getAllNftListMarketPlace", error);
     }
   };
-
-  console.log(itemTokenId);
   useEffect(() => {
     getAllNftListMarketPlace();
   }, [account, Tab]);
 
   useEffect(() => {
-    getAllEventNFT();
+    getEventNFT();
     getAllActivityNFT(id);
+    // getEventList();
   }, []);
 
   const buyNFTTokenId = async (id, valuePrice) => {
@@ -105,7 +106,7 @@ const ItemDetails01 = () => {
     // },
   ]);
 
-  const getAllEventNFT = async () => {
+  const getEventNFT = async () => {
     const contractEventNFT = await ContractNFT();
     const getFilters = contractEventNFT.filters.Mint();
     const events = await contractEventNFT.queryFilter(getFilters, 6574800);
@@ -113,10 +114,52 @@ const ItemDetails01 = () => {
     const findUserMint = getArgs.find(
       (item) => id === item?.tokenId?.toString()
     );
-    console.log("EVENT", findUserMint);
     setEventOfNft(findUserMint);
+
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://opbnb-testnet-rpc.bnbchain.org"
+    );
+
+    const contractEventMKPNFT = await contractMarketPlace();
+    const logs = await provider.getLogs({
+      fromBlock: 6575751,
+      toBlock: "latest",
+      address: address_MKP_LISTBUYSELL_OPBNB_TESTNET,
+      topics: [
+        [
+          "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2",
+          "0x7f1f50e630774899de8224e2755705b9bbc4a5eaa9c5c5819f950d049f6df175",
+          "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2",
+        ],
+      ],
+    });
+    let filteredEvents = [];
+    for (const log of logs) {
+      const parsedLog = contractEventMKPNFT.interface.parseLog(log);
+      if (parsedLog?.args?._tokenId.toString() === id) {
+        parsedLog.transactionHash = log.transactionHash;
+        filteredEvents.push({
+          typeEvent:
+            parsedLog?.eventFragment?.name === "UpdatePriceNftOnSale" ? 2 : 3,
+          event: parsedLog?.eventFragment?.name,
+          time: convertTimeEnd(parsedLog?.args?._timeUpdate?.toString()),
+          from: parsedLog?.args?._from
+            ? `${parsedLog?.args?._from?.substring(
+                0,
+                7
+              )} ... ${parsedLog?.args?._from?.substring(
+                parsedLog?.args?._from?.length - 7,
+                parsedLog?.args?._from?.length
+              )}`
+            : "",
+          to: "",
+          price: parsedLog?.args?._price.toString(),
+          priceChange: "",
+        });
+      }
+    }
     setDataHistory([
-      ...dataHistory,
+      ...filteredEvents,
       {
         typeEvent: 1,
         event: "Mint",
@@ -135,7 +178,6 @@ const ItemDetails01 = () => {
   const getAllActivityNFT = async (tokenId) => {
     try {
       const activity = await getDataTokenURI(tokenId);
-      console.log(activity);
       const json = window?.atob(activity?.substring(29));
       if (json) {
         const result = JSON.parse(json);
@@ -324,19 +366,28 @@ const ItemDetails01 = () => {
                                       <div className="badge"></div> */}
                                     </div>
 
-                                    <div className="author-infor">
-                                      {trains.map((item, index) => (
-                                        <BoxTrani>
-                                          <div className="name" key={index}>
-                                            <h6> {item.trait_type} </h6>{" "}
-                                            {/* <span> place a bid</span> */}
-                                          </div>
-                                          <span className="time">
-                                            {item.value}
-                                          </span>
-                                        </BoxTrani>
-                                      ))}
-                                    </div>
+                                    <TransTab className="author-infor">
+                                      {trains.map((item, index) => {
+                                        return (
+                                          <>
+                                            {item.value && (
+                                              <BoxTrani>
+                                                <div
+                                                  className="name"
+                                                  key={index}
+                                                >
+                                                  <h6> {item.trait_type} </h6>{" "}
+                                                  {/* <span> place a bid</span> */}
+                                                </div>
+                                                <span className="time">
+                                                  {item.value}
+                                                </span>
+                                              </BoxTrani>
+                                            )}
+                                          </>
+                                        );
+                                      })}
+                                    </TransTab>
                                   </div>
                                 </div>
                               </div>
@@ -366,7 +417,23 @@ export default ItemDetails01;
 const TransTab = styled.div`
   width: 100%;
   display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
 `;
 const BoxTrani = styled.div`
-  width: 45%;
+  width: calc(50% - 5px);
+  align-self: stretch;
+  display: flex;
+  border-radius: 10px;
+  background: rgba(18, 18, 18, 0.04);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #fff;
+  h6 {
+    font-weight: 600;
+    font-size: 16px;
+  }
 `;

@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useContext, useMemo } from "react";
 import { Link, useLocation } from "react-router-dom";
 import menus from "../../pages/menu";
 import DarkMode from "./DarkMode";
-import logodark from "../../assets/images/logo/Logo.svg";
+import logodark from "../../assets/images/logo/XRenderLogo.png";
 import avt from "../../assets/images/avatar/avt-2.jpg";
 import coin from "../../assets/images/logo/coin.svg";
 import { Modal, Dropdown, message, Select } from "antd";
@@ -193,11 +193,11 @@ const HeaderStyle2 = () => {
                     </div>
                   </NavMb>
                   <div className="flat-search-btn flex">
-                    <div className="sc-btn-top mg-r-12" id="site-header">
-                      <div className="sc-button header-slider fl-button pri-1  style-1  select-network">
-                        <span>opBNB</span>
+                    <SelectNetWork className="sc-btn-top mg-r-12" id="site-header">
+                      <div className="sc-button header-slider fl-button pri-1  style-1 wallet select-network">
+                        <span><p>opBNB</p></span>
                       </div>
-                    </div>
+                    </SelectNetWork>
                     <div className="sc-btn-top mg-r-12" id="site-header">
                       <div className="sc-button header-slider style style-1 wallet fl-button pri-1">
                         <span
@@ -283,3 +283,20 @@ const NavMb = styled.nav`
     padding-bottom: 20px;
   }
 `;
+
+const SelectNetWork = styled.div`
+  @media only screen and (max-width: 440px){
+    span{
+      padding: 0px !important;
+      height: 20px;
+      ::before{
+        top: 50% !important;
+        left: 50% !important;
+        transform: translateX(-50%) translateY(-50%) !important;
+      }
+    }
+    p{
+      display: none;
+    }
+  }
+`
