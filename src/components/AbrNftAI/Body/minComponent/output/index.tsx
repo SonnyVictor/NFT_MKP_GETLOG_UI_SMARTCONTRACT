@@ -98,9 +98,9 @@ const OutputComponent = ({ imageOutput }: any) => {
           }}
         >
           {mintId.length === 1 ? (
-            <a href={`${pathname}/${mintId[0]}`}>
+            <>
               <img src="./images/Mint/MintIcon.svg" alt="" /> Mint NFT
-            </a>
+            </>
           ) : (
             <>
               <img src="./images/Mint/MintIcon.svg" alt="" /> Mint NFT

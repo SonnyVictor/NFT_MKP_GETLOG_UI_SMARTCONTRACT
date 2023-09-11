@@ -33,7 +33,7 @@ const Footer = () => {
     },
     {
       title: "Item Details",
-      link: "/item-details-01",
+      link: "/",
     },
     {
       title: "Activity",

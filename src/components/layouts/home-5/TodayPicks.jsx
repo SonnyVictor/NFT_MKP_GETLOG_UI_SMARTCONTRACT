@@ -7,7 +7,7 @@ import img2 from "../../../assets/images/icon/rainbow.png";
 import img3 from "../../../assets/images/icon/photo.png";
 import img4 from "../../../assets/images/icon/itunes.png";
 import CardModal from "../CardModal";
-import { ImageNft } from "./TodayPicksStyle";
+import { ImageNft , Nodata } from "./TodayPicksStyle";
 import CardModalBuy from "../CardModalUpdatePrice";
 import { convertTime } from "../../../utils/formartTime";
 import { shortenAddress } from "../../../utils/formartAddress";
@@ -15,8 +15,11 @@ import { convertTimeEnd } from "../../../utils/formartTime";
 import { convertendTime } from "../../../utils/formartTime";
 import Countdown from "react-countdown";
 import ItemDetails01 from "../../../pages/ItemDetails01";
+import NodataImg from '../../../assets/images/logo/No-nft.svg'
+import styled from "styled-components";
 const TodayPicks = (props) => {
   const data = props.data;
+  console.log(data)
   const [visible, setVisible] = useState(8);
   const showMoreItems = () => {
     setVisible((prevValue) => prevValue + 4);
@@ -31,9 +34,9 @@ const TodayPicks = (props) => {
             <div className="col-md-12">
               <div className="heading-live-auctions mg-bt-21">
                 <h2 className="tf-title">Marketplace</h2>
-                <Link to="/explore-03" className="exp style2">
+                {/* <Link to="/explore-03" className="exp style2">
                   EXPLORE MORE
-                </Link>
+                </Link> */}
               </div>
             </div>
             {/* <div className="col-md-12">
@@ -314,6 +317,7 @@ const TodayPicks = (props) => {
                 </div>
               </div>
             </div> */}
+            {data.length ? <>
             {data.slice(0, visible).map((item, index) => (
               <div
                 key={index}
@@ -378,7 +382,8 @@ const TodayPicks = (props) => {
                   </div>
                 </div>
               </div>
-            ))}
+            ))}</> : <Nodata><img src={NodataImg} alt=''/> <Link to='/mint-nft'><button>Go To Mint-Nft</button></Link></Nodata>
+            }
             {visible < data.length && (
               <div className="col-md-12 wrap-inner load-more text-center">
                 <Link
@@ -404,3 +409,5 @@ TodayPicks.propTypes = {
 };
 
 export default TodayPicks;
+
+

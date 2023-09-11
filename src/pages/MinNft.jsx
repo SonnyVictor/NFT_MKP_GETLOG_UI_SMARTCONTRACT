@@ -6,7 +6,7 @@ import {
   GifLayout,
   BoxCoppyContrac,
   ButnSubMit,
-  BoxCoppyContracMb
+  BoxCoppyContracMb,
 } from "./MinNftStyle";
 import { ToastContainer, toast } from "react-toastify";
 import { useState, useMemo, useEffect, useContext } from "react";
@@ -124,34 +124,39 @@ const MinNft = () => {
           </Layout>
           <div style={{ width: "100%", position: "relative" }}>
             <div style={{ maxWidth: "600px", margin: "0px auto" }}>
-              <h3 style={{ paddingBottom: "12px" }}>ARBA #???</h3>
+              <h3 style={{ paddingBottom: "12px" }}>XRender #???</h3>
               <ul>
                 <div style={{ paddingBottom: "12px" }}>
                   <li>
-                    The ArbNFT Astronaut Club is the only ArbNFT collection
-                    launched on the Arbitrum Chain. ArbNFT Astronaut Club was
-                    released with the theme of astronauts coming to the Arbitrum
-                    universe. Along with the beautiful astronauts we also have
-                    Dogs, Cats, Monkeys... with Mars, Mercury, Moon and all
-                    other planets.
+                    XRender - a unique collection of NFT art inspired by the
+                    Luffy. With only 9,000 limited works available, each piece
+                    of art is powered by AI technology. The first XRenderNFT
+                    collection will be distributed to all users on the opBNB
+                    ecosystem.
                   </li>
                 </div>
                 <div style={{ paddingBottom: "12px" }}>
                   <li>
-                    ArbNFT Astronaut Club Collection consists of 9,000 with the
-                    main characters being men, women, dogs, cats, monkeys... in
-                    astronaut costumes with various features in the form of
-                    pixels. Each NFTs in the collection is a unique item and no
-                    two items are alike. This Collection is owned by LumiaNFT AI
-                    Marketplace on the Arbitrum Chain ecosystem.
+                    They are a collection of 9,000 NFTs made up of each of the
+                    components that make up the One Piece comic. It has been
+                    customized to appeal to the NFT-loving community and the
+                    opBNB community.
                   </li>
                 </div>
                 <div style={{ paddingBottom: "12px" }}>
                   <li>
-                    Users who own a full set of 9 NFTs corresponding to 9
-                    planets in the solar system will receive a special ticket to
-                    receive many offers from ArbNFT and a reward for a Special
-                    Airdrop
+                    Initially, the NFT Luffy Collection can be minted for free
+                    using any BEP-20 wallet with enough $BNB on the opBNB chain
+                    to cover the gas fees.
+                  </li>
+                </div>
+                <div style={{ paddingBottom: "12px" }}>
+                  <li>
+                    Each component on XRender will have different features from
+                    each other. We focus on images and colors so that users can
+                    choose the right NFT according to their preferences. Are you
+                    liking its version? Maybe it will become the hottest color
+                    for the collection. Maybe you'll be happy.
                   </li>
                 </div>
               </ul>
@@ -168,7 +173,13 @@ const MinNft = () => {
               <BoxCoppyContracMb>
                 <h4>Smart Contract</h4>
                 <div>
-                  <h3>{`${ContractMint.substring(0 , 5)} ... ${ContractMint.substring( ContractMint.length - 5 , ContractMint.length)}`}</h3>
+                  <h3>{`${ContractMint.substring(
+                    0,
+                    5
+                  )} ... ${ContractMint.substring(
+                    ContractMint.length - 5,
+                    ContractMint.length
+                  )}`}</h3>
                   <button onClick={() => copyToClipboard(ContractMint)}>
                     📑
                     <span>{copySuccess}</span>

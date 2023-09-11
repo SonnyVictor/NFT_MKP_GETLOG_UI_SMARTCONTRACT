@@ -8,26 +8,26 @@ import icon4 from '../../../assets/images/icon/Bookmark.png'
 const Create = () => {
     const data = [
         {
-            title: "Set Up Your Wallet",
-            description: "Once you’ve set up your wallet of choice, connect it to OpenSeaby clicking the NFT Marketplacein the top right corner.",
+            title: "Connect Wallet",
+            description: "Once you’ve set up your wallet of choice, connect it to XRender.",
             icon : icon1,
             colorbg : "icon-color1"
         },
         {
-            title: "Create Your Collection",
-            description: "Click Create and set up your collection. Add social links, a description, profile & banner images, and set a secondary sales fee.",
+            title: "Your NFT Collection",
+            description: "Click Profile and set up your collection. Add social links, a description, profile & banner images, and set a secondary sales fee.",
             icon : icon2,
             colorbg : "icon-color2",
         },
         {
-            title: "Add Your NFTs",
-            description: "Upload your work (image, video, audio, or 3D art), add a title and description, and customize your NFTs with properties, stats",
+            title: "Gen NFT Image",
+            description: "Go to the XRender AI site and start using it to mint a new NFT easily and you own them.",
             icon : icon3,
             colorbg : "icon-color3",
         },
         {
-            title: "List Them For Sale",
-            description: "Choose between auctions, fixed-price listings, and declining-price listings. You choose how you want to sell your NFTs!",
+            title: "Buy/Sell NFTs",
+            description: "You can buy/sell your own NFTs on the XRender Marketplace.",
             icon : icon4,
             colorbg : "icon-color4",
         },
