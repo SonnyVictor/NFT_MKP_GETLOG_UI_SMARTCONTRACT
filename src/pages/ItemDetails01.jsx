@@ -74,13 +74,15 @@ const ItemDetails01 = () => {
       console.log("getAllNftListMarketPlace", error);
     }
   };
+
+  console.log(itemTokenId);
   useEffect(() => {
     getAllNftListMarketPlace();
   }, [account, Tab]);
 
   useEffect(() => {
     getAllEventNFT();
-    getAllActivityNFT(id)
+    getAllActivityNFT(id);
   }, []);
 
   const buyNFTTokenId = async (id, valuePrice) => {
@@ -119,9 +121,10 @@ const ItemDetails01 = () => {
         typeEvent: 1,
         event: "Mint",
         time: convertTimeEnd(findUserMint[2].toString()),
-        from: `${findUserMint[0].substring(0, 5)} ... ${findUserMint[0].substring(
-          findUserMint[0].length - 5
-        )}`,
+        from: `${findUserMint[0].substring(
+          0,
+          5
+        )} ... ${findUserMint[0].substring(findUserMint[0].length - 5)}`,
         to: "",
         price: "",
         priceChange: "",
@@ -144,7 +147,7 @@ const ItemDetails01 = () => {
       console.log("Error", error);
     }
   };
-  console.log(trains);
+
   return (
     <div className="item-details">
       <HeaderStyle2 />
@@ -363,7 +366,7 @@ export default ItemDetails01;
 const TransTab = styled.div`
   width: 100%;
   display: flex;
-`
+`;
 const BoxTrani = styled.div`
   width: 45%;
-`
+`;
