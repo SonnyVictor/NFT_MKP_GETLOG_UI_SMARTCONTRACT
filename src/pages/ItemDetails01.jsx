@@ -217,7 +217,7 @@ const ItemDetails01 = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="page-title-heading mg-bt-12">
-                <h1 className="heading text-center"> Lumia NFT Luffy</h1>
+                <h1 className="heading text-center"> XRender NFT Luffy</h1>
               </div>
             </div>
           </div>
