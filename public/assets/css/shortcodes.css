@@ -177,7 +177,12 @@
 .is_dark .divider {
   background-color: #343444;
 }
-
+.light .event-activity {
+  filter: brightness(0%);
+}
+.is_dark .event-activity {
+  filter: brightness(500%);
+}
 /* container */
 .themesflat-container {
   position: relative;

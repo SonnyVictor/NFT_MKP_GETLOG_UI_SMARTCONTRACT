@@ -273,7 +273,7 @@ const ItemDetails01 = () => {
                                                 : img3
                                             }
                                             alt=""
-                                            className="avatar"
+                                            className="avatar event-activity"
                                           />
                                         </Link>
                                         <div className="badge"></div>

@@ -8,6 +8,11 @@ import img1 from "../../assets/images/slider/Luffy1.jpg";
 import img2 from "../../assets/images/slider/Luffy2.jpg";
 import img3 from "../../assets/images/slider/Luffy3.jpg";
 import img4 from "../../assets/images/slider/Luffy4.jpg";
+import img5 from "../../assets/images/slider/Luffy5.jpg";
+import img6 from "../../assets/images/slider/Luffy6.jpg";
+import img7 from "../../assets/images/slider/Luffy7.jpg";
+import img8 from "../../assets/images/slider/Luffy8.jpg";
+import img9 from "../../assets/images/slider/Luffy9.jpg";
 import { Link } from "react-router-dom";
 
 const SliderStyle2 = () => {
@@ -85,19 +90,19 @@ const SliderStyle2 = () => {
             speed={2100}
           >
             <SwiperSlide>
-              <img src={img2} alt="Axies" />
+              <img src={img5} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img6} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img1} alt="Axies" />
+              <img src={img7} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img8} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img4} alt="Axies" />
+              <img src={img9} alt="Axies" />
             </SwiperSlide>
           </Swiper>
           <Swiper

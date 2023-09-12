@@ -196,7 +196,7 @@ const MinNft = () => {
                   <span>{TitleMint}</span>
                 </ButnSubMit>
               </div>
-              <h3>Price Mint : 0.009 BNB</h3>
+              <h3>Price Mint : Free</h3>
               <div style={{ paddingTop: "12px" }}>
                 {/* <Activity
                   contractAddress={contractAddress}

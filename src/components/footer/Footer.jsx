@@ -87,10 +87,10 @@ const Footer = () => {
           height="24"
           viewBox="0 0 21 24"
           fill="#777"
-          stroke-width="1.8"
+          strokeWidth="1.8"
           stroke="none"
           xmlns="http://www.w3.org/2000/svg"
-          class="nav-logo-icon"
+          className="nav-logo-icon"
         >
           <g>
             <title></title>

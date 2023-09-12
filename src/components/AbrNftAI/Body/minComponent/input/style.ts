@@ -60,10 +60,16 @@ export const BoxOneElm = styled.div<{
     border: 2px solid ${({ submitError }) => (submitError ? "red" : "#fff")};
     border-radius: 10px;
     padding: 18px 16px;
+    color: #fff;
     background-color: transparent;
     ::placeholder {
       color: ${({ submitError }) => (submitError ? "red" : "rgba(255,255,255,0.9)")};
       opacity: ${({ submitError }) => (submitError ? "1" : "0.5")};
+    }
+  }
+  input{
+    :focus{
+      border: 2px solid #fff !important;
     }
   }
   button {
@@ -152,6 +158,10 @@ export const BoxTowElm = styled.div`
     border-radius: 10px;
     padding: 18px 16px;
     background-color: transparent;
+    color: #fff;
+    :focus{
+      border: 2px solid #fff;
+    }
   }
   @media only screen and (max-width: 768px) {
     width: 100%;

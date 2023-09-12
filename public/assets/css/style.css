@@ -1109,6 +1109,12 @@ label.error { color: red; }
 .bg-style3 {
     background-color: #F8F8F8;
 }
+.nft-ai-page{
+    background: linear-gradient(227.3deg, #8a208c 0%, #181b81 100.84%);
+}
+.is_dark .nft-ai-page{
+    background: var(--bg-section);
+}
 .is_dark .bg-style3 {
     background-color: #1F1F2C !important;
 }
