@@ -65,11 +65,11 @@ const TodayPicks = (props) => {
                             <h5 className="style2">
                               "{item?.symbolNFT + " #" + item?.tokenId}"
                             </h5>
-                            <div className="tags">
-                              {/* <Countdown date={Date.now() + Number(item?.endTime)}>
-                          <span>You are good to go!</span>
-                        </Countdown> */}
-                              {convertendTime(item?.endTime)}
+                            <div className="">
+                              <Countdown date={Number(item?.endTime) * 1000}>
+                                <span>End Of Sale!</span>
+                              </Countdown>
+                              {/* {convertendTime(item?.endTime)} */}
                             </div>
                           </div>
                           <div className="meta-info">

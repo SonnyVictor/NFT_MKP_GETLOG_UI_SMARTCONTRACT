@@ -38,6 +38,10 @@ const Authors02 = () => {
       class: "",
       name: "On Sale",
     },
+    // {
+    //   class: "",
+    //   name: "History",
+    // },
   ]);
 
   const [visible, setVisible] = useState(8);
@@ -124,8 +128,7 @@ const Authors02 = () => {
       console.log("error", error);
     }
   };
-  console.log("DATA NFT", dataNFT);
-  console.log("NFT ONSALE", dataOnSaleNFT);
+
   useEffect(() => {
     getItemsNFTProfile();
     getItemsNFTOnsale();
@@ -403,6 +406,8 @@ const Authors02 = () => {
                           </Nodata>
                         )}
                       </TabPanel>
+
+                      <TabPanel></TabPanel>
                       {/* {visible < item?.dataContent.length && (
                       <div className="col-md-12 wrap-inner load-more text-center">
                         <Link
