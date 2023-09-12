@@ -8,30 +8,30 @@ import {
   BoxModalDisConnect,
 } from "./PopUpConnectStyle";
 import { NEED_A_PLACEHOLDER, WALLET_LIST } from "../../constants";
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { ModalConfirmContext } from "../ProviderPopUp/confirm";
 import { useWeb3React } from "@web3-react/core";
 import WalletItem from "../Connect-wallet/WalletItem";
 import { useConnectWallet } from "../../hooks";
 export const ConnectPopUp = () => {
-    const {onClose} = useContext(ModalConfirmContext);
-    const { walletLogin , walletLogout } = useConnectWallet();
-    const context = useWeb3React();
-    const { active, error } = context;
-    const walletItemClass = "w-1/3 flex-auto mb-0.5 p-0.5 last:bg-transparent";
-    const handleConnect = async (connectorId: string) => {
-        try {
-          const rs = await walletLogin(connectorId);
-          localStorage.setItem("isCheck", "1");
-          onClose?.();
-        } catch (e) {
-          console.error("Login failed");
-        }
-      };
-      const handleDisconnect = () => {
-        walletLogout();
-        onClose?.();
-      };
+  const { onClose } = useContext(ModalConfirmContext);
+  const { walletLogin, walletLogout } = useConnectWallet();
+  const context = useWeb3React();
+  const { active, error } = context;
+  const walletItemClass = "w-1/3 flex-auto mb-0.5 p-0.5 last:bg-transparent";
+  const handleConnect = async (connectorId) => {
+    try {
+      const rs = await walletLogin(connectorId);
+      localStorage.setItem("isCheck", "1");
+      onClose?.();
+    } catch (e) {
+      console.error("Login failed");
+    }
+  };
+  const handleDisconnect = () => {
+    walletLogout();
+    onClose?.();
+  };
   return (
     <Container>
       <BoxModal isactive={active}>

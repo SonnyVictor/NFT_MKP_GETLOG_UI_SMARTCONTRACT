@@ -267,7 +267,7 @@
           { "name": "sold", "type": "bool", "internalType": "bool" },
           { "name": "currentList", "type": "bool", "internalType": "bool" }
         ],
-        "internalType": "struct OpBnbNFTMarketPlaceListSellBuy.MarketplaceItem[]"
+        "internalType": "struct XRenderAILuffyMarketPlaceListSellBuy.MarketplaceItem[]"
       }
     ],
     "constant": true,
@@ -302,7 +302,7 @@
           { "name": "sold", "type": "bool", "internalType": "bool" },
           { "name": "currentList", "type": "bool", "internalType": "bool" }
         ],
-        "internalType": "struct OpBnbNFTMarketPlaceListSellBuy.MarketplaceItem[]"
+        "internalType": "struct XRenderAILuffyMarketPlaceListSellBuy.MarketplaceItem[]"
       }
     ],
     "constant": true,
@@ -338,7 +338,7 @@
           { "name": "sold", "type": "bool", "internalType": "bool" },
           { "name": "currentList", "type": "bool", "internalType": "bool" }
         ],
-        "internalType": "struct OpBnbNFTMarketPlaceListSellBuy.MarketplaceItem[]"
+        "internalType": "struct XRenderAILuffyMarketPlaceListSellBuy.MarketplaceItem[]"
       }
     ],
     "constant": true,
@@ -380,7 +380,7 @@
       {
         "name": "",
         "type": "address",
-        "value": "0x79592cD2CedAfcC7E0747814B2A9ec8044C5B400",
+        "value": "0x304e964DdbAa4517118d1d7D500b773998374B63",
         "internalType": "contract IERC721Enumerable"
       }
     ],
@@ -445,14 +445,6 @@
     "constant": true,
     "signature": "0x8da5cb5b",
     "stateMutability": "view"
-  },
-  {
-    "name": "renounceOwnership",
-    "type": "function",
-    "inputs": [],
-    "outputs": [],
-    "signature": "0x715018a6",
-    "stateMutability": "nonpayable"
   },
   {
     "name": "setAddressOwnerARBNFT",

@@ -210,7 +210,7 @@
           { "name": "tokenId", "type": "uint256", "internalType": "uint256" },
           { "name": "mintDate", "type": "uint256", "internalType": "uint256" }
         ],
-        "internalType": "struct LumiaNFTLuffy.InfoMintNFT"
+        "internalType": "struct XRenderAILuffy.InfoMintNFT"
       }
     ],
     "constant": true,
@@ -278,7 +278,7 @@
       {
         "name": "",
         "type": "string",
-        "value": "LumiaNFT Luffy OnePiece",
+        "value": "XRender Ai Luffy",
         "internalType": "string"
       }
     ],
@@ -454,7 +454,7 @@
       {
         "name": "",
         "type": "string",
-        "value": "LumiaNFT",
+        "value": "XRenderAI",
         "internalType": "string"
       }
     ],

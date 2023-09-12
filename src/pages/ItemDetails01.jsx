@@ -29,7 +29,7 @@ import {
   getTokenURI,
   setbuyNFT,
 } from "../integrateContract/contract";
-import { ethers } from "ethers";
+import { ethers, utils } from "ethers";
 import { shortenAddress } from "../utils/formartAddress";
 import { useActiveWeb3React } from "../hooks";
 import axios from "axios";
@@ -55,7 +55,6 @@ const ItemDetails01 = () => {
           var symbolNFT = await getSymbolNFT();
           let price = ethers.utils.formatUnits(i.price.toString(), "ether");
           let attributes = await getTokenURI(i.tokenId.toString());
-          // let timeEnd = await
           let item = {
             id: i.itemId.toString(),
             seller: i.seller,
@@ -76,6 +75,7 @@ const ItemDetails01 = () => {
       console.log("getAllNftListMarketPlace", error);
     }
   };
+
   useEffect(() => {
     getAllNftListMarketPlace();
   }, [account, Tab]);
@@ -83,7 +83,6 @@ const ItemDetails01 = () => {
   useEffect(() => {
     getEventNFT();
     getAllActivityNFT(id);
-    // getEventList();
   }, []);
 
   const buyNFTTokenId = async (id, valuePrice) => {
@@ -93,6 +92,8 @@ const ItemDetails01 = () => {
       console.log("error buyNFT", error);
     }
   };
+
+  console.log("Create By", eventOfNft);
 
   const [dataHistory, setDataHistory] = useState([
     // {
@@ -107,22 +108,23 @@ const ItemDetails01 = () => {
   ]);
 
   const getEventNFT = async () => {
+    const provider = new ethers.providers.JsonRpcProvider(
+      "https://opbnb-mainnet-rpc.bnbchain.org"
+    );
     const contractEventNFT = await ContractNFT();
     const getFilters = contractEventNFT.filters.Mint();
-    const events = await contractEventNFT.queryFilter(getFilters, 6574800);
+    const events = await contractEventNFT.queryFilter(getFilters, 2418123);
     const getArgs = events.map((value) => value.args);
     const findUserMint = getArgs.find(
       (item) => id === item?.tokenId?.toString()
     );
     setEventOfNft(findUserMint);
 
-    const provider = new ethers.providers.JsonRpcProvider(
-      "https://opbnb-testnet-rpc.bnbchain.org"
-    );
+    console.log(findUserMint);
 
     const contractEventMKPNFT = await contractMarketPlace();
     const logs = await provider.getLogs({
-      fromBlock: 6575751,
+      fromBlock: 2418123,
       toBlock: "latest",
       address: address_MKP_LISTBUYSELL_OPBNB_TESTNET,
       topics: [
@@ -130,19 +132,25 @@ const ItemDetails01 = () => {
           "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2",
           "0x7f1f50e630774899de8224e2755705b9bbc4a5eaa9c5c5819f950d049f6df175",
           "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2",
+          "0xd95631535651c70a1497fec4877e22850d2cf9fc99e31ade6bbe4c0bfa241f29",
         ],
       ],
     });
+
     let filteredEvents = [];
     for (const log of logs) {
       const parsedLog = contractEventMKPNFT.interface.parseLog(log);
+      console.log("FilterEvent", parsedLog);
       if (parsedLog?.args?._tokenId.toString() === id) {
         parsedLog.transactionHash = log.transactionHash;
         filteredEvents.push({
           typeEvent:
             parsedLog?.eventFragment?.name === "UpdatePriceNftOnSale" ? 2 : 3,
           event: parsedLog?.eventFragment?.name,
-          time: convertTimeEnd(parsedLog?.args?._timeUpdate?.toString()),
+          time: convertTimeEnd(
+            parsedLog?.args?._timeUpdate?.toString() ||
+              parsedLog?.args?._timeStart.toString()
+          ),
           from: parsedLog?.args?._from
             ? `${parsedLog?.args?._from?.substring(
                 0,
@@ -152,22 +160,30 @@ const ItemDetails01 = () => {
                 parsedLog?.args?._from?.length
               )}`
             : "",
-          to: "",
-          price: parsedLog?.args?._price.toString(),
+          to: `${
+            parsedLog?.args?._seller
+              ? shortenAddress(parsedLog?.args?._seller)
+              : "prev address"
+          }`,
+          price:
+            ethers.utils.formatUnits(parsedLog?.args?._price.toString()) +
+            " BNB",
           priceChange: "",
         });
       }
     }
     setDataHistory([
-      ...filteredEvents,
+      ...filteredEvents.reverse(),
       {
         typeEvent: 1,
         event: "Mint",
-        time: convertTimeEnd(findUserMint[2].toString()),
-        from: `${findUserMint[0].substring(
-          0,
-          5
-        )} ... ${findUserMint[0].substring(findUserMint[0].length - 5)}`,
+        time: findUserMint ? convertTimeEnd(findUserMint[2].toString()) : "",
+        from: findUserMint
+          ? `${findUserMint[0]?.substring(
+              0,
+              5
+            )} ... ${findUserMint[0]?.substring(findUserMint[0].length - 5)}`
+          : "",
         to: "",
         price: "",
         priceChange: "",
@@ -189,6 +205,8 @@ const ItemDetails01 = () => {
       console.log("Error", error);
     }
   };
+
+  console.log(itemTokenId);
 
   return (
     <div className="item-details">
@@ -254,11 +272,11 @@ const ItemDetails01 = () => {
                           <div className="info">
                             <span>Create By</span>
                             <h6>
-                              {eventOfNft[0]
-                                ? `${eventOfNft[0].substring(
+                              {eventOfNft
+                                ? `${eventOfNft[0]?.substring(
                                     0,
                                     5
-                                  )} ... ${eventOfNft[0].substring(
+                                  )} ... ${eventOfNft[0]?.substring(
                                     eventOfNft[0].length - 5
                                   )}`
                                 : "--"}
@@ -272,14 +290,14 @@ const ItemDetails01 = () => {
                         <span className="heading">Price List</span>
                         <div className="price">
                           <div className="price-box">
-                            <h5> {itemTokenId[0]?.price || "--"}BNB</h5>
+                            <h5> {itemTokenId[0]?.price || " --"}BNB</h5>
                             {/* <span>= $12.246</span> */}
                           </div>
                         </div>
                       </div>
                       <div className="item count-down">
                         <span className="heading style-2">Countdown</span>
-                        <Countdown date={Date.now() + 500000000}>
+                        <Countdown date={itemTokenId[0]?.endTime * 1000 || 0}>
                           <span>You are good to go!</span>
                         </Countdown>
                       </div>

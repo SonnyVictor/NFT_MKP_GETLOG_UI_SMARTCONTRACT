@@ -2,10 +2,10 @@ import { ethers } from "ethers";
 import ABI_NFT_LUFFY from "../ABI/NFT_Lufffy_ABI.json";
 import ABI_MKP_LISTBUYSELL from "../ABI/MKP_BuySell_Contract_ABI.json";
 
-const address_NFT_LUFFY_OPBNB_TESTNET =
-  "0x79592cD2CedAfcC7E0747814B2A9ec8044C5B400";
+export const address_NFT_LUFFY_OPBNB_TESTNET =
+  "0x304e964DdbAa4517118d1d7D500b773998374B63";
 export const address_MKP_LISTBUYSELL_OPBNB_TESTNET =
-  "0xDEb4b362f392B6C6Fc57c9aDe349345A43e574C0";
+  "0x85F0BE0D4827027473925eeC6704E25E846E99f7";
 
 export const getProviderOrSigner = async (needSigner = false) => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);

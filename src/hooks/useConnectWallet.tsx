@@ -5,7 +5,6 @@ import { bsc, injected, walletconnect1 } from "../connectors";
 export default function useConnectWallet() {
   const { connector, account, activate, deactivate, active, chainId }: any =
     useWeb3React();
-
   const [currentConnector, setCurrentConnector]: any = useState();
   const [currentConnectorId, setCurrentConnectorId] = useState();
   useEffect(() => {
@@ -21,29 +20,27 @@ export default function useConnectWallet() {
         window.localStorage.setItem("currentAddress", account);
 
         // localStorage.setItem("chain", JSON.stringify(value));
-        if (chainId === 1) {
-          window.localStorage.setItem("chain", "erc");
-        }
-        if (chainId === 56) {
-          window.localStorage.setItem("chain", "bep");
-        }
-        if (chainId === 137) {
-          window.localStorage.setItem("chain", "poly");
-        }
-        if (chainId === 42161) {
-          window.localStorage.setItem("chain", "arb");
-        }
         if (chainId === 204) {
           window.localStorage.setItem("chain", "opbnb");
         }
+        // if (chainId === 56) {
+        //   window.localStorage.setItem("chain", "bep");
+        // }
+        // if (chainId === 137) {
+        //   window.localStorage.setItem("chain", "poly");
+        // }
+        // if (chainId === 42161) {
+        //   window.localStorage.setItem("chain", "arb");
+        // }
+        // if (chainId === 204) {
+        //   window.localStorage.setItem("chain", "opbnb");
+        // }
       }
     }
   }, [account, currentConnectorId, currentConnector, connector, chainId]);
 
-
   async function walletLogin(connectorId: any) {
     let _connector;
-
     switch (connectorId) {
       case "walletconnect":
         _connector = walletconnect1;
@@ -67,8 +64,6 @@ export default function useConnectWallet() {
     window.localStorage.removeItem("connectorId");
     window.localStorage.removeItem("walletconnect");
     window.localStorage.removeItem("currentAddress");
-
-
   }
 
   return { walletLogin, walletLogout };

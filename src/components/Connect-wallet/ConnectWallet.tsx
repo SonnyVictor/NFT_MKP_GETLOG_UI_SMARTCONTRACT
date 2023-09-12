@@ -40,19 +40,26 @@ const ConnectWallet = () => {
       handleConnect("1");
       // @ts-ignore
       const _chainId = MAPPING_CHAINID[value];
-      switchNetworkChain(_chainId, value).then((res) => {
-        // actions1.updateChain(value);
-        if (res !== false) {
-          setInitialValue(value);
+      switchNetworkChain(_chainId, value)
+        .then((res) => {
           // actions1.updateChain(value);
-        } else {
-          setInitialValue(localStorage.getItem("chain"));
-          // actions1.updateChain(localStorage.getItem("chain"));
-        }
-      });
+          if (res !== false) {
+            setInitialValue(value);
+
+            // actions1.updateChain(value);
+          } else {
+            setInitialValue(localStorage.getItem("chain"));
+            // actions1.updateChain(localStorage.getItem("chain"));
+            // actions1.updateChain(value);
+          }
+        })
+        .catch((error) => {
+          console.log("!23", error);
+        });
     }
   }
 
+  console.log("!23");
   useEffect(() => {
     setInitialValue(localStorage.getItem("chain"));
   }, [localStorage.getItem("chain")]);
@@ -103,7 +110,7 @@ const ConnectWallet = () => {
   const handleConnect = async (connectorId: string) => {
     try {
       const rs = await walletLogin(connectorId);
-
+      console.log("RESSS", rs);
       setIsModalVisible(false);
     } catch (e) {
       console.error("Login failed");
@@ -112,18 +119,18 @@ const ConnectWallet = () => {
 
   const token_network = (chainId: any) => {
     switch (chainId) {
-      case 1:
-        return "ETH";
-        break;
-      case 137:
-        return "MATIC";
-        break;
-      case 42161:
-        return "ETH";
-        break;
-      case 97:
-        return "tBNB";
-        break;
+      // case 1:
+      //   return "ETH";
+      //   break;
+      // case 137:
+      //   return "MATIC";
+      //   break;
+      // case 42161:
+      //   return "ETH";
+      //   break;
+      // case 97:
+      //   return "tBNB";
+      //   break;
       default:
         return "BNB";
     }
