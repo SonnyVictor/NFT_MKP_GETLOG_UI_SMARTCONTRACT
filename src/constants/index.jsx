@@ -7,7 +7,7 @@ import {
 
 export const NetworkContextName = "NETWORK";
 
-export const CHAIN_ID_MARKET_TESTNET = 421613;
+export const CHAIN_ID_MARKET_TESTNET = 5611;
 export const arb_Address_MarketPlace_TestNet_Contract = {
   421613: "0xA7eD1dEb29fd0B39E72026de4e0730Da103AD8E8",
 };

@@ -15,10 +15,13 @@ import { ethers } from "ethers";
 import { useActiveWeb3React } from "../hooks";
 import { ModalConfirmContext } from "../components/ProviderPopUp/confirm";
 import { ConnectPopUp } from "../components/Modal/ModalConnectWallet";
-import { SignerContractNFT } from "../integrateContract/contract";
+import {
+  SignerContractNFT,
+  address_NFT_LUFFY_OPBNB_TESTNET,
+} from "../integrateContract/contract";
 import "react-toastify/dist/ReactToastify.css";
 
-const ContractMint = "0x79592cD2CedAfcC7E0747814B2A9ec8044C5B400";
+const ContractMint = address_NFT_LUFFY_OPBNB_TESTNET;
 
 const MinNft = () => {
   const [loading, setLoading] = useState(false);

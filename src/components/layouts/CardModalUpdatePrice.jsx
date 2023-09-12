@@ -102,7 +102,7 @@ const CardModalUpdatePrice = (props) => {
         <div className="modal-body space-y-20 pd-40">
           <h3>Update Price Items</h3>
           <p className="text-center">
-            LumiaNFT Luffy OnePiece{" "}
+            XRender Luffy OnePiece{" "}
             <span className="price color-popup">
               #{props.data?.token_id.toString()}
             </span>
