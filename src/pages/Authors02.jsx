@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
@@ -15,7 +15,6 @@ import {
   unListNFT,
 } from "../../src/integrateContract/contract/";
 import { useActiveWeb3React } from "../hooks";
-import { tab } from "@testing-library/user-event/dist/tab";
 import { ethers } from "ethers";
 import {
   convertTimeEnd,
@@ -25,9 +24,12 @@ import {
 import CardModalUpdatePrice from "../components/layouts/CardModalUpdatePrice";
 import { Nodata } from "../components/layouts/home-5/TodayPicksStyle";
 import NodataImg from "../assets/images/logo/No-nft.svg";
-
+import { RefreshContext } from "../context/RefreshContext";
+import { ToastContainer, toast } from "react-toastify";
 const Authors02 = () => {
   const { account } = useActiveWeb3React();
+  const { getOpBnbBalance, handleGetOpBnbBalance } = useContext(RefreshContext);
+
   const [tabIndex, setTabIndex] = useState(0);
   const [menuTab] = useState([
     {
@@ -51,6 +53,7 @@ const Authors02 = () => {
 
   const [modalShow, setModalShow] = useState(false);
   const [modalShowUpdatePice, setModalShowUpdatePice] = useState(false);
+  // const [modalShowActionList, setModalShowActionList] = useState(false);
   const [isloading, setIsLoading] = useState(false);
   const [idPopup, setIdPopup] = useState(0);
 
@@ -80,6 +83,7 @@ const Authors02 = () => {
         })
       );
       setDataNFT([...testItems]);
+      await handleGetOpBnbBalance();
     } catch (error) {
       console.log(error);
       setIsLoading(false);
@@ -114,6 +118,7 @@ const Authors02 = () => {
         })
       );
       setDataOnSaleNFT(items);
+      await handleGetOpBnbBalance();
     } catch (error) {
       console.log("getItemsNFTOnSale", error);
     }
@@ -121,20 +126,33 @@ const Authors02 = () => {
   const unListNFTOnSale = async (id) => {
     setIsLoading(true);
     try {
-      setIsLoading(false);
-
       await unListNFT(id);
+      setIsLoading(false);
+      toast("UnList NFT successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+      handleGetOpBnbBalance();
+      setTabIndex(0);
     } catch (error) {
       console.log("error", error);
     }
   };
 
+  // console.log(tabIndex);
   useEffect(() => {
     getItemsNFTProfile();
     getItemsNFTOnsale();
-  }, [account, menuTab]);
+  }, [account, getOpBnbBalance, tabIndex]);
   return (
     <>
+      <ToastContainer />
       {isloading && (
         <div
           style={{
@@ -430,6 +448,7 @@ const Authors02 = () => {
         <CardModal
           show={modalShow}
           onHide={() => setModalShow(false)}
+          showAction={setModalShow}
           data={dataNFT ? dataNFT[idPopup] : {}}
         />
         <CardModalUpdatePrice

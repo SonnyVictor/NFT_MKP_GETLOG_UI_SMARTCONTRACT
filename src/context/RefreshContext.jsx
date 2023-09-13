@@ -6,6 +6,8 @@ import React, {
   createContext,
   useCallback,
 } from "react";
+import { useActiveWeb3React } from "../hooks";
+import { getProviderOrSigner } from "../integrateContract/contract";
 
 const FAST_INTERVAL = 10000;
 const SLOW_INTERVAL = 60000;
@@ -45,9 +47,11 @@ const RefreshContextProvider = ({ children }) => {
   const [actionConnect, setActionConnect] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [chainIdConnect, setChainIdConnect] = useState();
+  const [getOpBnbBalance, setGetOpBnbBalance] = useState(0);
+  const { account } = useActiveWeb3React();
 
   const handleCheckNetWork = async () => {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const provider = await getProviderOrSigner(false);
     const network = await provider.getNetwork();
     setChainIdConnect(network.chainId);
     try {
@@ -93,11 +97,23 @@ const RefreshContextProvider = ({ children }) => {
       }
     }
   };
+
+  const handleGetOpBnbBalance = async () => {
+    try {
+      const provider = await getProviderOrSigner(false);
+      const balance = await provider.getBalance(account.toString());
+      setGetOpBnbBalance(balance.toString());
+    } catch (error) {
+      console.log("Error", error);
+    }
+  };
   const handleChangeChainChanged = useCallback(() => {
     handleCheckNetWork();
   }, []);
+
   useEffect(() => {
     handleCheckNetWork();
+    handleGetOpBnbBalance();
   }, []);
   useEffect(() => {
     if (window.ethereum) {
@@ -140,6 +156,8 @@ const RefreshContextProvider = ({ children }) => {
         handleActionConnect: handleActionConnect,
         handleCheckNetWork,
         chainIdConnect,
+        handleGetOpBnbBalance,
+        getOpBnbBalance,
       }}
     >
       {children}
