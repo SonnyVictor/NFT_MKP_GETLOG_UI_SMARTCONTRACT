@@ -1106,6 +1106,9 @@ label.error { color: red; }
 .is_dark .bg-style2{
     background-color: #1F1F2C !important;
 }
+.is_dark .Item-text-connect{
+    color: #030303;
+}
 .bg-style3 {
     background-color: #F8F8F8;
 }

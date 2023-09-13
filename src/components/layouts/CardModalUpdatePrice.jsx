@@ -29,6 +29,7 @@ const CardModalUpdatePrice = (props) => {
       await upDatePriceNFTMarketPlace(tokenId, parsePrice).then((res) => {
         setIsLoading(false);
         props.showAction(false);
+        // window.history.go(0);
         toast("Update Price Nft successfully", {
           position: "top-right",
           autoClose: 5000,

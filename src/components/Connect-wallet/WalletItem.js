@@ -7,7 +7,9 @@ export default function WalletItem(props) {
     <ItemWallet onClick={props.onClick}>
       <div pr="14px" className="wallet-icon">
         {props.icon}
-        <p onClick={(e) => e.preventDefault()}>{props.title}</p>
+        <p className="Item-text-connect" onClick={(e) => e.preventDefault()}>
+          {props.title}
+        </p>
       </div>
       {props.isPopular ? <button>Popular</button> : <></>}
     </ItemWallet>
@@ -32,13 +34,14 @@ const ItemWallet = styled.div`
   div {
     display: flex;
     align-items: center;
-    gao: 12px;
+    gap: 12px;
     color: var(--gray-900, #111928);
     /* text-base/font-bold */
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: 150%;
+    color: #111928;
   }
   button {
     color: var(--gray-500, #6b7280);

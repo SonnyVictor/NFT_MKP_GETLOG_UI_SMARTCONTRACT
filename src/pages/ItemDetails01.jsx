@@ -32,7 +32,6 @@ import {
 import { ethers, utils } from "ethers";
 import { shortenAddress } from "../utils/formartAddress";
 import { useActiveWeb3React } from "../hooks";
-import axios from "axios";
 import { convertTimeEnd } from "../utils/formartTime";
 import styled from "styled-components";
 
@@ -148,8 +147,9 @@ const ItemDetails01 = () => {
             parsedLog?.eventFragment?.name === "UpdatePriceNftOnSale" ? 2 : 3,
           event: parsedLog?.eventFragment?.name,
           time: convertTimeEnd(
-            parsedLog?.args?._timeUpdate?.toString() ||
-              parsedLog?.args?._timeStart.toString()
+            parsedLog?.args?._timeUpdate ||
+              parsedLog?.args?._timeStart ||
+              parsedLog?.args?._timeBuy
           ),
           from: parsedLog?.args?._from
             ? `${parsedLog?.args?._from?.substring(
