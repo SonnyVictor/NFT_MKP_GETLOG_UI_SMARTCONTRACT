@@ -268,7 +268,7 @@
 }
 
 .is_dark .sc-button.style-1 {
-  border: 2px solid #5142FC;
+  border: 2px solid #f612d1;
   color: #fff;
   background: transparent none repeat scroll 0 0;
 }
@@ -388,7 +388,7 @@
   align-items: center;
 }
 .select-network span p::hover{
-  color: #5142FC !important;
+  color: #f612d1 !important;
 }
 .select-network span::before{
   background-image: url('/assets/icon/BNBIcon.png');
@@ -504,7 +504,7 @@
   height: 56px;
 }
 .icon-color1 {
-  background: #5142FC;
+  background: #f612d1;
 }
 .icon-color2 {
   background: #47a432;
@@ -621,11 +621,14 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.sc-card-article .card-media,
 .sc-card-product .card-media {
   border-radius: 12px;
   overflow: hidden;
   margin-bottom: 20px;
+  background-color: #ededed;
+}
+.sc-card-product .card-media :hover{
+  background-color: #f5e9ff;
 }
 
 .sc-card-product.menu_card .card-media {
@@ -1096,7 +1099,7 @@
 }
 
 .sc-card-product .card-title h5:hover {
-  color: #5142FC;
+  color: #f612d1;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -ms-transition: all 0.3s ease;
@@ -1257,13 +1260,13 @@
 
 .sc-button.fl-button.pri-3:hover,
 .sc-button.style-place-bid.fl-button.pri-3:hover {
-  border-color: #5142FC;
-  background: #5142FC;
+  border-color: #f612d1;
+  background: #f612d1;
 }
 
 .is_dark .sc-button.style-place-bid.fl-button.pri-3:hover {
-  border-color: #5142FC;
-  background: #5142FC;
+  border-color: #f612d1;
+  background: #f612d1;
 }
 
 .is_dark .sc-button.fl-button.pri-3:hover {
@@ -1292,7 +1295,7 @@
 }
 
 .is_dark .sc-button.bag.fl-button:hover span::before {
-  color: #5142FC;
+  color: #f612d1;
 }
 
 /* sc card collection
@@ -1900,7 +1903,7 @@
 }
 
 .flat-bt-slider .sc-button:hover span::before {
-  color: #5142FC;
+  color: #f612d1;
 }
 
 .flat-bt-slider .sc-button.style.note span::before {
@@ -2451,7 +2454,7 @@ section.today-picks {
 .collection .swiper-button-next::after,
 .collection .swiper-button-prev::after {
   font-family: "Font Awesome 5 Pro";
-  color: #5142FC;
+  color: #f612d1;
   font-weight: 500;
   font-size: 28px;
 }
@@ -2465,8 +2468,8 @@ section.today-picks {
 }
 .collection .swiper-button-prev:hover,
 .collection .swiper-button-next:hover {
-  background-color: #5142FC;
-  border-color: #5142FC;
+  background-color: #f612d1;
+  border-color: #f612d1;
 }
 .collection .swiper-button-prev:hover::after,
 .collection .swiper-button-next:hover:after {
@@ -2777,7 +2780,7 @@ section.today-picks {
 .is_dark .top-seller .swiper-button-next.active::after,
 .is_dark .top-seller .swiper-button-prev:hover:after,
 .is_dark .top-seller .swiper-button-next:hover:after {
-  color: #5142FC;
+  color: #f612d1;
 }
 
 .top-seller .swiper-button-next,
@@ -2794,7 +2797,7 @@ section.today-picks {
 .is_dark .top-seller .swiper-button-next,
 .is_dark .top-seller .swiper-button-prev {
   background: transparent;
-  border-color: #5142FC;
+  border-color: #f612d1;
 }
 
 .top-seller .swiper-button-next::after,
@@ -3075,7 +3078,7 @@ section.today-picks {
   background-color: transparent;
 }
 .seclect-box .dropdown .dropdown-menu a:hover {
-  color: #5142FC;
+  color: #f612d1;
 }
 .is_dark .seclect-box .dropdown .dropdown-toggle {
   background: #343444 !important;
@@ -3494,7 +3497,7 @@ section.today-picks {
   color: #fff;
 }
 .is_dark .form-inner button:hover {
-  border: 2px solid #5142FC;
+  border: 2px solid #f612d1;
 }
 .form-inner button:hover {
   border: none;
@@ -3739,7 +3742,7 @@ section.today-picks {
 }
 
 .tab-authors .author-profile .infor-profile button:hover {
-  color: #5142FC;
+  color: #f612d1;
 }
 
 .tab-authors .author-profile .btn-profile a.sc-button {
@@ -3751,8 +3754,8 @@ section.today-picks {
 
 .tab-authors .author-profile .btn-profile a.sc-button:hover {
   color: #fff;
-  background-color: #5142FC;
-  border: 1.5px solid #5142FC;
+  background-color: #f612d1;
+  border: 1.5px solid #f612d1;
 }
 
 /* title */
@@ -4563,14 +4566,14 @@ section.today-picks {
 }
 
 .uploadFile .inputfile:hover::before {
-  background: #5142FC;
+  background: #f612d1;
   color: #fff;
 }
 
 .is_dark .uploadFile .inputfile:hover::before,
 .is_dark .uploadFile .inputfile:focus::before {
   background: #fff;
-  color: #5142FC;
+  color: #f612d1;
 }
 
 .uploadFile .form-control {
@@ -4797,7 +4800,7 @@ section.today-picks {
   border: 1px solid rgba(138, 138, 160, 0.3);
 }
 .row-form.style-3 .dropdown li:hover {
-  background: #5142FC;
+  background: #f612d1;
 }
 
 .row-form.style-3 .dropdown li:hover span {
@@ -4883,7 +4886,7 @@ button.accordion-button {
   right: 0;
   top: 3px;
   position: absolute;
-  color: #5142FC;
+  color: #f612d1;
   font-size: 15px;
 }
 .flat-accordion2 h2 {
@@ -4993,7 +4996,7 @@ button.accordion-button {
   font-size: 14px;
   line-height: 22px;
   font-weight: bold;
-  color: #5142FC;
+  color: #f612d1;
   margin-top: 21px;
 }
 
@@ -5149,7 +5152,7 @@ button.accordion-button {
 
 .info-social .connect {
   position: relative;
-  background-color: #5142FC;
+  background-color: #f612d1;
   color: #fff;
   padding: 11.5px 30px 11.5px 57px;
   font-size: 14px;
@@ -5187,14 +5190,14 @@ button.accordion-button {
 .form-profile .tf-button-submit {
   background-color: rgba(81, 66, 252, 0.1);
   border: none;
-  color: #5142FC;
+  color: #f612d1;
   font-size: 14px;
   line-height: 22px;
   padding: 14px 41px 12px 41px;
 }
 
 .form-profile .tf-button-submit:hover {
-  background-color: #5142FC;
+  background-color: #f612d1;
   color: #fff;
 }
 
@@ -5207,7 +5210,7 @@ button.accordion-button {
 .is_dark .form-profile .tf-button-submit:hover {
   border-color: transparent;
   outline: 0 none;
-  color: #5142FC;
+  color: #f612d1;
   background-color: #fff;
 }
 
@@ -5387,7 +5390,7 @@ button.accordion-button {
   font-size: 15px;
   line-height: 22px;
   padding: 10px 20px;
-  background-color: #5142FC !important;
+  background-color: #f612d1 !important;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -5530,7 +5533,7 @@ button.accordion-button {
 }
 
 .is_dark .header_2 .question-form input[type="text"]:focus {
-  border-color: #5142FC;
+  border-color: #f612d1;
 }
 
 .question-form input[type="text"]::placeholder {
@@ -5876,7 +5879,7 @@ button.accordion-button {
   padding: 0;
 }
 .flat-title-page.home5 .overlay {
-  background: linear-gradient(227.3deg, #8a208c 0%, #181b81 100.84%);
+  background-image: url('../images/backgroup-secsion/bg_section_h5.png');
   position: absolute;
   width: 100%;
   height: 100%;
@@ -5964,8 +5967,8 @@ button.accordion-button {
 }
 
 .is_dark .flat-title-page.home5 .sc-button.fl-button:hover {
-  border: 2px solid #5142FC;
-  background-color: #5142FC;
+  border: 2px solid #f612d1;
+  background-color: #f612d1;
 }
 
 .is_dark .flat-title-page.home5 .sc-button.fl-button:hover span {
@@ -6058,7 +6061,7 @@ button.accordion-button {
 
 .top-seller.home5 .react-tabs__tab-list li:hover,
 .top-seller.home5 .react-tabs__tab-list li.react-tabs__tab--selected {
-  background-color: #5142FC;
+  background-color: #f612d1;
 }
 
 .top-seller.home5 .react-tabs__tab-list li:hover,
@@ -6176,8 +6179,8 @@ button.accordion-button {
 }
 .top-seller.home5 .menu-tab li.item-title.active,
 .top-seller.home5 .menu-tab li:hover {
-  background-color: #5142FC;
-  border-color: #5142FC;
+  background-color: #f612d1;
+  border-color: #f612d1;
 }
 
 .top-seller.home5 .menu-tab li span {
@@ -6221,12 +6224,12 @@ button.accordion-button {
 }
 .tf-soft .dropdown .dropdown-toggle:focus {
   box-shadow: none;
-  background: #5142FC;
-  border-color: #5142FC;
+  background: #f612d1;
+  border-color: #f612d1;
 }
 .tf-soft .dropdown.show .dropdown-toggle {
-  border-color: #5142FC;
-  background: #5142FC;
+  border-color: #f612d1;
+  background: #f612d1;
 }
 .is_dark .tf-soft .dropdown.show .dropdown-toggle {
   background: transparent;
@@ -6333,7 +6336,7 @@ button.accordion-button {
 .tf-soft .dropdown-menu .dropdown-item i {
   opacity: 0;
   visibility: hidden;
-  color: #5142FC;
+  color: #f612d1;
 }
 .tf-soft .form-check.form-switch {
   display: flex;
@@ -6362,7 +6365,7 @@ button.accordion-button {
   margin-right: 0;
 }
 .tf-soft .soft-right .dropdown-menu input:checked[type="checkbox"] {
-  background: #5142FC;
+  background: #f612d1;
   transition: 0.5s;
 }
 .tf-soft .soft-right .dropdown-menu .check::before {
@@ -6373,7 +6376,7 @@ button.accordion-button {
   position: absolute;
   top: 2px;
   left: 2px;
-  background: #5142FC;
+  background: #f612d1;
   transition: 0.5s;
 }
 .tf-soft .soft-right .dropdown-menu input:checked[type="checkbox"]::before {
@@ -6568,7 +6571,7 @@ button.accordion-button {
 .home-6 .flat-cart-item .swiper-button-next:after {
   font-family: "Font Awesome 5 Pro";
   content: "\f054";
-  color: #5142FC;
+  color: #f612d1;
 }
 
 .is_dark .home-6 .flat-cart-item .swiper-button-prev:after,
@@ -6708,7 +6711,7 @@ button.accordion-button {
 
 .seller-slider3.button-arow-style .swiper-button-next::after,
 .seller-slider3.button-arow-style .swiper-button-prev::after {
-  color: #5142FC;
+  color: #f612d1;
   font-size: 23px;
 }
 
@@ -6849,7 +6852,7 @@ button.accordion-button {
 
 .flat-title-page .swiper-button-prev:hover,
 .flat-title-page .swiper-button-next:hover {
-  background-color: #5142FC;
+  background-color: #f612d1;
 }
 
 .flat-title-page .swiper-button-prev:hover::after,
@@ -7015,7 +7018,7 @@ button.accordion-button {
 .sc-card-product.style-h7 .meta-info .author .info span.pricing {
   font-size: 14px;
   line-height: 24px;
-  color: #5142FC;
+  color: #f612d1;
   font-weight: 700;
 }
 
@@ -7060,7 +7063,7 @@ button.accordion-button {
 
 .is_dark .tf-section.category .swiper-button-next,
 .is_dark .tf-section.category .swiper-button-prev {
-  border: 1px solid #5142FC;
+  border: 1px solid #f612d1;
   background-color: transparent;
 }
 
@@ -7071,8 +7074,8 @@ button.accordion-button {
 
 .tf-section.category .swiper-button-next:hover,
 .tf-section.category .swiper-button-prev:hover {
-  border-color: #5142FC;
-  background-color: #5142FC;
+  border-color: #f612d1;
+  background-color: #f612d1;
 }
 
 .is_dark .tf-section.category .swiper-button-next:hover,
@@ -7092,7 +7095,7 @@ button.accordion-button {
 .tf-section.category .swiper-button-next::after,
 .tf-section.category .swiper-button-prev::after {
   font-family: "Font Awesome 5 Pro";
-  color: #5142FC;
+  color: #f612d1;
   font-weight: 600;
   font-size: 30px;
   -webkit-transition: all 0.3s ease;
@@ -7114,7 +7117,7 @@ button.accordion-button {
 
 .is_dark .tf-section.category .swiper-button-next:hover::after,
 .is_dark .tf-section.category .swiper-button-prev:hover::after {
-  color: #5142FC;
+  color: #f612d1;
 }
 
 .tf-section.category .swiper-button-next::after {
@@ -7212,7 +7215,7 @@ button.accordion-button {
   width: 62px;
   height: 24px;
   border-radius: 10px;
-  border: 1px solid #5142FC;
+  border: 1px solid #f612d1;
   display: flex;
   display: -webkit-box;
   display: -moz-box;
@@ -7229,8 +7232,8 @@ button.accordion-button {
 }
 
 .sc-author-box.style-3 .action .btn-follow:hover {
-  border: 1px solid #5142FC;
-  background-color: #5142FC;
+  border: 1px solid #f612d1;
+  background-color: #f612d1;
 }
 
 .sc-author-box.style-3 .action .btn-follow:hover a {
@@ -7694,12 +7697,12 @@ button.accordion-button {
   content: "";
   height: 3px;
   width: 100%;
-  background-color: #5142FC;
+  background-color: #f612d1;
 }
 
 .flat-tabs.items .react-tabs__tab-list li:hover,
 .flat-tabs.items .react-tabs__tab-list li.react-tabs__tab--selected {
-  color: #5142FC;
+  color: #f612d1;
 }
 
 .is_dark .flat-tabs.items .react-tabs__tab-list li:hover,
@@ -7877,11 +7880,11 @@ button.accordion-button {
 
 .content-item2 .sc-button.style-place-bid {
   background-color: transparent;
-  border: 1px solid #5142FC;
+  border: 1px solid #f612d1;
 }
 
 .content-item2 .sc-button.style-place-bid span {
-  color: #5142FC;
+  color: #f612d1;
 }
 
 .is_dark .content-item2 .sc-button.style-place-bid {
@@ -7904,7 +7907,7 @@ button.accordion-button {
   .content-item2
   .sc-button.style-place-bid.bag.fl-button:hover
   span::before {
-  color: #5142FC;
+  color: #f612d1;
 }
 .content-item2 .sc-card-product .wrap-tag {
   width: 8%;
@@ -7995,7 +7998,7 @@ button.accordion-button {
 
 .flat-tabs.items .react-tabs__tab-panel .option .view ul li {
   background-color: transparent;
-  border: 1px solid #5142FC;
+  border: 1px solid #f612d1;
   padding: 8px 15px;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
@@ -8021,7 +8024,7 @@ button.accordion-button {
 }
 
 .flat-tabs.items .react-tabs__tab-panel .option .view ul li svg path {
-  fill: #5142FC;
+  fill: #f612d1;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -8039,8 +8042,8 @@ button.accordion-button {
 
 .flat-tabs.items .react-tabs__tab-panel .option .view ul li:hover,
 .flat-tabs.items .react-tabs__tab-panel .option .view ul li.active {
-  background-color: #5142FC;
-  border: 1px solid #5142FC;
+  background-color: #f612d1;
+  border: 1px solid #f612d1;
 }
 
 .flat-tabs.items .react-tabs__tab-panel .option .view ul li:hover svg path,
@@ -8123,7 +8126,7 @@ button.accordion-button {
   line-height: 26px;
   font-weight: 700;
   margin-left: 12px;
-  color: #5142FC;
+  color: #f612d1;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -8145,8 +8148,8 @@ button.accordion-button {
   position: relative;
   z-index: 1;
   border-radius: 12px;
-  border: 1px solid #5142FC;
-  background-color: #5142FC;
+  border: 1px solid #f612d1;
+  background-color: #f612d1;
   right: 0;
   padding: 9px 30px;
   display: flex;
@@ -8165,7 +8168,7 @@ button.accordion-button {
   transform: translate(0px, 48px) !important;
 }
 .flat-tabs.items .option .dropdown-menu a:hover {
-  background: #5142FC;
+  background: #f612d1;
   color: #fff;
 }
 .flat-tabs.items .option .dropdown-menu a {
@@ -8377,14 +8380,14 @@ button.accordion-button {
   border-radius: 50%;
   left: 0px;
   top: -7px;
-  background-color: #5142FC;
+  background-color: #f612d1;
 }
 .noUi-horizontal .noUi-handle::after {
   content: "";
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background-color: #5142FC;
+  background-color: #f612d1;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -8398,7 +8401,7 @@ button.accordion-button {
 }
 
 .noUi-connect {
-  background: #5142FC;
+  background: #f612d1;
   -webkit-transition: background 450ms;
   transition: background 450ms;
 }

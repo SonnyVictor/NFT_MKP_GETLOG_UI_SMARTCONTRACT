@@ -81,7 +81,7 @@ const Authors02 = () => {
       );
       setDataNFT([...testItems]);
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setIsLoading(false);
     }
   };
@@ -115,7 +115,8 @@ const Authors02 = () => {
       );
       setDataOnSaleNFT(items);
     } catch (error) {
-      console.log("getItemsNFTOnSale", error);
+      setIsLoading(false);
+      // console.log("getItemsNFTOnSale", error);
     }
   };
   const unListNFTOnSale = async (id) => {
@@ -125,7 +126,8 @@ const Authors02 = () => {
 
       await unListNFT(id);
     } catch (error) {
-      console.log("error", error);
+      setIsLoading(false);
+      // console.log("error", error);
     }
   };
 

@@ -4,15 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
-import img1 from "../../assets/images/slider/Luffy1.jpg";
-import img2 from "../../assets/images/slider/Luffy2.jpg";
-import img3 from "../../assets/images/slider/Luffy3.jpg";
-import img4 from "../../assets/images/slider/Luffy4.jpg";
-import img5 from "../../assets/images/slider/Luffy5.jpg";
-import img6 from "../../assets/images/slider/Luffy6.jpg";
-import img7 from "../../assets/images/slider/Luffy7.jpg";
-import img8 from "../../assets/images/slider/Luffy8.jpg";
-import img9 from "../../assets/images/slider/Luffy9.jpg";
+import img1 from "../../assets/images/slider/Luffy1.png";
+import img2 from "../../assets/images/slider/Luffy2.png";
+import img3 from "../../assets/images/slider/Luffy3.png";
+import img4 from "../../assets/images/slider/Luffy4.png";
+import img5 from "../../assets/images/slider/Luffy5.png";
+import img6 from "../../assets/images/slider/Luffy6.png";
 import { Link } from "react-router-dom";
 
 const SliderStyle2 = () => {
@@ -96,13 +93,13 @@ const SliderStyle2 = () => {
               <img src={img6} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img7} alt="Axies" />
+              <img src={img4} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img8} alt="Axies" />
+              <img src={img3} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img9} alt="Axies" />
+              <img src={img2} alt="Axies" />
             </SwiperSlide>
           </Swiper>
           <Swiper

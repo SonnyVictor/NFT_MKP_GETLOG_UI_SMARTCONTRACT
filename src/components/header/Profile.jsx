@@ -2,47 +2,49 @@ import styled from "styled-components";
 import userIcon from "../../assets/images/logo/UserIcon.svg";
 import MyProfile from "../../assets/images/logo/MyNftIcon.svg";
 import DarkTheme from "../../assets/images/logo/DarkModeIcon.svg";
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const ProfileBtn = () => {
   const [isDarkTheme, setIsDarkTheme] = useState(localStorage.getItem("theme"));
   const [isShow, setIsShow] = useState(false);
-  let clickedClass = "clicked";
-  const body = document.body;
-  const lightTheme = "light";
-  const darkTheme = "is_dark";
-  let theme;
+  // let clickedClass = "clicked";
+  // const body = document.body;
+  // const lightTheme = "light";
+  // const darkTheme = "is_dark";
+  // let theme;
 
-  if (localStorage) {
-    theme = localStorage.getItem("theme");
-  }
-  if (theme === lightTheme || theme === darkTheme) {
-    body.classList.add(theme);
-  } else {
-    body.classList.add(darkTheme);
-  }
-
+  // if (localStorage) {
+  //   theme = localStorage.getItem("theme");
+  // }
+  // if (theme === lightTheme || theme === darkTheme) {
+  //   body.classList.add(theme);
+  // } else {
+  //   body.classList.add(darkTheme);
+  // }
+  // useEffect(()=>{
+  //   localStorage.setItem("theme", "light");
+  // },[])
   const switchTheme = (e) => {
-    if (theme === darkTheme) {
-      body.classList.replace(darkTheme, lightTheme);
-      e.target.classList.remove(clickedClass);
-      localStorage.setItem("theme", "light");
-      setIsDarkTheme("light");
-      theme = lightTheme;
-    } else {
-      body.classList.replace(lightTheme, darkTheme);
-      e.target.classList.add(clickedClass);
-      localStorage.setItem("theme", "is_dark");
-      setIsDarkTheme("is_dark");
-      theme = darkTheme;
-    }
+    // if (theme === darkTheme) {
+    //   body.classList.replace(darkTheme, lightTheme);
+    //   e.target.classList.remove(clickedClass);
+    //   localStorage.setItem("theme", "light");
+    //   setIsDarkTheme("light");
+    //   theme = lightTheme;
+    // } else {
+    //   body.classList.replace(lightTheme, darkTheme);
+    //   e.target.classList.add(clickedClass);
+    //   localStorage.setItem("theme", "is_dark");
+    //   setIsDarkTheme("is_dark");
+    //   theme = darkTheme;
+    // }
   };
   return (
     <ProfileWapper darktheme={isDarkTheme === "is_dark"} isshow={isShow}>
-      <img src={userIcon} alt="" />
-      <input type="text" />
-      <ul>
+      <Link to="/profile"><img src={userIcon} alt="" /></Link>
+      {/* <input type="text" /> */}
+      {/* <ul>
         <Link to="/profile">
           <li className="sc-button header-slider style style-1 wallet fl-button pri-1">
             <div>
@@ -64,7 +66,7 @@ const ProfileBtn = () => {
             <p></p>
           </li>
         </Link>
-      </ul>
+      </ul> */}
     </ProfileWapper>
   );
 };
@@ -136,7 +138,7 @@ const ProfileWapper = styled.div`
         width: 30px;
         height: 15px;
         border: 2px solid
-          ${(props) => (props.darktheme ? "#5142fc" : "#0f0e18")};
+          ${(props) => (props.darktheme ? "#f612d1" : "#0f0e18")};
         border-radius: 10px;
         position: relative;
         transition: all 0.3s linear;
@@ -158,7 +160,7 @@ const ProfileWapper = styled.div`
       }
       :hover {
         background-color: #fff;
-        color: #5142fc !important;
+        color: #f612d1 !important;
         img {
           filter: brightness(100%);
         }
@@ -244,7 +246,7 @@ const ProfileWapper = styled.div`
           width: 30px;
           height: 15px;
           border: 2px solid
-            ${(props) => (props.darktheme ? "#5142fc" : "#0f0e18")};
+            ${(props) => (props.darktheme ? "#f612d1" : "#0f0e18")};
           border-radius: 10px;
           position: relative;
           transition: all 0.3s linear;
@@ -266,7 +268,7 @@ const ProfileWapper = styled.div`
         }
         :hover {
           background-color: #fff;
-          color: #5142fc !important;
+          color: #f612d1 !important;
           img {
             filter: brightness(100%);
           }

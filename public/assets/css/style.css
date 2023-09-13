@@ -1328,7 +1328,7 @@ a:focus {
     /* color */
     --primary-color : #fff;
     --primary-color2: #1F1F2C;
-    --primary-color3: #5142FC;
+    --primary-color3: #f612d1;
     --primary-color4: #7A798A;
     --primary-color5: #F8F8F8;
     --primary-color6: #14141F;
@@ -2094,7 +2094,7 @@ header{
     box-shadow: 1px 1px 5px 0px rgb(0 0 0 / 30%);
     z-index   : 9999;
     background: linear-gradient(
-        227.3deg, #5142FC 0%, #181B81 100.84%);
+        227.3deg, #f612d1 0%, #181B81 100.84%);
     border: none;
     opacity: 1;
     -webkit-transition: all 0.5s ease;
@@ -2240,7 +2240,7 @@ header{
     -ms-border-radius    : 50%;
     -o-border-radius     : 50%;
     cursor               : pointer;
-    background-color: #5142FC;
+    background-color: #f612d1;
 }
 .is_dark #scroll-top {
     background: #fff;
@@ -2255,7 +2255,7 @@ header{
 }
 
 .is_dark #scroll-top:after {
-    color      : #5142FC;
+    color      : #f612d1;
 }
 
 #scroll-top:hover {
@@ -2461,7 +2461,7 @@ header{
 
 .widget-social.style-3 ul li a:hover {
     color: #fff;
-    background-color: #5142FC;
+    background-color: #f612d1;
 }
 
 .widget-social.style-3 ul li {
@@ -2589,7 +2589,7 @@ header{
 }
 
 .widget-subcribe .form-subcribe input:focus{
-    border: 1px solid #5142FC;
+    border: 1px solid #f612d1;
 }
 
 .widget-subcribe .form-subcribe input {

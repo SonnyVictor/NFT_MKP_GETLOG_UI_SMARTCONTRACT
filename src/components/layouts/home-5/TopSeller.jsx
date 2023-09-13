@@ -30,7 +30,7 @@ const TopSeller = () => {
     const headers = {
       "x-signed-query":
         "b9cc25ed18fe06e848a88612039b70e71682f2c299cf8793e9c6c14bcf82e2f4",
-      "X-API-KEY": "331d0db498664b7b86c85593000102c2", // Thay YOUR_ACCESS_TOKEN bằng token xác thực của bạn (nếu cần)
+      "X-API-KEY": "a91348b2550340c1b15fa45c354438aa", 
       "Content-Type": "application/json",
     };
     axios

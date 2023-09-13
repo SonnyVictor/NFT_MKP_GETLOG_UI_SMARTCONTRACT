@@ -41,73 +41,85 @@ const TodayPicks = (props) => {
               <>
                 {data.length ? (
                   <>
-                    {data.slice(0, visible).map((item, index) => (
-                      <div
-                        key={index}
-                        className="fl-item col-xl-3 col-lg-4 col-md-6 col-sm-6"
-                      >
+                    {data.slice(0, visible).map((item, index) => {
+                      console.log(item?.tokenIMG)
+                      return (
                         <div
-                          className={`sc-card-product ${
-                            item.feature ? "comingsoon" : ""
-                          } `}
+                          key={index}
+                          className="fl-item col-xl-3 col-lg-4 col-md-6 col-sm-6"
                         >
-                          <div className="card-media">
-                            <img
-                              src={`data:image/svg+xml;utf8,${encodeURIComponent(
-                                item?.tokenIMG
-                              )}`}
-                              alt="NFT Image"
-                              width="200px"
-                              height="200px"
-                            />
-                          </div>
-                          <div className="card-title">
-                            <h5 className="style2">
-                              "{item?.symbolNFT + " #" + item?.tokenId}"
-                            </h5>
-                            <div className="">
-                              <Countdown date={Number(item?.endTime) * 1000}>
-                                <span>End Of Sale!</span>
-                              </Countdown>
-                              {/* {convertendTime(item?.endTime)} */}
+                          <div
+                            className={`sc-card-product ${
+                              item.feature ? "comingsoon" : ""
+                            } `}
+                          >
+                            <div className="card-media">
+                              <img
+                                src={`data:image/svg+xml;utf8,${encodeURIComponent(
+                                  item?.tokenIMG
+                                )}`}
+                                alt="NFT Image"
+                                width="200px"
+                                height="200px"
+                              />
+                              <a
+                                class="wishlist-button heart"
+                                style={{ color: "#fff" }}
+                              >
+                                <span class="number-like">100</span>
+                              </a>
+                              <div class="featured-countdown"><span class="slogan"></span><Countdown date={Number(item?.endTime) * 1000}>
+                                  <span>End Of Sale!</span>
+                                </Countdown></div>
                             </div>
-                          </div>
-                          <div className="meta-info">
-                            <div className="author">
-                              <div className="info">
-                                <span>Seller</span>
-                                <h6>
-                                  <Link to="/authors-02">
-                                    {item.nameAuthor}
-                                  </Link>{" "}
-                                  <span>{shortenAddress(item?.seller)}</span>
-                                </h6>
+                            <div className="card-title">
+                              <h5 className="style2">
+                                "{item?.symbolNFT + " #" + item?.tokenId}"
+                              </h5>
+                              <div className="">
+                                {/* <Countdown date={Number(item?.endTime) * 1000}> */}
+                                <div class="tags">bsc</div>
+                                {/* </Countdown> */}
+                                {/* {convertendTime(item?.endTime)} */}
                               </div>
                             </div>
-                            <div className="price">
-                              <span>Price List</span>
-                              <h5> {item.price} BNB </h5>
+                            <div className="meta-info">
+                              <div className="author">
+                                <div className="info">
+                                  <span>Seller</span>
+                                  <h6>
+                                    <Link to="/authors-02">
+                                      {item.nameAuthor}
+                                    </Link>{" "}
+                                    <span>{shortenAddress(item?.seller)}</span>
+                                  </h6>
+                                </div>
+                              </div>
+                              <div className="price">
+                                <span>Price List</span>
+                                <h5> {item.price} BNB </h5>
+                              </div>
+                            </div>
+                            <div className="card-bottom">
+                              <Link to={`/details?id=${item?.tokenId}`}>
+                                <button
+                                  onClick={() => setModalShow(true)}
+                                  className="sc-button style bag fl-button pri-3 no-bg"
+                                >
+                                  <span>Buy NFT</span>
+                                </button>
+                              </Link>
+                              <Link
+                                to={`/details?id=${item?.tokenId}`}
+                                className="view-history reload"
+                              >
+                                View History
+                              </Link>
                             </div>
                           </div>
-                          <div className="card-bottom">
-                            <Link to={`/details?id=${item?.tokenId}`}>
-                              <button
-                                onClick={() => setModalShow(true)}
-                                className="sc-button style bag fl-button pri-3 no-bg"
-                              >
-                                <span>Buy NFT</span>
-                              </button>
-                            </Link>
-                            <Link
-                              to={`/details?id=${item?.tokenId}`}
-                              className="view-history reload"
-                            >
-                              View History
-                            </Link>
-                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </>
                 ) : (
                   <Nodata>
