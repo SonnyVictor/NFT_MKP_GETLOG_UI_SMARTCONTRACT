@@ -80,7 +80,7 @@ const RefreshContextProvider = ({ children }) => {
                 {
                   chainId: "0xcc",
                   nativeCurrency: {
-                    name: "OpBNB Mainnet",
+                    name: "opBNB Mainnet",
                     decimals: 18,
                     symbol: "BNB",
                   },
@@ -112,7 +112,7 @@ const RefreshContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    handleCheckNetWork();
+    // handleCheckNetWork();
     handleGetOpBnbBalance();
   }, []);
   useEffect(() => {

@@ -10,7 +10,7 @@ interface StoreContextValue {
   onOpen: any;
   OnLock: any;
   propsModal: any;
-  getTotalTokent:any;
+  getTotalTokent: any;
 }
 
 interface Props {
@@ -26,7 +26,7 @@ export const ModalConfirmProvider: React.FC<Props> = ({ children }: Props) => {
   const [PopUp, setPopUp] = useState<ReactNode>(<></>);
   const [lock, OnLock] = useState(false);
   const [propsModal, setPropsModal] = useState(null);
-  const [totalTokent , getTotalTokent] = useState<any>()
+  const [totalTokent, getTotalTokent] = useState<any>();
   const onOpen = (Modal: ReactNode, props: any) => {
     setIsShowModal(true);
     setPopUp(Modal);
@@ -78,7 +78,7 @@ export const ModalConfirmProvider: React.FC<Props> = ({ children }: Props) => {
 
 export const ModalLayout = styled.div<{ isShowModal?: boolean }>`
   width: 100vw;
-  height: ${({isShowModal})=> isShowModal ? '100vh' : 'fit-content'};
+  height: ${({ isShowModal }) => (isShowModal ? "100vh" : "fit-content")};
   overflow: hidden;
 `;
 
@@ -90,8 +90,8 @@ export const WrapperPopup = styled.div`
   overflow-y: auto;
   max-height: 100vh;
   padding: 40px 0px;
-  scrollbar-width: none; /* Ẩn thanh trượt */
-  scrollbar-color: transparent transparent; /* Ẩn màu của thanh trượt */
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
   ::-webkit-scrollbar {
     width: 0px;
   }
@@ -99,11 +99,11 @@ export const WrapperPopup = styled.div`
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 0, 0, 0); /* Màu của thanh trượt */
+    background-color: rgba(0, 0, 0, 0);
     border-radius: 4px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background-color: transparent; /* Màu của thanh trượt khi di chuột qua */
+    background-color: transparent;
   }
   @media only screen and (max-width: 743px) {
     width: 100%;
@@ -119,7 +119,7 @@ export const ModalOverlay = styled.div`
   left: 50%;
   width: 100vw;
   height: 100vh;
-  background: rgba(24, 27, 129,0.3);
+  background: rgba(24, 27, 129, 0.3);
   backdrop-filter: blur(11.5px);
   transform: translateX(-50%) translateY(-50%);
   z-index: 1000;
@@ -216,7 +216,10 @@ export const WrapperButtons = styled.div`
     cursor: pointer;
     &:hover {
       font-weight: 700;
-      background: var(--succses,linear-gradient(0deg,#00b59c 0%,#9cffac 100%));
+      background: var(
+        --succses,
+        linear-gradient(0deg, #00b59c 0%, #9cffac 100%)
+      );
     }
     &:not(:last-child) {
       margin-right: 10px;

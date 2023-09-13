@@ -13,8 +13,11 @@ import { ModalConfirmContext } from "../ProviderPopUp/confirm";
 import { useWeb3React } from "@web3-react/core";
 import WalletItem from "../Connect-wallet/WalletItem";
 import { useConnectWallet } from "../../hooks";
+import { RefreshContext } from "../../context/RefreshContext";
 export const ConnectPopUp = () => {
   const { onClose } = useContext(ModalConfirmContext);
+  const { handleCheckNetWork } = useContext(RefreshContext);
+
   const { walletLogin, walletLogout } = useConnectWallet();
   const context = useWeb3React();
   const { active, error } = context;
@@ -23,6 +26,7 @@ export const ConnectPopUp = () => {
     try {
       const rs = await walletLogin(connectorId);
       localStorage.setItem("isCheck", "1");
+      // handleCheckNetWork();
       onClose?.();
     } catch (e) {
       console.error("Login failed");

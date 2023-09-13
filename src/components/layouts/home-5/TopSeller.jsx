@@ -25,11 +25,8 @@ const TopSeller = () => {
       .then((response) => {
         setResponseData(response.data);
       })
-      .catch((error) => {
-        console.error("Lỗi:", error);
-      });
+      .catch((error) => {});
   };
-  console.log(responseData);
   useEffect(() => {
     handlePostRequest();
   }, []);
