@@ -114,21 +114,6 @@ const ItemDetails01 = () => {
   ]);
   const [dataEvents, setDataEvents] = useState([]);
   const getEventNFT = async () => {
-    // setDataEvents([...dataEvents, events]);
-    // console.log("events", events);
-    // if (events[0].args.tokenId.toString() === id) {
-    // } else {
-    //   setLastBock(lastBlock - 49999);
-    // }
-    // const getArgs = events.map((value) => value.args);
-    // console.log("getARGS", getArgs[0]);
-    // const findUserMint = getArgs.find(
-    //   (item) => id === item?.tokenId?.toString()
-    // );
-
-    // // console.log("findUserMint", findUserMint);
-    // setEventOfNft(findUserMint);
-    // const contractEventMKPNFT = await contractMarketPlace();
     const provider = new ethers.providers.JsonRpcProvider(
       "https://opbnb-mainnet-rpc.bnbchain.org"
     );
@@ -159,7 +144,6 @@ const ItemDetails01 = () => {
     );
     setEventOfNft(filetItemTokenId);
 
-    console.log("filetItemTokenId", filetItemTokenId);
     const contractEventMKPNFT = await contractMarketPlace();
     const rangesMKP = [];
     for (
@@ -175,12 +159,10 @@ const ItemDetails01 = () => {
     );
     const logChunks = await Promise.all(promisesAllMKP);
     const logs = [].concat(...logChunks);
-    // console.log(logs);
 
     let filteredEvents = [];
     for (const log of logs) {
       const parsedLog = contractEventMKPNFT.interface.parseLog(log);
-      console.log("parsedLog", parsedLog);
 
       if (parsedLog.args?._tokenId.toString() === id) {
         parsedLog.transactionHash = log.transactionHash;
