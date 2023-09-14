@@ -25,6 +25,7 @@ import Contact01 from "./Contact01";
 import Contact02 from "./Contact02";
 import ArbNFTPage from "./ArbNFTPage";
 import MinNft from "./MinNft";
+import Test from "./Test";
 
 const routes = [
   { path: "/", component: <Home05 /> },
@@ -54,6 +55,7 @@ const routes = [
   // { path: "/contact-01", component: <Contact01 /> },
   // { path: "/contact-02", component: <Contact02 /> },
   { path: "/nft-ai", component: <ArbNFTPage /> },
+  { path: "/test", component: <Test /> },
 ];
 
 export default routes;

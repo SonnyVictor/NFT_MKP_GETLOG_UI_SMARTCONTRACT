@@ -9,9 +9,6 @@ export const address_MKP_LISTBUYSELL_OPBNB_TESTNET =
 
 export const getProviderOrSigner = async (needSigner = false) => {
   const provider = new ethers.providers.Web3Provider(window.ethereum);
-  // const provider = new ethers.providers.JsonRpcProvider(
-  //   "https://opbnb-mainnet-rpc.bnbchain.org"
-  // );
   if (needSigner) {
     const signer = provider.getSigner();
     return signer;
