@@ -20,10 +20,10 @@ import styled from "styled-components";
 import { RefreshContext } from "../../../context/RefreshContext";
 const TodayPicks = (props) => {
   const data = props.data;
-  const [visible, setVisible] = useState(8);
+  const [visible, setVisible] = useState(20);
   const { chainIdConnect, handleCheckNetWork } = useContext(RefreshContext);
   const showMoreItems = () => {
-    setVisible((prevValue) => prevValue + 4);
+    setVisible((prevValue) => prevValue + 20);
   };
   const [modalShow, setModalShow] = useState(false);
   return (

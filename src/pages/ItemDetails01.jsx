@@ -45,6 +45,14 @@ import {
 const web3 = new Web3(window.ethereum);
 
 const ItemDetails01 = () => {
+  const eventMappings = {
+    MarketplaceItemCreated: "List",
+    UnListNFTOnSale: "UnList",
+    BuyNFT: "BuyNFT",
+    Mint: "Mint",
+    UpdatePriceNftOnSale: "UpdatePrice",
+  };
+
   const { account } = useActiveWeb3React();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -288,15 +296,7 @@ const ItemDetails01 = () => {
                           <div className="info">
                             <span>Create By</span>
                             <h6>
-                              {/* {eventOfNft
-                                ? `${eventOfNft[0]?.substring(
-                                    0,
-                                    5
-                                  )} ... ${eventOfNft[0]?.substring(
-                                    eventOfNft[0].length - 5
-                                  )}`
-                                : "--"} */}
-                              {shortenAddress(itemTokenId[0].seller)}
+                              {shortenAddress(eventOfNft.args?.user) || ""}{" "}
                             </h6>
                           </div>
                         </div>
@@ -362,7 +362,10 @@ const ItemDetails01 = () => {
                                           <h6>
                                             <Link to="#">Event:</Link>
                                           </h6>
-                                          <span> {item.event} </span>
+                                          <span>
+                                            {" "}
+                                            {eventMappings[item.event] || ""}
+                                          </span>
                                         </div>
                                         <span className="time">
                                           {item.from
