@@ -18,6 +18,7 @@ import ItemDetails01 from "../../../pages/ItemDetails01";
 import NodataImg from "../../../assets/images/logo/No-nft.svg";
 import styled from "styled-components";
 import { RefreshContext } from "../../../context/RefreshContext";
+import avat1 from "../../../assets/images/avatar/avt-11.jpg";
 const TodayPicks = (props) => {
   const data = props.data;
   const [visible, setVisible] = useState(8);
@@ -42,10 +43,9 @@ const TodayPicks = (props) => {
                   <>
                     {data.slice(0, visible).map((item, index) => {
                       return (
-                        <div
-                          key={index}
-                          className="fl-item col-xl-3 col-lg-4 col-md-6 col-sm-6"
-                        >
+                        <Link to={`/details?id=${item?.tokenId}`} 
+                        key={index}
+                        className="fl-item col-xl-3 col-lg-4 col-md-6 col-sm-6">
                           <div
                             className={`sc-card-product ${
                               item.feature ? "comingsoon" : ""
@@ -66,8 +66,8 @@ const TodayPicks = (props) => {
                               >
                                 <span className="number-like">100</span>
                               </a>
-                              <div className="featured-countdown">
-                                <span className="slogan"></span>
+                              <div class="featured-countdown">
+                                <span class="slogan"></span>
                                 <Countdown date={Number(item?.endTime) * 1000}>
                                   <span>End Of Sale!</span>
                                 </Countdown>
@@ -79,13 +79,16 @@ const TodayPicks = (props) => {
                               </h5>
                               <div className="">
                                 {/* <Countdown date={Number(item?.endTime) * 1000}> */}
-                                <div className="tags">bsc</div>
+                                <div class="tags">opBNB</div>
                                 {/* </Countdown> */}
                                 {/* {convertendTime(item?.endTime)} */}
                               </div>
                             </div>
                             <div className="meta-info">
                               <div className="author">
+                                <div class="avatar">
+                                  <img src={avat1} alt="axies" />
+                                </div>
                                 <div className="info">
                                   <span>Seller</span>
                                   <h6>
@@ -118,7 +121,7 @@ const TodayPicks = (props) => {
                               </Link>
                             </div>
                           </div>
-                        </div>
+                        </Link>
                       );
                     })}
                   </>
@@ -156,7 +159,6 @@ const TodayPicks = (props) => {
           </div>
         </div>
       </section>
-      {/* <CardModalBuy show={modalShow} onHide={() => setModalShow(false)} /> */}
     </Fragment>
   );
 };

@@ -18,7 +18,7 @@ function ArbNFTPage(props: Props) {
 
   return (
     <div className="nft-ai-page" >
-      <HeaderStyle2 />
+      {/* <HeaderStyle2 /> */}
       <ContainerGb>
         <Wapper>
           <InputComponent onSetImage={onSetImage} />

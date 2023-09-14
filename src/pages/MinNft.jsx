@@ -7,6 +7,7 @@ import {
   BoxCoppyContrac,
   ButnSubMit,
   BoxCoppyContracMb,
+  BtnGroup,
 } from "./MinNftStyle";
 import { ToastContainer, toast } from "react-toastify";
 import { useState, useMemo, useEffect, useContext } from "react";
@@ -15,6 +16,9 @@ import { ethers } from "ethers";
 import { useActiveWeb3React } from "../hooks";
 import { ModalConfirmContext } from "../components/ProviderPopUp/confirm";
 import { ConnectPopUp } from "../components/Modal/ModalConnectWallet";
+import img1 from '../assets/images/avatar/avt-9.svg'
+import img2 from '../assets/images/avatar/avt-3.jpg'
+import img3 from '../assets/images/avatar/avt-9.jpg'
 import {
   SignerContractNFT,
   address_NFT_LUFFY_OPBNB_TESTNET,
@@ -117,7 +121,7 @@ const MinNft = () => {
 
   return (
     <div>
-      <HeaderStyle2 />
+      {/* <HeaderStyle2 /> */}
       <Container>
         <ContentBox>
           <Layout>
@@ -163,43 +167,42 @@ const MinNft = () => {
                   </li>
                 </div>
               </ul>
-              <BoxCoppyContrac>
-                <h4>Smart Contract</h4>
+              <BtnGroup>
+                <BoxCoppyContrac>
+                  <img src={img2} alt=""/>
+                  <div>
+                    <h4>Price Mint :</h4>
+                    <h3>Free</h3>
+                  </div>
+                </BoxCoppyContrac>
+                <BoxCoppyContrac>
+                <img src={img3} alt=""/>
                 <div>
-                  <h3>{ContractMint}</h3>
+                    <h4>Smart Contract :</h4>
+                    <h3>{`${ContractMint.substring(
+                      0,
+                      5
+                    )} ... ${ContractMint.substring(
+                      ContractMint.length - 5,
+                      ContractMint.length
+                    )}`}</h3>
+                  </div>
                   <button onClick={() => copyToClipboard(ContractMint)}>
-                    📑
+                    <img src={img1} alt = 'Copy' />
                     <span>{copySuccess}</span>
                   </button>
-                </div>
-              </BoxCoppyContrac>
-              <BoxCoppyContracMb>
-                <h4>Smart Contract</h4>
-                <div>
-                  <h3>{`${ContractMint.substring(
-                    0,
-                    5
-                  )} ... ${ContractMint.substring(
-                    ContractMint.length - 5,
-                    ContractMint.length
-                  )}`}</h3>
-                  <button onClick={() => copyToClipboard(ContractMint)}>
-                    📑
-                    <span>{copySuccess}</span>
-                  </button>
-                </div>
-              </BoxCoppyContracMb>
+                </BoxCoppyContrac>
+              </BtnGroup>
               <div style={{ marginBottom: "12px" }}>
                 <ButnSubMit
                   className={`sc-button style ${
                     account ? "bag" : "wallet"
-                  } fl-button pri-3 no-bg `}
+                  } fl-button pri-3 `}
                   onClick={handleClickSubmit}
                 >
                   <span>{TitleMint}</span>
                 </ButnSubMit>
               </div>
-              <h3>Price Mint : Free</h3>
               <div style={{ paddingTop: "12px" }}>
                 {/* <Activity
                   contractAddress={contractAddress}

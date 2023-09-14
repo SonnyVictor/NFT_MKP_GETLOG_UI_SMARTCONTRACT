@@ -9,7 +9,7 @@ import bg2 from '../assets/images/backgroup-secsion/option2_bg_profile.jpg'
 const EditProfile = () => {
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <section className="flat-title-page inner">
                 <div className="overlay"></div>
                 <div className="themesflat-container">

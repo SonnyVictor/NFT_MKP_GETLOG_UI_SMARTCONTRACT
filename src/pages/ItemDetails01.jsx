@@ -10,10 +10,17 @@ import LiveAuction from "../components/layouts/LiveAuction";
 import img1 from "../assets/images/IconEvent/mint.svg";
 import img2 from "../assets/images/IconEvent/list.svg";
 import img3 from "../assets/images/IconEvent/buy.svg";
-import img4 from "../assets/images/avatar/avt-5.jpg";
-import img5 from "../assets/images/avatar/avt-7.jpg";
+import img4 from "../assets/images/avatar/avt-3.jpg";
+import img5 from "../assets/images/avatar/avt-4.jpg";
 import img6 from "../assets/images/avatar/avt-8.jpg";
-import img7 from "../assets/images/avatar/avt-2.jpg";
+import img7 from "../assets/images/avatar/avt-1.jpg";
+import img8 from "../assets/images/avatar/avt-12.jpg";
+import img9 from "../assets/images/avatar/avt-13.jpg";
+import img10 from "../assets/images/avatar/avt-14.jpg";
+import img11 from "../assets/images/avatar/avt-15.jpg";
+import img12 from "../assets/images/avatar/avt-16.jpg";
+import img13 from "../assets/images/avatar/avt-17.jpg";
+import img14 from "../assets/images/avatar/avt-18.jpg";
 import imgdetail1 from "../assets/images/box-item/images-item-details.jpg";
 import HeaderStyle2 from "../components/header/HeaderStyle2";
 import { useLocation } from "react-router-dom";
@@ -262,21 +269,27 @@ const ItemDetails01 = () => {
                 <div className="content-right">
                   <div className="sc-item-details">
                     <h2 className="style2">NFT Details {id ? `#${id}` : ""}</h2>
-                    {/* <div className="meta-item">
+                    <div className="meta-item">
                       <div className="left">
                         <span className="viewed eye">225</span>
-                        <span className="liked heart wishlist-button mg-l-8">
-                          <span className="number-like">100</span>
-                        </span>
+                        {/* <span className="liked heart wishlist-button mg-l-8">
+                          <span className="number-like" style={{color:'#000'}} >100</span>
+                        </span> */}
                       </div>
-                      <div className="right">
+                      {/* <div className="right">
                         <Link to="#" className="share"></Link>
                         <Link to="#" className="option"></Link>
-                      </div>
-                    </div> */}
+                      </div> */}
+                    </div>
                     <div className="client-infor sc-card-product">
                       <div className="meta-info">
                         <div className="author">
+                          <div
+                            class="avatar"
+                            style={{ mixBlendMode: "initial" }}
+                          >
+                            <img src={img7} alt="" />
+                          </div>
                           <div className="info">
                             <span>Owned By</span>
                             <h6>{shortenAddress(itemTokenId[0].seller)}</h6>
@@ -285,6 +298,12 @@ const ItemDetails01 = () => {
                       </div>
                       <div className="meta-info">
                         <div className="author">
+                          <div
+                            class="avatar"
+                            style={{ mixBlendMode: "initial" }}
+                          >
+                            <img src={img6} alt="" />
+                          </div>
                           <div className="info">
                             <span>Create By</span>
                             <h6>
@@ -302,28 +321,54 @@ const ItemDetails01 = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="meta-item-details style2">
-                      <div className="item meta-price">
-                        <span className="heading">Price List</span>
-                        <div className="price">
-                          <div className="price-box">
-                            <h5> {itemTokenId[0]?.price || " --"}BNB</h5>
-                            {/* <span>= $12.246</span> */}
+                    <div className="client-infor sc-card-product">
+                      <div className="meta-info">
+                        <div className="author">
+                          <div
+                            class="avatar"
+                            style={{ mixBlendMode: "initial" }}
+                          >
+                            <img src={img4} alt="" />
+                          </div>
+                          <div className="info">
+                            <span>Price List</span>
+                            <h6>{itemTokenId[0]?.price || " --"}BNB</h6>
                           </div>
                         </div>
                       </div>
-                      <div className="item count-down">
-                        <span className="heading style-2">Countdown</span>
-                        <Countdown date={itemTokenId[0]?.endTime * 1000 || 0}>
-                          <span>You are good to go!</span>
-                        </Countdown>
+                      <div className="meta-info">
+                        <div className="author">
+                          <div
+                            class="avatar"
+                            style={{ mixBlendMode: "initial" }}
+                          >
+                            <img src={img5} alt="" />
+                          </div>
+                          <div className="info">
+                            <span>Countdown</span>
+                            <h6 style={{ filter: "brightness(0)" }}>
+                              <Countdown
+                                date={itemTokenId[0]?.endTime * 1000 || 0}
+                              >
+                                <span>You are good to go!</span>
+                              </Countdown>
+                            </h6>
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    <p style={{ marginBottom: "12px" }}>
+                      XRender User Artificial Intelligence So That Users Can
+                      Experience our platform completely free of charge. Users
+                      will experience XRender Ai with all the most outstanding
+                      feature.
+                    </p>
                     <div
                       onClick={() =>
                         buyNFTTokenId(itemTokenId[0].id, itemTokenId[0].price)
                       }
                       className="sc-button loadmore style bag fl-button pri-3"
+                      style={{ borderRadius: "16px"  , border: 'none'}}
                     >
                       <span>Buy</span>
                     </div>
@@ -411,7 +456,12 @@ const ItemDetails01 = () => {
                                                   className="name"
                                                   key={index}
                                                 >
-                                                  <h6> {item.trait_type} </h6>{" "}
+                                                  {handleLogo(item.trait_type)}
+                                                  {console.log(item.trait_type)}
+                                                  <h6>
+                                                    {" "}
+                                                    {item.trait_type}{" "}
+                                                  </h6>{" "}
                                                   {/* <span> place a bid</span> */}
                                                 </div>
                                                 <span className="time">
@@ -448,27 +498,77 @@ const ItemDetails01 = () => {
 };
 
 export default ItemDetails01;
-
+const handleLogo = (property) => {
+  console.log(property);
+  switch (property) {
+    case "hatStyle":
+      return <img src={img8} alt="" />;
+      break;
+    case "eyesColor":
+      return <img src={img9} alt="" />;
+      break;
+    case "clothesColor":
+      return <img src={img10} alt="" />;
+      break;
+    case "logoClothesColor":
+      return <img src={img11} alt="" />;
+      break;
+    case "trousersColor":
+      return <img src={img12} alt="" />;
+      break;
+    case "hatBackgroundColor":
+      return <img src={img13} alt="" />;
+      break;
+    case "hatLineColor":
+      return <img src={img14} alt="" />;
+      break;
+    default:
+      return <></>;
+  }
+};
 const TransTab = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 15px;
 `;
 const BoxTrani = styled.div`
-  width: calc(50% - 5px);
+  width: calc((100% - 45px) / 4);
   align-self: stretch;
   display: flex;
   border-radius: 10px;
-  background: rgba(18, 18, 18, 0.04);
+  background: #ffeffc;
   padding: 10px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #fff;
-  h6 {
-    font-weight: 600;
+  div {
+    display: flex;
+    flex-direction: column;
+    img {
+      margin-bottom: 10px;
+      max-width: 43px;
+      border-radius: 12px;
+    }
+  }
+  span {
+    color: #000 !important ;
+    text-align: center;
     font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+  }
+
+  h6 {
+    color: #7b7b7b;
+    text-align: center;
+    leading-trim: both;
+    text-edge: cap;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 18px */
   }
 `;
