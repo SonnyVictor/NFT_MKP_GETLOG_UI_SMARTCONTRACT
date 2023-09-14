@@ -46,14 +46,18 @@ const RefreshContextProvider = ({ children }) => {
   const isBrowserTabActiveRef = useIsBrowserTabActive();
   const [actionConnect, setActionConnect] = useState(false);
   const [openModal, setOpenModal] = useState(false);
-  const [chainIdConnect, setChainIdConnect] = useState();
+  const [chainIdConnect, setChainIdConnect] = useState(204);
   const [getOpBnbBalance, setGetOpBnbBalance] = useState(0);
   const { account } = useActiveWeb3React();
-
+  const [isLoadingModal, setIsLoadingModal] = useState(false);
+  const [showContentModal, setShowContentModal] = useState(true);
   const handleCheckNetWork = async () => {
     const provider = await getProviderOrSigner(false);
     const network = await provider.getNetwork();
     setChainIdConnect(network.chainId);
+
+    setIsLoadingModal(true);
+    setShowContentModal(false);
     try {
       if (network.chainId !== 204) {
         await window.ethereum
@@ -66,6 +70,8 @@ const RefreshContextProvider = ({ children }) => {
             ],
           })
           .then(() => setActionConnect(true))
+          .then(() => setIsLoadingModal(false))
+          .then(() => setShowContentModal(true))
           .then(() => window.location.reload());
       } else {
         return;
@@ -90,6 +96,8 @@ const RefreshContextProvider = ({ children }) => {
               ],
             })
             .then(() => setActionConnect(true))
+            .then(() => setIsLoadingModal(false))
+            .then(() => setShowContentModal(true))
             .then(() => {
               window.location.reload();
             });
@@ -158,6 +166,8 @@ const RefreshContextProvider = ({ children }) => {
         chainIdConnect,
         handleGetOpBnbBalance,
         getOpBnbBalance,
+        isLoadingModal,
+        showContentModal,
       }}
     >
       {children}

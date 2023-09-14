@@ -25,7 +25,6 @@ const TodayPicks = (props) => {
   const showMoreItems = () => {
     setVisible((prevValue) => prevValue + 4);
   };
-
   const [modalShow, setModalShow] = useState(false);
   return (
     <Fragment>
@@ -62,13 +61,13 @@ const TodayPicks = (props) => {
                                 height="200px"
                               />
                               <a
-                                class="wishlist-button heart"
+                                className="wishlist-button heart"
                                 style={{ color: "#fff" }}
                               >
-                                <span class="number-like">100</span>
+                                <span className="number-like">100</span>
                               </a>
-                              <div class="featured-countdown">
-                                <span class="slogan"></span>
+                              <div className="featured-countdown">
+                                <span className="slogan"></span>
                                 <Countdown date={Number(item?.endTime) * 1000}>
                                   <span>End Of Sale!</span>
                                 </Countdown>
@@ -80,7 +79,7 @@ const TodayPicks = (props) => {
                               </h5>
                               <div className="">
                                 {/* <Countdown date={Number(item?.endTime) * 1000}> */}
-                                <div class="tags">bsc</div>
+                                <div className="tags">bsc</div>
                                 {/* </Countdown> */}
                                 {/* {convertendTime(item?.endTime)} */}
                               </div>
@@ -127,18 +126,20 @@ const TodayPicks = (props) => {
                   <Nodata>
                     <img src={NodataImg} alt="" />{" "}
                     <Link to="/mint-nft">
-                      <button>Go To Mint-Nft </button>
+                      <button>Go To Mint-Nft</button>
                     </Link>
                   </Nodata>
                 )}
               </>
             ) : (
-              <Nodata>
-                <img src={NodataImg} alt="" />{" "}
-                <button onClick={() => handleCheckNetWork()}>
-                  Please Change NetWork{" "}
-                </button>
-              </Nodata>
+              <>
+                <Nodata>
+                  <img src={NodataImg} alt="" />{" "}
+                  <button onClick={() => handleCheckNetWork()}>
+                    Please Change NetWork opBNB{" "}
+                  </button>
+                </Nodata>
+              </>
             )}
             {visible < data.length && (
               <div className="col-md-12 wrap-inner load-more text-center">
