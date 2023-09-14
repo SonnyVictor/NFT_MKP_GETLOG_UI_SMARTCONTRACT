@@ -97,7 +97,7 @@ export const BoxBtnGroup = styled.div<{
     font-size: 12px;
     line-height: 217%;
     font-feature-settings: "pnum" on, "lnum" on;
-    color: #535353;
+    color: #fff;
   }
   button {
     display: flex;
@@ -144,14 +144,14 @@ export const BoxBtnGroup = styled.div<{
     }
     :nth-child(2) {
       border: 1px solid ${({ downloadable }) =>
-        downloadable ? "#181b81" : "#535353"};
+        downloadable ? "#181b81" : "#fff"};
       ${({ downloadable }) =>
         downloadable ? "animation: pulsate 1.5s infinite alternate;" : ""}
       cursor: ${({ downloadable }) => (downloadable ? "pointer" : "no-drop")};
     }
     :nth-child(3) {
       border: 1px solid ${({ maybeMint }) =>
-        maybeMint ? "#181b81" : "#535353"};
+        maybeMint ? "#181b81" : "#fff"};
       ${({ maybeMint }) =>
         maybeMint ? "animation: pulsate 1.5s infinite alternate;" : ""}
       cursor: ${({ maybeMint }) => (maybeMint ? "pointer" : "no-drop")};

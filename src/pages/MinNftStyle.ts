@@ -37,12 +37,26 @@ export const Container = styled.div`
 export const ContentBox = styled.div`
   display: flex;
   width: 100%;
+  padding: 70px 0px;
   h3 {
     font-size: 28px;
+    color: #000;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
   }
   li {
     font-size: 14px;
     line-height: 150%;
+    color: #787878;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%; /* 21px */
+    text-transform: capitalize;
   }
   @media only screen and (max-width: 970px) {
     flex-direction: column;
@@ -85,6 +99,9 @@ export const Layout = styled.div`
 export const GifLayout = styled.div`
   display: flex;
   justify-content: center;
+  padding: 62px 20px;
+  border-radius: 32px;
+  background: #ececec;
   .view_video {
     width: 180px;
   }
@@ -104,55 +121,84 @@ export const GifLayout = styled.div`
   }
 `;
 
-export const BoxCoppyContrac = styled.div`
+export const BtnGroup = styled.div`
   width: 100%;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+`;
+
+export const BoxCoppyContrac = styled.div`
+  width: calc(50% - 10px);
+  display: flex;
+  align-items: center;
+  border-radius: 16px;
+  background: #ffeffc;
+  padding: 12px;
+  align-self: stretch;
+  gap: 15px;
+  img{
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+  }
   h4 {
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 32px;
-    color: #808080;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
+    color: #7b7b7b;
+    leading-trim: both;
+    text-edge: cap;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
   }
   div {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    margin-bottom: 12px;
     h3 {
+      color: #000;
+      font-size: 16px;
+      font-style: normal;
       font-weight: 500;
-      font-size: 20px;
-      line-height: 32px;
-      letter-spacing: -0.02em;
+      line-height: 150%;
     }
-    button {
-      position: relative;
-      padding: 4px 4px;
-      background-color: transparent;
-      border-radius: 4px;
+  }
+  button {
+    position: relative;
+    padding: 0px;
+    background-color: transparent;
+    border-radius: 4px;
+    max-width: 24px;
+    max-height: 24px;
+    border: none;
+    margin-left: auto;
+    img{
+      max-width: 24px;
+      max-height: 24px;
+    }
+    span {
+      overflow: hidden;
+      display: flex;
+      position: absolute;
+      text-align: center;
+      justify-content: center;
+      width: 500%;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100%);
+      transition: all 1s linear;
+      opacity: 0;
+      color: #45d2c5;
+    }
+    :hover {
+    }
+    :active {
+      transform: translateY(3%);
       span {
-        overflow: hidden;
-        display: flex;
-        position: absolute;
-        text-align: center;
-        justify-content: center;
-        width: 500%;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%) translateY(-100%);
-        transition: all 1s linear;
-        opacity: 0;
-        color: #45d2c5;
-      }
-      :hover {
-        background-color: var(--primary-color3);
-      }
-      :active {
-        transform: translateY(3%);
-        span {
-          opacity: 1;
-          transition: all 0s linear;
-        }
+        opacity: 1;
+        transition: all 0s linear;
       }
     }
   }
@@ -162,8 +208,8 @@ export const BoxCoppyContrac = styled.div`
 `;
 
 export const BoxCoppyContracMb = styled.div`
-width: 100%;
-display: none;
+  width: 100%;
+  display: none;
   h4 {
     font-weight: 700;
     font-size: 20px;
@@ -217,13 +263,16 @@ display: none;
   @media only screen and (max-width: 540px) {
     display: block;
   }
-`
+`;
 
 export const ButnSubMit = styled.button`
   width: 100%;
   /* background-color: transparent; */
   /* color: var(--primary-color3) !important ; */
   /* transition: all 0.3s linear; */
+  border-radius: 16px;
+  border: 1.5px solid #e33fc5;
+  background: #ffeffc;
   :hover {
     /* background-color: var(--primary-color3); */
     /* color: #fff !important ; */

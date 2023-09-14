@@ -66,7 +66,7 @@ const Home05 = () => {
   //   const contextValues = { data, handleSaveData, listNftFull };
   return (
     <div className="home-5">
-      <HeaderStyle2 />
+      {/* <HeaderStyle2 /> */}
       <SliderStyle2 data={heroSliderData} />
       {/* <BrowCategory /> */}
       <TodayPicks data={listNftFull} />

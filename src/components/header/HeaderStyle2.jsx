@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useContext, useMemo } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import menus from "../../pages/menu";
 import DarkMode from "./DarkMode";
 import logodark from "../../assets/images/logo/XRenderLogo.png";
@@ -161,14 +161,18 @@ const HeaderStyle2 = () => {
                   <NavMb id="main-nav" className="main-nav" ref={menuLeft}>
                     <ul id="menu-primary-menu" className="menu">
                       {menus.map((data, index) => (
-                        <li
+                        <LinkMenu
                           key={index}
                           onClick={() => handleOnClick(index)}
-                          className={`menu-item ${
-                            data.namesub ? "menu-item-has-children" : ""
-                          } ${activeIndex === index ? "active" : ""} `}
+                          // className={`menu-item ${
+                          //   data.namesub ? "menu-item-has-children" : ""
+                          // } ${activeIndex === index ? "active" : ""} `}
                         >
-                          <Link to={data.links}>{data.name}</Link>
+                          <NavLink 
+                          // style={{
+                          //   backgroundPosition: index === activeIndex ? '0%' : '100%',
+                          // }} 
+                          className='menu-item' to={data.links}>{data.name}</NavLink>
                           {data.namesub && (
                             <ul className="sub-menu">
                               {data.namesub.map((submenu) => (
@@ -180,20 +184,20 @@ const HeaderStyle2 = () => {
                                       : "menu-item"
                                   }
                                 >
-                                  <Link to={submenu.links}>{submenu.sub}</Link>
+                                  <NavLink to={submenu.links}>{submenu.sub}</NavLink>
                                 </li>
                               ))}
                             </ul>
                           )}
-                        </li>
+                        </LinkMenu>
                       ))}
                       <ProfileMObile>
                         <Link to="/profile"> Profile </Link>
                       </ProfileMObile>
                     </ul>
-                    <div className="profile-mobile">
+                    {/* <div className="profile-mobile">
                       <ProfileBtn />
-                    </div>
+                    </div> */}
                   </NavMb>
                   <div className="flat-search-btn flex">
                     <SelectNetWork
@@ -307,4 +311,6 @@ const SelectNetWork = styled.div`
       display: none;
     }
   }
-`;
+`
+const LinkMenu = styled.li`
+`

@@ -173,7 +173,7 @@ const Authors02 = () => {
       )}
 
       <div className="authors-2">
-        <HeaderStyle2 />
+        {/* <HeaderStyle2 /> */}
         <section className="flat-title-page inner">
           <div className="overlay"></div>
           <div className="themesflat-container">

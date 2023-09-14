@@ -7,6 +7,7 @@ import { RefreshContextProvider } from "./context/RefreshContext.jsx";
 import React, { lazy, Suspense, useEffect, useState } from "react";
 import Loader from "./components/Loader";
 import { ModalConfirmProvider } from "./components/ProviderPopUp/confirm";
+import HeaderStyle2 from "./components/header/HeaderStyle2";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
         <RefreshContextProvider>
           <Suspense fallback={<Loader />}>
             <ModalConfirmProvider>
+              <div>
+                <HeaderStyle2/>
               <Routes>
                 {routes.map((data, index) => (
                   <Route
@@ -26,6 +29,7 @@ function App() {
                   />
                 ))}
               </Routes>
+              </div>
             </ModalConfirmProvider>
           </Suspense>
         </RefreshContextProvider>

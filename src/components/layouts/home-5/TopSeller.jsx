@@ -31,18 +31,20 @@ const TopSeller = () => {
       },
     };
     const headers = {
-      "x-signed-query":
-        "b9cc25ed18fe06e848a88612039b70e71682f2c299cf8793e9c6c14bcf82e2f4",
-      "X-API-KEY": "a91348b2550340c1b15fa45c354438aa",
-      "Content-Type": "application/json",
+      // "x-signed-query":
+      //   "b9cc25ed18fe06e848a88612039b70e71682f2c299cf8793e9c6c14bcf82e2f4",
+      // "X-API-KEY": "a91348b2550340c1b15fa45c354438aa", 
+      // "Content-Type": "application/json",
+      
     };
     axios
-      .post("https://opensea.io/__api/graphql/", query, { headers })
+      .get('https://tofunft.com/_next/data/NlEkfXTdGmJdcueURNmZC/en/ranking.json')
       .then((response) => {
+        console.log(response);
         setData(response?.data?.data?.trendingCollections?.edges);
       })
       .catch((error) => {
-        console.error("Error:", error);
+        // console.error("Error:", error);
       });
   }, [keyParam]);
   const [dataTopSellerTab] = useState([
