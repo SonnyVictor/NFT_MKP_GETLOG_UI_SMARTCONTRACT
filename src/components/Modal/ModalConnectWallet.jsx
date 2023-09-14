@@ -16,7 +16,8 @@ import { useConnectWallet } from "../../hooks";
 import { RefreshContext } from "../../context/RefreshContext";
 export const ConnectPopUp = () => {
   const { onClose } = useContext(ModalConfirmContext);
-  const { handleCheckNetWork } = useContext(RefreshContext);
+  const { handleCheckNetWork, isLoadingModal, showContentModal } =
+    useContext(RefreshContext);
 
   const { walletLogin, walletLogout } = useConnectWallet();
   const context = useWeb3React();
@@ -26,7 +27,7 @@ export const ConnectPopUp = () => {
     try {
       const rs = await walletLogin(connectorId);
       localStorage.setItem("isCheck", "1");
-      // handleCheckNetWork();
+      handleCheckNetWork();
       onClose?.();
     } catch (e) {
       console.error("Login failed");
