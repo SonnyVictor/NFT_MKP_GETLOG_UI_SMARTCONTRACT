@@ -8,7 +8,7 @@ const Create = () => {
       description:
         "Once you’ve set up your wallet of choice, connect it to XRender.",
       icon: "",
-      colorbg: "#5142FC",
+      colorbg: "#f612d1",
     },
     {
       title: "Your NFT Collection",

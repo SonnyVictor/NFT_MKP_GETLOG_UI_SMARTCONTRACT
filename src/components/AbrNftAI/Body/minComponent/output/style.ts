@@ -77,7 +77,7 @@ export const ImgBox = styled.div<{ imgs?: boolean }>`
   }
   img {
     border-radius: 8px;
-    border: 2px dashed #5142FC;
+    border: 2px dashed #f612d1;
   }
 `;
 export const BoxBtnGroup = styled.div<{

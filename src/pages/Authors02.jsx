@@ -85,7 +85,7 @@ const Authors02 = () => {
       setDataNFT([...testItems]);
       await handleGetOpBnbBalance();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       setIsLoading(false);
     }
   };
@@ -120,7 +120,8 @@ const Authors02 = () => {
       setDataOnSaleNFT(items);
       await handleGetOpBnbBalance();
     } catch (error) {
-      console.log("getItemsNFTOnSale", error);
+      setIsLoading(false);
+      // console.log("getItemsNFTOnSale", error);
     }
   };
   const unListNFTOnSale = async (id) => {
@@ -141,7 +142,8 @@ const Authors02 = () => {
       handleGetOpBnbBalance();
       setTabIndex(0);
     } catch (error) {
-      console.log("error", error);
+      setIsLoading(false);
+      // console.log("error", error);
     }
   };
 

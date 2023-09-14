@@ -4,10 +4,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/scss";
 import "swiper/scss/navigation";
 import "swiper/scss/pagination";
-import img1 from "../../assets/images/slider/Luffy1.jpg";
-import img2 from "../../assets/images/slider/Luffy2.jpg";
-import img3 from "../../assets/images/slider/Luffy3.jpg";
-import img4 from "../../assets/images/slider/Luffy4.jpg";
+import img1 from "../../assets/images/slider/Luffy1.png";
+import img2 from "../../assets/images/slider/Luffy2.png";
+import img3 from "../../assets/images/slider/Luffy3.png";
+import img4 from "../../assets/images/slider/Luffy4.png";
+import img5 from "../../assets/images/slider/Luffy5.png";
+import img6 from "../../assets/images/slider/Luffy6.png";
 import { Link } from "react-router-dom";
 
 const SliderStyle2 = () => {
@@ -85,19 +87,19 @@ const SliderStyle2 = () => {
             speed={2100}
           >
             <SwiperSlide>
-              <img src={img2} alt="Axies" />
+              <img src={img5} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img3} alt="Axies" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={img1} alt="Axies" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img src={img3} alt="Axies" />
+              <img src={img6} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
               <img src={img4} alt="Axies" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={img3} alt="Axies" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={img2} alt="Axies" />
             </SwiperSlide>
           </Swiper>
           <Swiper
