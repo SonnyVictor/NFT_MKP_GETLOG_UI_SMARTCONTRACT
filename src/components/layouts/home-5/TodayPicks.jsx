@@ -42,7 +42,6 @@ const TodayPicks = (props) => {
                 {data.length ? (
                   <>
                     {data.slice(0, visible).map((item, index) => {
-                      console.log(item?.tokenIMG)
                       return (
                         <div
                           key={index}
@@ -68,9 +67,12 @@ const TodayPicks = (props) => {
                               >
                                 <span class="number-like">100</span>
                               </a>
-                              <div class="featured-countdown"><span class="slogan"></span><Countdown date={Number(item?.endTime) * 1000}>
+                              <div class="featured-countdown">
+                                <span class="slogan"></span>
+                                <Countdown date={Number(item?.endTime) * 1000}>
                                   <span>End Of Sale!</span>
-                                </Countdown></div>
+                                </Countdown>
+                              </div>
                             </div>
                             <div className="card-title">
                               <h5 className="style2">

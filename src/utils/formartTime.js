@@ -35,18 +35,14 @@ export const convertendTime = (timestamp) => {
 };
 
 export const convertUnixTimeToExpirationTime = (unixTime) => {
-  // Chuyển đổi thời gian Unix thành đối tượng Date
-  const expirationDate = new Date(unixTime * 1000); // Giây cần nhân 1000 để chuyển sang mili giây
+  const expirationDate = new Date(unixTime * 1000);
 
-  // Trích xuất các thành phần của thời gian hết hạn (ngày, tháng, năm, giờ, phút, giây)
   const day = expirationDate.getDate();
-  const month = expirationDate.getMonth() + 1; // Tháng trong JavaScript đếm từ 0
+  const month = expirationDate.getMonth() + 1;
   const year = expirationDate.getFullYear();
   const hours = expirationDate.getHours();
   const minutes = expirationDate.getMinutes();
   const seconds = expirationDate.getSeconds();
-
-  // Tạo chuỗi đại diện cho thời gian hết hạn
   const expirationTime = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
 
   return expirationTime;

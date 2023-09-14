@@ -9,7 +9,10 @@ import img4 from "../../../assets/images/avatar/avt-4.jpg";
 import axios from "axios";
 const TopSeller = () => {
   const [data, setData] = useState(null);
-  const [keyParam, setKeyParam] = useState({top: "SIX_HOUR_VOLUME" , trending: "SIX_HOUR_SALES"});
+  const [keyParam, setKeyParam] = useState({
+    top: "SIX_HOUR_VOLUME",
+    trending: "SIX_HOUR_SALES",
+  });
   useEffect(() => {
     const query = {
       id: "HomePageStatsTablesLazyQuery",
@@ -30,7 +33,7 @@ const TopSeller = () => {
     const headers = {
       "x-signed-query":
         "b9cc25ed18fe06e848a88612039b70e71682f2c299cf8793e9c6c14bcf82e2f4",
-      "X-API-KEY": "a91348b2550340c1b15fa45c354438aa", 
+      "X-API-KEY": "a91348b2550340c1b15fa45c354438aa",
       "Content-Type": "application/json",
     };
     axios
@@ -45,15 +48,15 @@ const TopSeller = () => {
   const [dataTopSellerTab] = useState([
     {
       title: "6 hour",
-      key: {top: "SIX_HOUR_VOLUME" , trending: "SIX_HOUR_SALES"},
+      key: { top: "SIX_HOUR_VOLUME", trending: "SIX_HOUR_SALES" },
     },
     {
       title: "1 Day",
-      key: {top: "ONE_DAY_VOLUME" , trending: "ONE_DAY_SALES"},
+      key: { top: "ONE_DAY_VOLUME", trending: "ONE_DAY_SALES" },
     },
     {
       title: "1 Week",
-      key: {top: "SEVEN_DAY_VOLUME" , trending: "SEVEN_DAY_SALES"},
+      key: { top: "SEVEN_DAY_VOLUME", trending: "SEVEN_DAY_SALES" },
     },
   ]);
   return (

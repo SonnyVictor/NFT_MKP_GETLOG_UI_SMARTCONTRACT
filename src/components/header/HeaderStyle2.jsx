@@ -13,9 +13,12 @@ import { ConnectPopUp } from "../Modal/ModalConnectWallet";
 import { useActiveWeb3React } from "../../hooks";
 import ProfileBtn from "./Profile";
 import styled from "styled-components";
+import { RefreshContext } from "../../context/RefreshContext";
 const HeaderStyle2 = () => {
   const { pathname } = useLocation();
   const { onOpen, onClose } = useContext(ModalConfirmContext);
+  const { handleCheckNetWork } = useContext(RefreshContext);
+
   const headerRef = useRef(null);
   useEffect(() => {
     window.addEventListener("scroll", isSticky);
@@ -193,9 +196,14 @@ const HeaderStyle2 = () => {
                     </div>
                   </NavMb>
                   <div className="flat-search-btn flex">
-                    <SelectNetWork className="sc-btn-top mg-r-12" id="site-header">
+                    <SelectNetWork
+                      className="sc-btn-top mg-r-12"
+                      id="site-header"
+                    >
                       <div className="sc-button header-slider fl-button pri-1  style-1 wallet select-network">
-                        <span><p>opBNB</p></span>
+                        <span>
+                          <p>opBNB</p>
+                        </span>
                       </div>
                     </SelectNetWork>
                     <div className="sc-btn-top mg-r-12" id="site-header">
@@ -285,18 +293,18 @@ const NavMb = styled.nav`
 `;
 
 const SelectNetWork = styled.div`
-  @media only screen and (max-width: 440px){
-    span{
+  @media only screen and (max-width: 440px) {
+    span {
       padding: 0px !important;
       height: 20px;
-      ::before{
+      ::before {
         top: 50% !important;
         left: 50% !important;
         transform: translateX(-50%) translateY(-50%) !important;
       }
     }
-    p{
+    p {
       display: none;
     }
   }
-`
+`;

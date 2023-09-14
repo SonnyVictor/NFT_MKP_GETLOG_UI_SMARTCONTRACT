@@ -22,7 +22,7 @@ const menus = [
   {
     id: 7,
     name: "Whitepaper",
-    links: "/whitepaper",
+    links: "/",
   },
 ];
 

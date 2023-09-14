@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Modal, ToastContainer } from "react-bootstrap";
 import {
@@ -11,11 +11,17 @@ import { ethers } from "ethers";
 import LoadingComponent from "../Loading";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import { RefreshContext } from "../../context/RefreshContext";
+
+// import { RefreshContext } from "../context/RefreshContext";
+
 const CardModalUpdatePrice = (props) => {
   const [inputValue, setInputValue] = useState();
   const [isTime, setTime] = useState("2592000");
   const [isLoading, setIsLoading] = useState(false);
   const [valueTimes, setValueTimes] = useState(0);
+  const { getOpBnbBalance, handleGetOpBnbBalance } = useContext(RefreshContext);
+
   const handleInputChange = useCallback((e) => {
     e.preventDefault();
     const value = e.target.value;
@@ -29,7 +35,7 @@ const CardModalUpdatePrice = (props) => {
       await upDatePriceNFTMarketPlace(tokenId, parsePrice).then((res) => {
         setIsLoading(false);
         props.showAction(false);
-        // window.history.go(0);
+        handleGetOpBnbBalance();
         toast("Update Price Nft successfully", {
           position: "top-right",
           autoClose: 5000,

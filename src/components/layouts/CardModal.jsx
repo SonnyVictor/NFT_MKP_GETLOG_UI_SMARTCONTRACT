@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import LoadingComponent from "../Loading";
@@ -10,11 +10,13 @@ import {
 import { ethers } from "ethers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { RefreshContext } from "../../context/RefreshContext";
 const CardModal = (props) => {
   const [inputValue, setInputValue] = useState();
   const [isTime, setTime] = useState("2592000");
   const [isLoading, setIsLoading] = useState(false);
   const [valueTimes, setValueTimes] = useState(0);
+  const { handleGetOpBnbBalance } = useContext(RefreshContext);
 
   const handleInputChange = useCallback((e) => {
     e.preventDefault();
@@ -60,7 +62,9 @@ const CardModal = (props) => {
               progress: undefined,
               theme: "light",
             });
+            props.onHide();
             setIsLoading(false);
+            await handleGetOpBnbBalance();
           }
         }
       );

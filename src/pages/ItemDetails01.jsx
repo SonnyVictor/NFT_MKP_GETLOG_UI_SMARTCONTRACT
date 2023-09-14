@@ -17,6 +17,9 @@ import img7 from "../assets/images/avatar/avt-2.jpg";
 import imgdetail1 from "../assets/images/box-item/images-item-details.jpg";
 import HeaderStyle2 from "../components/header/HeaderStyle2";
 import { useLocation } from "react-router-dom";
+import Web3 from "web3";
+
+import axios from "axios";
 import {
   ContractNFT,
   address_MKP_LISTBUYSELL_OPBNB_TESTNET,
@@ -25,6 +28,7 @@ import {
   getDataTokenURI,
   getImageNFT,
   getNameNFT,
+  getProviderOrSigner,
   getSymbolNFT,
   getTokenURI,
   setbuyNFT,
@@ -34,6 +38,7 @@ import { shortenAddress } from "../utils/formartAddress";
 import { useActiveWeb3React } from "../hooks";
 import { convertTimeEnd } from "../utils/formartTime";
 import styled from "styled-components";
+const web3 = new Web3(window.ethereum);
 
 const ItemDetails01 = () => {
   const { account } = useActiveWeb3React();
@@ -46,7 +51,6 @@ const ItemDetails01 = () => {
   const getAllNftListMarketPlace = async () => {
     try {
       let transition = await getAllValueMarketPlace();
-
       const items = await Promise.all(
         transition.map(async (i) => {
           var tokenURI = await getImageNFT(i.tokenId);
@@ -73,6 +77,61 @@ const ItemDetails01 = () => {
     } catch (error) {
       console.log("getAllNftListMarketPlace", error);
     }
+    // const options = {
+    //   method: "POST",
+    //   url: "https://opbnb-mainnet.nodereal.io/v1/752a9b9dd032492da8b585a548be07cf",
+    //   headers: {
+    //     accept: "application/json",
+    //     "content-type": "application/json",
+    //   },
+    //   data: {
+    //     id: 1,
+    //     jsonrpc: "2.0",
+    //     method: "eth_getLogs",
+    //     params: [
+    //       {
+    //         fromBlock: "0x24e5cb",
+    //         toBlock: "lastest",
+    //         address: ["0x85F0BE0D4827027473925eeC6704E25E846E99f7"],
+    //         // topics: [
+    //         //   // "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2",
+    //         //   // "0x7f1f50e630774899de8224e2755705b9bbc4a5eaa9c5c5819f950d049f6df175",
+    //         //   // "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2",
+    //         //   // "0xd95631535651c70a1497fec4877e22850d2cf9fc99e31ade6bbe4c0bfa241f29",
+    //         // ],
+    //       },
+    //     ],
+    //   },
+    // };
+    // axios
+    //   .request(options)
+    //   .then(function (response) {
+    //     console.log(response.data);
+    //   })
+    //   .catch(function (error) {
+    //     console.error(error);
+    //   });
+    // const options = {
+    //   method: "POST",
+    //   headers: {
+    //     accept: "application/json",
+    //     "content-type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     id: 1,
+    //     jsonrpc: "2.0",
+    //     method: "eth_getLogs",
+    //     params: [{ fromBlock: "0x24e5cb", toBlock: "0x258208" }],
+    //   }),
+    // };
+
+    // fetch(
+    //   "https://opbnb-mainnet.nodereal.io/v1/752a9b9dd032492da8b585a548be07cf",
+    //   options
+    // )
+    //   .then((response) => response.json())
+    //   .then((response) => console.log(response))
+    //   .catch((err) => console.error(err));
   };
 
   useEffect(() => {
@@ -92,8 +151,6 @@ const ItemDetails01 = () => {
     }
   };
 
-  console.log("Create By", eventOfNft);
-
   const [dataHistory, setDataHistory] = useState([
     // {
     //   typeEvent: 1,
@@ -110,85 +167,80 @@ const ItemDetails01 = () => {
     const provider = new ethers.providers.JsonRpcProvider(
       "https://opbnb-mainnet-rpc.bnbchain.org"
     );
-    const contractEventNFT = await ContractNFT();
-    const getFilters = contractEventNFT.filters.Mint();
-    const events = await contractEventNFT.queryFilter(getFilters, 2418123);
-    const getArgs = events.map((value) => value.args);
-    const findUserMint = getArgs.find(
-      (item) => id === item?.tokenId?.toString()
-    );
-    setEventOfNft(findUserMint);
+    // const provider = await getProviderOrSigner(false);
+    // const contractEventNFT = await ContractNFT();
+    // const getFilters = contractEventNFT.filters.Mint();
+    // const events = await contractEventNFT.queryFilter(
+    //   getFilters,
+    //   2418123,
+    //   2458120
+    // );
 
-    console.log(findUserMint);
-
-    const contractEventMKPNFT = await contractMarketPlace();
+    // console.log(events);
+    // const getArgs = events.map((value) => value.args);
+    // const findUserMint = getArgs.find(
+    //   (item) => id === item?.tokenId?.toString()
+    // );
+    // setEventOfNft("Filter", findUserMint);
+    // const contractEventMKPNFT = await contractMarketPlace();
     const logs = await provider.getLogs({
       fromBlock: 2418123,
       toBlock: "latest",
       address: address_MKP_LISTBUYSELL_OPBNB_TESTNET,
       topics: [
         [
-          "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2",
-          "0x7f1f50e630774899de8224e2755705b9bbc4a5eaa9c5c5819f950d049f6df175",
-          "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2",
+          // "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2",
+          // "0x7f1f50e630774899de8224e2755705b9bbc4a5eaa9c5c5819f950d049f6df175",
+          // "0xc2f03ecafb308e14f48fad7a97ce6801c53d3d85bbc9f07d6af07a36353721c2",
           "0xd95631535651c70a1497fec4877e22850d2cf9fc99e31ade6bbe4c0bfa241f29",
         ],
       ],
     });
 
-    let filteredEvents = [];
-    for (const log of logs) {
-      const parsedLog = contractEventMKPNFT.interface.parseLog(log);
-      console.log("FilterEvent", parsedLog);
-      if (parsedLog?.args?._tokenId.toString() === id) {
-        parsedLog.transactionHash = log.transactionHash;
-        filteredEvents.push({
-          typeEvent:
-            parsedLog?.eventFragment?.name === "UpdatePriceNftOnSale" ? 2 : 3,
-          event: parsedLog?.eventFragment?.name,
-          time: convertTimeEnd(
-            parsedLog?.args?._timeUpdate ||
-              parsedLog?.args?._timeStart ||
-              parsedLog?.args?._timeBuy
-          ),
-          from: parsedLog?.args?._from
-            ? `${parsedLog?.args?._from?.substring(
-                0,
-                7
-              )} ... ${parsedLog?.args?._from?.substring(
-                parsedLog?.args?._from?.length - 7,
-                parsedLog?.args?._from?.length
-              )}`
-            : "",
-          to: `${
-            parsedLog?.args?._seller
-              ? shortenAddress(parsedLog?.args?._seller)
-              : "prev address"
-          }`,
-          price:
-            ethers.utils.formatUnits(parsedLog?.args?._price.toString()) +
-            " BNB",
-          priceChange: "",
-        });
-      }
-    }
-    setDataHistory([
-      ...filteredEvents.reverse(),
-      {
-        typeEvent: 1,
-        event: "Mint",
-        time: findUserMint ? convertTimeEnd(findUserMint[2].toString()) : "",
-        from: findUserMint
-          ? `${findUserMint[0]?.substring(
-              0,
-              5
-            )} ... ${findUserMint[0]?.substring(findUserMint[0].length - 5)}`
-          : "",
-        to: "",
-        price: "",
-        priceChange: "",
-      },
-    ]);
+    console.log(logs);
+    // let filteredEvents = [];
+    // for (const log of logs) {
+    //   const parsedLog = contractEventMKPNFT.interface.parseLog(log);
+    //   console.log("FilterEvent", parsedLog);
+    //   if (parsedLog?.args?._tokenId.toString() === id) {
+    //     parsedLog.transactionHash = log.transactionHash;
+    //     filteredEvents.push({
+    //       typeEvent:
+    //         parsedLog?.eventFragment?.name === "UpdatePriceNftOnSale" ? 2 : 3,
+    //       event: parsedLog?.eventFragment?.name,
+    //       time: convertTimeEnd(
+    //         parsedLog?.args?._timeUpdate ||
+    //           parsedLog?.args?._timeStart ||
+    //           parsedLog?.args?._timeBuy
+    //       ),
+    //       from: parsedLog?.args?._from
+    //         ? shortenAddress(parsedLog?.args?._from)
+    //         : "",
+    //       to: `${
+    //         parsedLog?.args?._seller
+    //           ? shortenAddress(parsedLog?.args?._seller)
+    //           : "prev address"
+    //       }`,
+    //       price:
+    //         ethers.utils.formatUnits(parsedLog?.args?._price.toString()) +
+    //         " BNB",
+    //       priceChange: "",
+    //     });
+    //   }
+    // }
+    // setDataHistory([
+    //   ...filteredEvents.reverse(),
+    //   {
+    //     typeEvent: 1,
+    //     event: "Mint",
+    //     time: findUserMint ? convertTimeEnd(findUserMint[2].toString()) : "",
+    //     /*findUserMint */
+    //     from: findUserMint ? shortenAddress(findUserMint[0]) : "",
+    //     to: "",
+    //     price: "",
+    //     priceChange: "",
+    //   },
+    // ]);
   };
 
   const getAllActivityNFT = async (tokenId) => {
@@ -206,7 +258,7 @@ const ItemDetails01 = () => {
     }
   };
 
-  console.log(itemTokenId);
+  // console.log("eventOfNft", eventOfNft);
 
   return (
     <div className="item-details">
@@ -272,14 +324,15 @@ const ItemDetails01 = () => {
                           <div className="info">
                             <span>Create By</span>
                             <h6>
-                              {eventOfNft
+                              {/* {eventOfNft
                                 ? `${eventOfNft[0]?.substring(
                                     0,
                                     5
                                   )} ... ${eventOfNft[0]?.substring(
                                     eventOfNft[0].length - 5
                                   )}`
-                                : "--"}
+                                : "--"} */}
+                              {shortenAddress(eventOfNft[0])}
                             </h6>
                           </div>
                         </div>
