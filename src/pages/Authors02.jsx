@@ -78,11 +78,11 @@ const Authors02 = () => {
             token_id: id.toString(),
             symbol: symbolNFT,
           };
-          setIsLoading(false);
           return i;
         })
       );
       setDataNFT([...testItems]);
+      setIsLoading(false);
       await handleGetOpBnbBalance();
     } catch (error) {
       // console.log(error);
@@ -118,6 +118,7 @@ const Authors02 = () => {
         })
       );
       setDataOnSaleNFT(items);
+      setIsLoading(false);
       await handleGetOpBnbBalance();
     } catch (error) {
       setIsLoading(false);
