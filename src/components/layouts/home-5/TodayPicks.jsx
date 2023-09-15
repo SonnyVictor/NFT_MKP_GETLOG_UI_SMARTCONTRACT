@@ -21,10 +21,10 @@ import { RefreshContext } from "../../../context/RefreshContext";
 import avat1 from "../../../assets/images/avatar/avt-11.jpg";
 const TodayPicks = (props) => {
   const data = props.data;
-  const [visible, setVisible] = useState(8);
+  const [visible, setVisible] = useState(20);
   const { chainIdConnect, handleCheckNetWork } = useContext(RefreshContext);
   const showMoreItems = () => {
-    setVisible((prevValue) => prevValue + 4);
+    setVisible((prevValue) => prevValue + 20);
   };
   const [modalShow, setModalShow] = useState(false);
   return (

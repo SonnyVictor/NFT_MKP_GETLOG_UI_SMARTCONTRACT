@@ -52,6 +52,14 @@ import {
 const web3 = new Web3(window.ethereum);
 
 const ItemDetails01 = () => {
+  const eventMappings = {
+    MarketplaceItemCreated: "List",
+    UnListNFTOnSale: "UnList",
+    BuyNFT: "BuyNFT",
+    Mint: "Mint",
+    UpdatePriceNftOnSale: "UpdatePrice",
+  };
+
   const { account } = useActiveWeb3React();
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
@@ -268,7 +276,10 @@ const ItemDetails01 = () => {
               <div className="col-xl-6 col-md-12">
                 <div className="content-right">
                   <div className="sc-item-details">
-                    <h2 className="style2">NFT Details {id ? `#${id}` : ""}</h2>
+                    <h2 className="style2">
+                      {itemTokenId[0]?.symbolNFT}
+                      {id ? ` #${id}` : ""}
+                    </h2>
                     <div className="meta-item">
                       <div className="left">
                         <span className="viewed eye">225</span>
@@ -307,15 +318,7 @@ const ItemDetails01 = () => {
                           <div className="info">
                             <span>Create By</span>
                             <h6>
-                              {/* {eventOfNft
-                                ? `${eventOfNft[0]?.substring(
-                                    0,
-                                    5
-                                  )} ... ${eventOfNft[0]?.substring(
-                                    eventOfNft[0].length - 5
-                                  )}`
-                                : "--"} */}
-                              {shortenAddress(itemTokenId[0].seller)}
+                              {shortenAddress(eventOfNft?.args?.user) || ""}{" "}
                             </h6>
                           </div>
                         </div>
@@ -368,7 +371,7 @@ const ItemDetails01 = () => {
                         buyNFTTokenId(itemTokenId[0].id, itemTokenId[0].price)
                       }
                       className="sc-button loadmore style bag fl-button pri-3"
-                      style={{ borderRadius: "16px"  , border: 'none'}}
+                      style={{ borderRadius: "16px", border: "none" }}
                     >
                       <span>Buy</span>
                     </div>
@@ -407,7 +410,10 @@ const ItemDetails01 = () => {
                                           <h6>
                                             <Link to="#">Event:</Link>
                                           </h6>
-                                          <span> {item.event} </span>
+                                          <span>
+                                            {" "}
+                                            {eventMappings[item.event] || ""}
+                                          </span>
                                         </div>
                                         <span className="time">
                                           {item.from
@@ -457,7 +463,6 @@ const ItemDetails01 = () => {
                                                   key={index}
                                                 >
                                                   {handleLogo(item.trait_type)}
-                                                  {console.log(item.trait_type)}
                                                   <h6>
                                                     {" "}
                                                     {item.trait_type}{" "}
@@ -499,7 +504,6 @@ const ItemDetails01 = () => {
 
 export default ItemDetails01;
 const handleLogo = (property) => {
-  console.log(property);
   switch (property) {
     case "hatStyle":
       return <img src={img8} alt="" />;

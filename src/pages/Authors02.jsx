@@ -26,6 +26,7 @@ import { Nodata } from "../components/layouts/home-5/TodayPicksStyle";
 import NodataImg from "../assets/images/logo/No-nft.svg";
 import { RefreshContext } from "../context/RefreshContext";
 import { ToastContainer, toast } from "react-toastify";
+import { shortenAddress } from "../utils/formartAddress";
 const Authors02 = () => {
   const { account } = useActiveWeb3React();
   const { getOpBnbBalance, handleGetOpBnbBalance } = useContext(RefreshContext);
@@ -218,14 +219,7 @@ const Authors02 = () => {
                     <input
                       type="text"
                       className="inputcopy"
-                      defaultValue={
-                        account
-                          ? `${account.substring(0, 8)}... ${account.substring(
-                              account.length - 8,
-                              account.length
-                            )}`
-                          : ""
-                      }
+                      defaultValue={account ? shortenAddress(account) : ""}
                       readOnly
                     />
                     <button type="button" className="btn-copycode">
