@@ -161,18 +161,16 @@ const HeaderStyle2 = () => {
                   <NavMb id="main-nav" className="main-nav" ref={menuLeft}>
                     <ul id="menu-primary-menu" className="menu">
                       {menus.map((data, index) => (
-                        <LinkMenu
-                          key={index}
-                          onClick={() => handleOnClick(index)}
-                          // className={`menu-item ${
-                          //   data.namesub ? "menu-item-has-children" : ""
-                          // } ${activeIndex === index ? "active" : ""} `}
-                        >
-                          <NavLink 
-                          // style={{
-                          //   backgroundPosition: index === activeIndex ? '0%' : '100%',
-                          // }} 
-                          className='menu-item' to={data.links}>{data.name}</NavLink>
+                        <LinkMenu key={index}>
+                          <NavLink
+                            // style={{
+                            //   backgroundPosition: index === activeIndex ? '0%' : '100%',
+                            // }}
+                            className="menu-item"
+                            to={data.links}
+                          >
+                            {data.name}
+                          </NavLink>
                           {data.namesub && (
                             <ul className="sub-menu">
                               {data.namesub.map((submenu) => (
@@ -184,7 +182,9 @@ const HeaderStyle2 = () => {
                                       : "menu-item"
                                   }
                                 >
-                                  <NavLink to={submenu.links}>{submenu.sub}</NavLink>
+                                  <NavLink to={submenu.links}>
+                                    {submenu.sub}
+                                  </NavLink>
                                 </li>
                               ))}
                             </ul>
@@ -311,6 +311,5 @@ const SelectNetWork = styled.div`
       display: none;
     }
   }
-`
-const LinkMenu = styled.li`
-`
+`;
+const LinkMenu = styled.li``;

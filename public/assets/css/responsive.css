@@ -595,8 +595,31 @@
     display: none;
   }
   .main-nav.active .current-item > a,
-  .main-nav.active ul > li > a:hover {
+  .main-nav.active ul > li > a{
     color: var(--primary-color3);
+    background: linear-gradient(
+      91deg,
+      #f612d1 0.51%,
+      #000 99.59%
+    );
+    background-size: 1200%;
+    background-position: 100%;
+    transition: all 0.3s linear;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .main-nav.active ul > li > a:hover {
+    /* color: var(--primary-color3);
+    background: linear-gradient(
+      91deg,
+      #f612d1 0.51%,
+      #000 99.59%
+    );
+    transition: all 0.3s linear;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; */
   }
 
   .is_dark .main-nav.active .current-item > a,
@@ -882,6 +905,13 @@
   }
   .home-7 .today-pick .content-inner .sc-card-product {
     width: calc(50% - 26px);
+  }
+  .menu-item{
+    background: linear-gradient(
+      91deg,
+      #f612d1 0.51%,
+      #000 99.59%
+    );
   }
 }
 @media only screen and (max-width: 767px) {
