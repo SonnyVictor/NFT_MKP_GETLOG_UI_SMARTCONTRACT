@@ -80,6 +80,7 @@ export const ImgBox = styled.div<{ imgs?: boolean }>`
     border: 2px dashed #f612d1;
   }
 `;
+
 export const BoxBtnGroup = styled.div<{
   downloadable?: boolean;
   maybeMint?: boolean;
@@ -88,8 +89,10 @@ export const BoxBtnGroup = styled.div<{
   align-items: center;
   flex-wrap: wrap;
   gap: 15px;
+  margin-top: 50px;
   p {
     width: 100%;
+    margin: auto;
     margin-top: 16px;
     font-family: "Inter";
     font-style: normal;
@@ -142,18 +145,18 @@ export const BoxBtnGroup = styled.div<{
         0 0 8px #181b81;
       }
     }
-    :nth-child(2) {
+    :nth-child(1) {
       border: 1px solid ${({ downloadable }) =>
-        downloadable ? "#181b81" : "#fff"};
+    downloadable ? "#181b81" : "#fff"};
       ${({ downloadable }) =>
-        downloadable ? "animation: pulsate 1.5s infinite alternate;" : ""}
+    downloadable ? "animation: pulsate 1.5s infinite alternate;" : ""}
       cursor: ${({ downloadable }) => (downloadable ? "pointer" : "no-drop")};
     }
-    :nth-child(3) {
+    :nth-child(2) {
       border: 1px solid ${({ maybeMint }) =>
-        maybeMint ? "#181b81" : "#fff"};
+    maybeMint ? "#181b81" : "#fff"};
       ${({ maybeMint }) =>
-        maybeMint ? "animation: pulsate 1.5s infinite alternate;" : ""}
+    maybeMint ? "animation: pulsate 1.5s infinite alternate;" : ""}
       cursor: ${({ maybeMint }) => (maybeMint ? "pointer" : "no-drop")};
     }
     a {
@@ -165,3 +168,15 @@ export const BoxBtnGroup = styled.div<{
     }
   }
 `;
+
+export const BoxBtn = styled.div<{}>`
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+
+  button {
+    width: 50%;
+  }
+`

@@ -277,7 +277,7 @@ const ItemDetails01 = () => {
                 <div className="content-right">
                   <div className="sc-item-details">
                     <h2 className="style2">
-                      {itemTokenId[0]?.symbolNFT}
+                      {itemTokenId[0]?.name}
                       {id ? ` #${id}` : ""}
                     </h2>
                     <div className="meta-item">
@@ -462,7 +462,7 @@ const ItemDetails01 = () => {
                                                   className="name"
                                                   key={index}
                                                 >
-                                                  {handleLogo(item.trait_type)}
+                                                  {/* {handleLogo(item.trait_type)} */}
                                                   <h6>
                                                     {" "}
                                                     {item.trait_type}{" "}
@@ -561,7 +561,7 @@ const BoxTrani = styled.div`
     text-align: center;
     font-size: 16px;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 150%;
   }
 

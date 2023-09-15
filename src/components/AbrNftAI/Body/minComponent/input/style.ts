@@ -26,13 +26,13 @@ export const Wapper = styled.div`
     display: flex;
     align-items: center;
     font-feature-settings: "pnum" on, "lnum" on;
-    color: #000;
+    color: #ffffff;
     top: 0px;
     left: 8px;
     transform: translateY(-50%);
     position: absolute;
     padding: 0px 8px;
-    background-color: #fff;
+    background-color: #ed13d2;
     width: fit-content;
     border-radius: 5px;
   }
@@ -57,7 +57,7 @@ export const BoxOneElm = styled.div<{
   button {
     width: 100%;
     height: 60px;
-    border: 2px solid ${({ submitError }) => (submitError ? "red" : "#fff")};
+    border: 2px solid ${({ submitError }) => (submitError ? "red" : "#ed13d2")};
     border-radius: 10px;
     padding: 18px 16px;
     color: #fff;
@@ -69,7 +69,7 @@ export const BoxOneElm = styled.div<{
   }
   input{
     :focus{
-      border: 2px solid #fff !important;
+      border: 2px solid #ed13d2 !important;
     }
   }
   button {
@@ -96,7 +96,7 @@ export const BoxOneElm = styled.div<{
     left: 0;
     transform: translateY(100%);
     z-index: 2;
-    background-color: rgba(255, 255, 255 , 0.8);
+    background-color: rgba(255, 255, 255 , 1);
     backdrop-filter: blur(10px);
     transition: all 0.3s linear;
     li {
@@ -109,11 +109,11 @@ export const BoxOneElm = styled.div<{
     :before {
       content: "${({ required }) => (required ? "*" : "")}";
       position: absolute;
-      color: red;
+      color: #fff;
       top: 0px;
       right: 0px;
       transform: translateX(calc(100% - 5px));
-      background-color: #fff;
+      background-color: #ed13d2;
       padding-right: 8px;
       border-radius: 0px 5px 5px 0px;
     }
@@ -154,14 +154,25 @@ export const BoxTowElm = styled.div`
   input {
     width: 30%;
     height: 60px;
-    border: 2px solid #fff;
+    border: 2px solid #ed13d2;
     border-radius: 10px;
     padding: 18px 16px;
     background-color: transparent;
     color: #fff;
     :focus{
-      border: 2px solid #fff;
+      border: 2px solid #ed13d2;
     }
+  }
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
   }
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -197,7 +208,7 @@ export const ProgressSlide = styled.div`
       border-radius: 50%;
     }
     ::-moz-range-progress {
-      background-color: #43e5f7;
+      background-color: #ed13d2;
       height: 100%;
       border-radius: 10px;
     }
@@ -207,14 +218,14 @@ export const ProgressSlide = styled.div`
     ::-moz-range-thumb {
       width: 8px;
       height: 8px;
-      background: #43e5f7 !important;
+      background: #ed13d2 !important;
       cursor: pointer;
     }
 
     ::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
-      background-color: #43e5f7;
+      background-color: #ed13d2;
       height: 20px;
       width: 20px;
       transform: translateY(-6px);
@@ -226,12 +237,13 @@ export const BtnGroup = styled.div`
   width: 90%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-bottom: 48px;
+  gap: 30px;
   button {
     height: 56px;
     width: 50%;
-    max-width: 170px;
+    max-width: 200px;
     border-radius: 10px;
     font-family: "Inter";
     font-style: normal;
@@ -250,7 +262,6 @@ export const BtnGroup = styled.div`
     background-color: #fff;
     color: #000;
     :last-child {
-      margin-left: 12px;
       border: 1px solid #fff;
     }
     :hover {
