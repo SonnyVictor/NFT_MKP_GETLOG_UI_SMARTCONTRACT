@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Wapper, ImgBox, BoxBtnGroup } from "./style";
+import { Wapper, ImgBox, BoxBtnGroup, BoxBtn } from "./style";
 import axios from "axios";
 
 const OutputComponent = ({ imageOutput }: any) => {
@@ -81,32 +81,34 @@ const OutputComponent = ({ imageOutput }: any) => {
         downloadable={ListImgSelect.length > 0}
         maybeMint={mintId.length === 1}
       >
-        <p>Generated in 1.80 seconds</p>
-        <button
-          style={{
-            background: "transparent",
-          }}
-          onClick={() => {
-            ListImgSelect.length > 0 && downloadImages();
-          }}
-        >
-          <img src="./images/Mint/downloadIcon.svg" alt="" /> Download
-        </button>
-        <button
-          style={{
-            background: "transparent",
-          }}
-        >
-          {mintId.length === 1 ? (
-            <>
-              <img src="./images/Mint/MintIcon.svg" alt="" /> Mint NFT
-            </>
-          ) : (
-            <>
-              <img src="./images/Mint/MintIcon.svg" alt="" /> Mint NFT
-            </>
-          )}
-        </button>
+        {/* <p>Generated in 1.80 seconds</p> */}
+        <BoxBtn>
+          <button
+            style={{
+              background: "transparent",
+            }}
+            onClick={() => {
+              ListImgSelect.length > 0 && downloadImages();
+            }}
+          >
+            <img src="./images/Mint/downloadIcon.svg" alt="" /> Download
+          </button>
+          <button
+            style={{
+              background: "transparent",
+            }}
+          >
+            {mintId.length === 1 ? (
+              <>
+                <img src="./images/Mint/MintIcon.svg" alt="" /> Mint NFT
+              </>
+            ) : (
+              <>
+                <img src="./images/Mint/MintIcon.svg" alt="" /> Mint NFT
+              </>
+            )}
+          </button>
+        </BoxBtn>
       </BoxBtnGroup>
     </Wapper>
   );

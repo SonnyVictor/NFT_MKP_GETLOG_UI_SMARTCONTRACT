@@ -223,6 +223,11 @@ const InputComponent = ({ onSetImage }: any) => {
         </button>
         <button
           onClick={handleSubmit}
+          onKeyUp={(e) => {
+            if (e.key === "Enter") {
+              handleSubmit()
+            }
+          }}
         >
           Submit{" "}
           {isLoading && (
@@ -234,6 +239,7 @@ const InputComponent = ({ onSetImage }: any) => {
             ></i>
           )}
         </button>
+
       </BtnGroup>
     </Wapper>
   );
