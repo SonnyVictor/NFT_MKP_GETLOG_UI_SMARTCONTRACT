@@ -43,9 +43,11 @@ const TodayPicks = (props) => {
                   <>
                     {data.slice(0, visible).map((item, index) => {
                       return (
-                        <Link to={`/details?id=${item?.tokenId}`} 
-                        key={index}
-                        className="fl-item col-xl-3 col-lg-4 col-md-6 col-sm-6">
+                        <Link
+                          to={`/details?id=${item?.tokenId}`}
+                          key={index}
+                          className="fl-item col-xl-3 col-lg-4 col-md-6 col-sm-6"
+                        >
                           <div
                             className={`sc-card-product ${
                               item.feature ? "comingsoon" : ""
@@ -66,8 +68,8 @@ const TodayPicks = (props) => {
                               >
                                 <span className="number-like">100</span>
                               </a>
-                              <div class="featured-countdown">
-                                <span class="slogan"></span>
+                              <div className="featured-countdown">
+                                <span className="slogan"></span>
                                 <Countdown date={Number(item?.endTime) * 1000}>
                                   <span>End Of Sale!</span>
                                 </Countdown>
@@ -79,14 +81,14 @@ const TodayPicks = (props) => {
                               </h5>
                               <div className="">
                                 {/* <Countdown date={Number(item?.endTime) * 1000}> */}
-                                <div class="tags">opBNB</div>
+                                <div className="tags">opBNB</div>
                                 {/* </Countdown> */}
                                 {/* {convertendTime(item?.endTime)} */}
                               </div>
                             </div>
                             <div className="meta-info">
                               <div className="author">
-                                <div class="avatar">
+                                <div className="avatar">
                                   <img src={avat1} alt="axies" />
                                 </div>
                                 <div className="info">
