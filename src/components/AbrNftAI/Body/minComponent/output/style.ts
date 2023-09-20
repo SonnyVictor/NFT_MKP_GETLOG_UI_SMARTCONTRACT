@@ -11,7 +11,7 @@ export const Wapper = styled.div`
     color: #fff;
     margin-bottom: 26px;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 830px) {
     width: 100%;
   }
 `;
@@ -78,6 +78,7 @@ export const ImgBox = styled.div<{ imgs?: boolean }>`
   img {
     border-radius: 8px;
     border: 2px dashed #f612d1;
+    width: 100%;
   }
 `;
 
@@ -108,7 +109,7 @@ export const BoxBtnGroup = styled.div<{
     justify-content: center;
     gap: 15px;
     width: calc((100% - 15px) / 2);
-    max-width: 264px;
+    max-width: 340px;
     height: 56px;
     border-radius: 10px;
     font-family: "Inter";
@@ -173,7 +174,7 @@ export const BoxBtn = styled.div<{}>`
   width: 100%;
   margin: auto;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 30px;
 
   button {

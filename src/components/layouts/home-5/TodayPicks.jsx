@@ -1,12 +1,7 @@
 import React, { useState, Fragment, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
-import img1 from "../../../assets/images/icon/menu.png";
-import img2 from "../../../assets/images/icon/rainbow.png";
-import img3 from "../../../assets/images/icon/photo.png";
-import img4 from "../../../assets/images/icon/itunes.png";
-import CardModal from "../CardModal";
+import { Tab, Tabs, TabList, TabPanel  } from 'react-tabs';
 import { ImageNft, Nodata } from "./TodayPicksStyle";
 import CardModalBuy from "../CardModalUpdatePrice";
 import { convertTime } from "../../../utils/formartTime";
@@ -21,21 +16,111 @@ import { RefreshContext } from "../../../context/RefreshContext";
 import avat1 from "../../../assets/images/avatar/avt-11.jpg";
 const TodayPicks = (props) => {
   const data = props.data;
+  const isMarketPlace  =  props.isMarketPlace 
   const [visible, setVisible] = useState(20);
   const { chainIdConnect, handleCheckNetWork } = useContext(RefreshContext);
   const showMoreItems = () => {
     setVisible((prevValue) => prevValue + 20);
   };
   const [modalShow, setModalShow] = useState(false);
+  const [dataFilter] = useState([
+    {
+      image: "/assets/icon/icon-arb.svg",
+      name: "Arb",
+    },
+    {
+      image: "/assets/icon/BNBIcon.png",
+      name: "opBNB",
+    },
+    {
+      image: "/assets/icon/icon-zeta.png",
+      name: "ZetaChain",
+    },
+    
+  ]);
+  const [dataTab] = useState(
+    [
+        {
+            id: 1,
+            title: "All",
+        },
+        {
+            id: 2,
+            title: "XRender Luffy",
+        },
+        {
+            id: 3,
+            title: "XRender AI",
+        },
+        {
+          id: 4,
+          title: "XRender Art",
+      },
+    ]
+)
+
+const [tabActive, setTabActive] = useState(1)
+
+const handleFilter = (id) => {
+  setTabActive(id)
+}
   return (
     <Fragment>
-      <section className="tf-section today-pick">
+      <section lassName="tf-section today-pick">
         <div className="themesflat-container">
           <div className="row">
             <div className="col-md-12">
-              <div className="heading-live-auctions mg-bt-21">
-                <h2 className="tf-title">Marketplace</h2>
-              </div>
+              {
+              !isMarketPlace  ? 
+                <div className="heading-live-auctions mg-bt-21">
+                  <h2 className="tf-title">Marketplace</h2>
+                  <Link to="/marketplace" className="exp style2">
+                    EXPLORE MORE
+                  </Link>
+                </div> : 
+                <FilterBox>
+                   <div className="sc-explore-2">
+                    <div className="flat-tabs explore-tab">
+                        <Tabs >
+                            <TabList
+                              style={{
+                                marginBottom: '20px'
+                              }}
+                            >
+                                {
+                                  dataTab.map(data=> (
+                                      <Tab 
+                                        style={{
+                                          boxShadow: '0px 2px 6px 0px rgb(47 83 109 / 10%)',
+                                          fontWeight: 600,
+                                          background: tabActive !== data.id && '#fff',
+                                        }} 
+                                      key={data.id} 
+                                      onClick={() => handleFilter(data.id)}
+                                      >{data.title}</Tab>
+                                  ))
+                                }
+                            </TabList>
+                        </Tabs>
+                      </div>
+                   </div>
+                  <div className="widget widget-filter style-2 mgbt-0">
+                    <ul className="box-check">
+                      {dataFilter.map((item, index) => (
+                        <li key={index}>
+                          <Link to="#" className="box-widget-filter">
+                            <img style={{
+                              width: '24px',
+                              marginRight: '10px'
+                            }} src={item.image} alt={item.name} />
+                            {item.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </FilterBox>
+              }
             </div>
             {chainIdConnect === 204 ? (
               <>
@@ -166,5 +251,11 @@ const TodayPicks = (props) => {
 TodayPicks.propTypes = {
   data: PropTypes.array.isRequired,
 };
+
+const FilterBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
 export default TodayPicks;

@@ -18,69 +18,69 @@ import img3right2 from '../../../assets/images/box-item/collection-item-8.jpg'
 const PopularCollection = () => {
     const [data] = useState(
         [
-            {
-                title: "Creative Art Collection",
-                imgAuthor: imgAuthor1,
-                name: "Ralph Garraway",
-                imgleft: img1left,
-                imgright1: img1right1,
-                imgright2: img1right2,
-                wishlist: "100",
-            },
-            {
-                title: "Colorful Abstract",
-                imgAuthor: imgAuthor2,
-                name: "Mason Woodward",
-                imgleft: img2left,
-                imgright1: img2right1,
-                imgright2: img2right2,
-                wishlist: "100",
-            },
-            {
-                title: "Modern Art Collection",
-                imgAuthor: imgAuthor3,
-                name: "Freddie Carpenter",
-                imgleft: img3left,
-                imgright1: img3right1,
-                imgright2: img3right2,
-                wishlist: "100",
-            },
-            {
-                title: "Creative Art Collection",
-                imgAuthor: imgAuthor1,
-                name: "Ralph Garraway",
-                imgleft: img1left,
-                imgright1: img1right1,
-                imgright2: img1right2,
-                wishlist: "100",
-            },
-            {
-                title: "Colorful Abstract",
-                imgAuthor: imgAuthor2,
-                name: "Mason Woodward",
-                imgleft: img2left,
-                imgright1: img2right1,
-                imgright2: img2right2,
-                wishlist: "100",
-            },
-            {
-                title: "Modern Art Collection",
-                imgAuthor: imgAuthor3,
-                name: "Freddie Carpenter",
-                imgleft: img3left,
-                imgright1: img3right1,
-                imgright2: img3right2,
-                wishlist: "100",
-            },
-            {
-                title: "Creative Art Collection",
-                imgAuthor: imgAuthor1,
-                name: "Ralph Garraway",
-                imgleft: img1left,
-                imgright1: img1right1,
-                imgright2: img1right2,
-                wishlist: "100",
-            },
+          {
+              title: "Creative Art Collection",
+              imgAuthor: imgAuthor1,
+              name: "Ralph Garraway",
+              imgleft: img1left,
+              imgright1: img1right1,
+              imgright2: img1right2,
+              wishlist: "100",
+          },
+          {
+              title: "Colorful Abstract",
+              imgAuthor: imgAuthor2,
+              name: "Mason Woodward",
+              imgleft: img2left,
+              imgright1: img2right1,
+              imgright2: img2right2,
+              wishlist: "100",
+          },
+          {
+              title: "Modern Art Collection",
+              imgAuthor: imgAuthor3,
+              name: "Freddie Carpenter",
+              imgleft: img3left,
+              imgright1: img3right1,
+              imgright2: img3right2,
+              wishlist: "100",
+          },
+          {
+              title: "Creative Art Collection",
+              imgAuthor: imgAuthor1,
+              name: "Ralph Garraway",
+              imgleft: img1left,
+              imgright1: img1right1,
+              imgright2: img1right2,
+              wishlist: "100",
+          },
+          {
+              title: "Colorful Abstract",
+              imgAuthor: imgAuthor2,
+              name: "Mason Woodward",
+              imgleft: img2left,
+              imgright1: img2right1,
+              imgright2: img2right2,
+              wishlist: "100",
+          },
+          {
+              title: "Modern Art Collection",
+              imgAuthor: imgAuthor3,
+              name: "Freddie Carpenter",
+              imgleft: img3left,
+              imgright1: img3right1,
+              imgright2: img3right2,
+              wishlist: "100",
+          },
+          {
+              title: "Creative Art Collection",
+              imgAuthor: imgAuthor1,
+              name: "Ralph Garraway",
+              imgleft: img1left,
+              imgright1: img1right1,
+              imgright2: img1right2,
+              wishlist: "100",
+          },
         ]
     )
     return (
@@ -91,7 +91,7 @@ const PopularCollection = () => {
                         <div className="heading-live-auctions">
                             <h2 className="tf-title pb-22 text-left">
                                 Popular Collection</h2>
-                            <Link to="/explore-03" className="exp style2">EXPLORE MORE</Link>
+                            <Link to="/marketplace" className="exp style2">EXPLORE MORE</Link>
                         </div>
                     </div>
                     <div className="col-md-12">

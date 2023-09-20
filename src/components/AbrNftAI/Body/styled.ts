@@ -25,7 +25,9 @@ export const Wapper = styled.div`
     left: 0px;
     z-index: -1;
   } */
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 830px) {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 `;

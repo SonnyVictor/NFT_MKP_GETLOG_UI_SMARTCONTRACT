@@ -7,7 +7,7 @@ import { ContainerGb } from "../components/container";
 import Footer from "../components/footer/Footer";
 import HeaderStyle2 from "../components/header/HeaderStyle2";
 
-interface Props {}
+interface Props { }
 
 function ArbNFTPage(props: Props) {
   const [imageNFT, setImageNFT] = useState<any>(null);

@@ -36,7 +36,7 @@ export const Wapper = styled.div`
     width: fit-content;
     border-radius: 5px;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 830px) {
     width: 100%;
   }
   @media only screen and (max-width: 530px) {

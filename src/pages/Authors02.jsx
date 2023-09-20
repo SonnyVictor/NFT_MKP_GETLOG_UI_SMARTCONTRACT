@@ -7,7 +7,6 @@ import Footer from "../components/footer/Footer";
 import CardModal from "../components/layouts/CardModal";
 
 import avt from "../assets/images/avatar/avt-author-tab.png";
-import HeaderStyle2 from "../components/header/HeaderStyle2";
 import {
   ContractNFT,
   contractMarketPlace,
@@ -27,6 +26,8 @@ import NodataImg from "../assets/images/logo/No-nft.svg";
 import { RefreshContext } from "../context/RefreshContext";
 import { ToastContainer, toast } from "react-toastify";
 import { shortenAddress } from "../utils/formartAddress";
+import styled from "styled-components";
+import Countdown from "react-countdown";
 const Authors02 = () => {
   const { account } = useActiveWeb3React();
   const { getOpBnbBalance, handleGetOpBnbBalance } = useContext(RefreshContext);
@@ -274,7 +275,7 @@ const Authors02 = () => {
                         {dataNFT.length ? (
                           <>
                             {dataNFT?.map((item, index) => (
-                              <div
+                              <Link to={`/details?id=${item?.token_id}`}
                                 key={item?.token_id}
                                 className="col-xl-3 col-lg-4 col-md-6 col-12"
                               >
@@ -291,7 +292,8 @@ const Authors02 = () => {
 
                                     <div className="button-place-bid ">
                                       <button
-                                        onClick={() => {
+                                        onClick={(event) => {
+                                          event.preventDefault()
                                           setModalShow(true);
                                           setIdPopup(index);
                                         }}
@@ -301,13 +303,14 @@ const Authors02 = () => {
                                       </button>
                                     </div>
 
-                                    <span className="number-like">
+                                    {/* <span className="number-like">
                                       {" "}
                                       {item?.token_id.toString()}
-                                    </span>
+                                    </span> */}
                                   </div>
                                   <div className="card-title mg-bt-16">
-                                    <h5>{item?.name}</h5>
+                                    <h5>{item?.symbol}</h5>
+                                    <div className="tags">opBNB</div>
                                   </div>
                                   <h5>TokenId #{item?.token_id}</h5>
                                   <div className="meta-info">
@@ -317,7 +320,7 @@ const Authors02 = () => {
                                     </div>
                                   </div>
                                 </div>
-                              </div>
+                              </Link>
                             ))}
                           </>
                         ) : (
@@ -334,7 +337,7 @@ const Authors02 = () => {
                         {dataOnSaleNFT.length ? (
                           <>
                             {dataOnSaleNFT?.map((item, index) => (
-                              <div
+                              <Link to={`/details?id=${item?.token_id}`}
                                 key={item?.token_id}
                                 className="col-xl-3 col-lg-4 col-md-6 col-12"
                               >
@@ -351,7 +354,8 @@ const Authors02 = () => {
 
                                     <div className="button-place-bid ">
                                       <button
-                                        onClick={() => {
+                                        onClick={(event) => {
+                                          event.preventDefault()
                                           unListNFTOnSale(item.id);
                                           setIdPopup(item.id);
                                         }}
@@ -361,28 +365,22 @@ const Authors02 = () => {
                                       </button>
                                     </div>
 
-                                    <span className="number-like">
+                                    {/* <span className="number-like">
                                       {" "}
                                       {item?.token_id.toString()}
-                                    </span>
-                                  </div>
-                                  <div className="card-title mg-bt-16">
-                                    <h5>{item?.name}</h5>
-                                  </div>
-                                  <h5>TokenId #{item?.token_id}</h5>
-                                  <h5>
-                                    Date Remaining
-                                    {convertUnixTimeToExpirationTime(
-                                      item?.endTime
-                                    )}
-                                  </h5>
-
-                                  <div className="meta-info">
-                                    <div className="author">
-                                      <div className="avatar"></div>
-                                      <div className="info"></div>
+                                    </span> */}
+                                    <div class="featured-countdown">
+                                      <span class="slogan"></span>
+                                      <Countdown date={Number(item?.endTime) * 1000}>
+                                        <span>End Of Sale!</span>
+                                      </Countdown>
                                     </div>
                                   </div>
+                                  <div className="card-title mg-bt-16">
+                                    <h5>{item?.symbol}</h5>
+                                     <div className="tags">opBNB</div>
+                                  </div>
+                                  <h5>TokenId #{item?.token_id}</h5>
                                   <div className="card-bottom style-explode">
                                     <div className="price">
                                       <span>Current List</span>
@@ -395,24 +393,26 @@ const Authors02 = () => {
                                       </div>
                                     </div>
                                     <button
-                                      onClick={() => {
+                                      onClick={(event) => {
+                                        event.preventDefault()
                                         setModalShowUpdatePice(true);
                                         setIdPopup(index);
                                       }}
-                                      className="btn-primary"
+                                      className="btn-pink"
                                     >
                                       UpDate Price
                                     </button>
                                   </div>
                                 </div>
-                              </div>
+                              </Link>
                             ))}
                           </>
                         ) : (
                           <Nodata>
                             <img src={NodataImg} alt="" />
                             <button
-                              onClick={() => {
+                              onClick={(event) => {
+                                event.preventDefault()
                                 setTabIndex(0);
                               }}
                             >

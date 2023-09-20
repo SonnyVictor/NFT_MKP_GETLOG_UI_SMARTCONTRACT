@@ -30,6 +30,7 @@
     "formik": "^2.2.9",
     "install": "^0.13.0",
     "jsx": "^0.9.89",
+    "lodash": "^4.17.21",
     "lodash.debounce": "^4.0.8",
     "node-sass": "^8.0.0",
     "query-string": "^8.1.0",

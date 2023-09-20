@@ -19,8 +19,9 @@ import {
   getTokenURI,
 } from "../integrateContract/contract";
 import { ethers } from "ethers";
+import { SliderMarketPlace } from "../components/slider/SliderMarketPlace";
 
-const Home05 = () => {
+const MarketPlace = () => {
   const [data, setData] = useState();
   const [listEvent, setListEvent] = useState(null);
   const handleSaveData = (isdata) => {
@@ -67,20 +68,14 @@ const Home05 = () => {
   return (
     <div className="home-5">
       {/* <HeaderStyle2 /> */}
-
-      <SliderStyle2 data={heroSliderData} />
+     
+     <SliderMarketPlace />
       {/* <BrowCategory /> */}
-      <TopSeller />
-
-      <TodayPicks data={listNftFull} />
+      <TodayPicks isMarketPlace={true} data={listNftFull} />
       {/* <LiveAuction data={liveAuctionData} /> */}
-      {/* <TodayPicks data={todayPickData} /> */}
-
-      <PopularCollection />
-      <Create />
       <Footer />
     </div>
   );
 };
 
-export default Home05;
+export default MarketPlace;

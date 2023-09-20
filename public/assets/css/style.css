@@ -1109,7 +1109,11 @@ label.error {
   background-color: #f8f8f8;
 }
 .nft-ai-page {
-  background: linear-gradient(227.3deg, #8a208c 0%, #181b81 100.84%);
+  /* background-image: url('../images/backgroup-secsion/bg_galaxy.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+  background: linear-gradient(227.3deg, #e250e5 0%, #181b81 100.84%);
 }
 .is_dark .nft-ai-page {
   background: var(--bg-section);
