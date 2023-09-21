@@ -4,7 +4,7 @@ import { BscConnector } from "./bsc";
 import { WalletConnector } from "./walletConnect";
 
 const NETWORK_URL = process.env.REACT_APP_BSC_NETWORK_URL;
-const NETWORK_CHAIN_ID = parseInt(process.env.REACT_APP_CHAIN_ID ?? "5611");
+const NETWORK_CHAIN_ID = parseInt(process.env.REACT_APP_CHAIN_ID ?? "204");
 
 export const walletconnect = new WalletConnectConnector({
   //@ts-ignore
