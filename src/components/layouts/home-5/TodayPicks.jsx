@@ -14,25 +14,30 @@ import NodataImg from "../../../assets/images/logo/No-nft.svg";
 import styled from "styled-components";
 import { RefreshContext } from "../../../context/RefreshContext";
 import avat1 from "../../../assets/images/avatar/avt-11.jpg";
+import './style.css'
+
 const TodayPicks = (props) => {
   const data = props.data;
   const isMarketPlace  =  props.isMarketPlace 
-  const [visible, setVisible] = useState(20);
+  const [visible, setVisible] = useState(8);
   const { chainIdConnect, handleCheckNetWork } = useContext(RefreshContext);
   const showMoreItems = () => {
-    setVisible((prevValue) => prevValue + 20);
+    setVisible((prevValue) => prevValue + 10);
   };
   const [modalShow, setModalShow] = useState(false);
   const [dataFilter] = useState([
     {
+      id: 2,
       image: "/assets/icon/icon-arb.svg",
       name: "Arb",
     },
     {
+      id: 1,
       image: "/assets/icon/BNBIcon.png",
       name: "opBNB",
     },
     {
+      id: 3,
       image: "/assets/icon/icon-zeta.png",
       name: "ZetaChain",
     },
@@ -60,16 +65,21 @@ const TodayPicks = (props) => {
 )
 
 const [tabActive, setTabActive] = useState(1)
+const [chainActive, setChainActive] = useState(1)
 
 const handleFilter = (id) => {
   setTabActive(id)
+}
+
+const handleSelectChain = (id) => {
+  setChainActive(id)
 }
   return (
     <Fragment>
       <section lassName="tf-section today-pick">
         <div className="themesflat-container">
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-md-12 mt-4">
               {
               !isMarketPlace  ? 
                 <div className="heading-live-auctions mg-bt-21">
@@ -84,7 +94,7 @@ const handleFilter = (id) => {
                         <Tabs >
                             <TabList
                               style={{
-                                marginBottom: '20px'
+                                marginBottom: '25px'
                               }}
                             >
                                 {
@@ -107,8 +117,8 @@ const handleFilter = (id) => {
                   <div className="widget widget-filter style-2 mgbt-0">
                     <ul className="box-check">
                       {dataFilter.map((item, index) => (
-                        <li key={index}>
-                          <Link to="#" className="box-widget-filter">
+                        <li onClick={() => handleSelectChain(item.id)} key={index}>
+                          <Link className={chainActive === item.id ? 'box-widget-filter active-chain' : 'box-widget-filter'} to="#" >
                             <img style={{
                               width: '24px',
                               marginRight: '10px'

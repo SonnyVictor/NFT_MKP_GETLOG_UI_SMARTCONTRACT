@@ -90,10 +90,10 @@ const SliderStyle2 = () => {
               <img src={img5} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img6} alt="Axies" />
+              <img src={img4} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={img4} alt="Axies" />
+              <img src={img6} alt="Axies" />
             </SwiperSlide>
             <SwiperSlide>
               <img src={img3} alt="Axies" />
