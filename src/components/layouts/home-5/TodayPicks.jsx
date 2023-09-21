@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useContext } from "react";
+import React, { useState, Fragment, useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel  } from 'react-tabs';
@@ -19,11 +19,14 @@ import './style.css'
 const TodayPicks = (props) => {
   const data = props.data;
   const isMarketPlace  =  props.isMarketPlace 
-  const [visible, setVisible] = useState(8);
+  const [visible, setVisible] = useState(10);
   const { chainIdConnect, handleCheckNetWork } = useContext(RefreshContext);
+
   const showMoreItems = () => {
-    setVisible((prevValue) => prevValue + 10);
+    const { onLoadMore } = props
+    onLoadMore()
   };
+
   const [modalShow, setModalShow] = useState(false);
   const [dataFilter] = useState([
     {
@@ -74,6 +77,12 @@ const handleFilter = (id) => {
 const handleSelectChain = (id) => {
   setChainActive(id)
 }
+
+useEffect(() => {
+  const { total } = props
+  setVisible(total)
+}, [props.total])
+
   return (
     <Fragment>
       <section lassName="tf-section today-pick">
@@ -136,9 +145,9 @@ const handleSelectChain = (id) => {
               <>
                 {data.length ? (
                   <>
-                    {data.slice(0, visible).map((item, index) => {
+                    {data.map((item, index) => {
                       return (
-                        <Link to={`/details?id=${item?.tokenId}`} 
+                        <Link to={`/details?id=${item?.tokenId}&tokenAddress=${item?.tokenAddress}&chainId=${item?.chainId}`}
                         key={index}
                         className="fl-item col-xl-3 col-lg-4 col-md-6 col-sm-6">
                           <div
@@ -149,7 +158,7 @@ const handleSelectChain = (id) => {
                             <div className="card-media">
                               <img
                                 src={`data:image/svg+xml;utf8,${encodeURIComponent(
-                                  item?.tokenIMG
+                                  item?.image
                                 )}`}
                                 alt="NFT Image"
                                 width="200px"
@@ -159,18 +168,22 @@ const handleSelectChain = (id) => {
                                 className="wishlist-button heart"
                                 style={{ color: "#fff" }}
                               >
-                                <span className="number-like">100</span>
+                                <span className="number-like">{item?.like}</span>
                               </a>
-                              <div class="featured-countdown">
+                              <div class="featured-countdown"
+                                style={{
+                                  width: '170px'
+                                }}
+                              >
                                 <span class="slogan"></span>
-                                <Countdown date={Number(item?.endTime) * 1000}>
+                                <Countdown date={Number(item?.dateCreated) * 1000}>
                                   <span>End Of Sale!</span>
                                 </Countdown>
                               </div>
                             </div>
                             <div className="card-title">
                               <h5 className="style2">
-                                "{item?.symbolNFT + " #" + item?.tokenId}"
+                                "{item?.symbol + " #" + item?.tokenId}"
                               </h5>
                               <div className="">
                                 {/* <Countdown date={Number(item?.endTime) * 1000}> */}
@@ -187,10 +200,10 @@ const handleSelectChain = (id) => {
                                 <div className="info">
                                   <span>Seller</span>
                                   <h6>
-                                    <Link to="/authors-02">
-                                      {item.nameAuthor}
-                                    </Link>{" "}
-                                    <span>{shortenAddress(item?.seller)}</span>
+                                    {
+                                      item?.owner && 
+                                      <span>{shortenAddress(item?.owner)}</span>
+                                    }
                                   </h6>
                                 </div>
                               </div>
@@ -200,12 +213,12 @@ const handleSelectChain = (id) => {
                               </div>
                             </div>
                             <div className="card-bottom">
-                              <Link to={`/details?id=${item?.tokenId}`}>
+                              <Link to={`/details?id=${item?.tokenId}&tokenAddress=${item?.tokenAddress}&chainId=${item?.chainId}`}>
                                 <button
                                   onClick={() => setModalShow(true)}
                                   className="sc-button style bag fl-button pri-3 no-bg"
                                 >
-                                  <span>Buy NFT</span>
+                                  <span>{item?.owner ? 'Buy NFT': 'View NFT'}</span>
                                 </button>
                               </Link>
                               <Link
@@ -239,7 +252,7 @@ const handleSelectChain = (id) => {
                 </Nodata>
               </>
             )}
-            {visible < data.length && (
+            {visible > data.length && (
               <div className="col-md-12 wrap-inner load-more text-center">
                 <Link
                   to="#"

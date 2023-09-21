@@ -19,6 +19,7 @@ import {
   getTokenURI,
 } from "../integrateContract/contract";
 import { ethers } from "ethers";
+import axiosInstance from "../utils/axios";
 
 const Home05 = () => {
   const [data, setData] = useState();
@@ -54,13 +55,26 @@ const Home05 = () => {
         })
       );
 
-      setListNftFull(items);
+      // setListNftFull(items);
+      // console.log('items',items[0]);
     } catch (error) {
       console.log("getAllNftListMarketPlace", error);
     }
   };
+
+  const getListNFT = async () => {
+    try {
+      const chainId = 204
+      const res = await axiosInstance.post(`/api/nft/list-nft?chainId=${chainId}`)
+      setListNftFull(res.data.nftList?.splice(0,8));
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    getAllNftListMarketPlace();
+    getListNFT()
+    // getAllNftListMarketPlace()
   }, []);
 
   //   const contextValues = { data, handleSaveData, listNftFull };

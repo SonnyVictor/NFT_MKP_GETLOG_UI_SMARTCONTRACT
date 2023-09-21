@@ -49,6 +49,7 @@ import {
   getLogsInRange,
   getLogsInRangeAllEventMKP,
 } from "../utils/getLogsOnchain";
+import axiosInstance from "../utils/axios";
 const web3 = new Web3(window.ethereum);
 
 const ItemDetails01 = () => {
@@ -64,80 +65,31 @@ const ItemDetails01 = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
+  const tokenAddress = searchParams.get("tokenAddress");
+  const chainId = searchParams.get("chainId");
   const [itemTokenId, setItemTokenId] = useState([]);
   const [trains, setTrains] = useState([]);
   const [eventOfNft, setEventOfNft] = useState([]);
   const [lastBlock, setLastBock] = useState();
-  const getAllNftListMarketPlace = async () => {
+
+  const getDetailNFT = async () => {
     try {
-      let transition = await getAllValueMarketPlace();
-      const items = await Promise.all(
-        transition.map(async (i) => {
-          var tokenURI = await getImageNFT(i.tokenId);
-          var nameNFT = await getNameNFT();
-          var symbolNFT = await getSymbolNFT();
-          let price = ethers.utils.formatUnits(i.price.toString(), "ether");
-          let attributes = await getTokenURI(i.tokenId.toString());
-          let item = {
-            id: i.itemId.toString(),
-            seller: i.seller,
-            tokenId: i.tokenId.toString(),
-            tokenIMG: tokenURI,
-            price,
-            name: nameNFT.toString(),
-            symbolNFT: symbolNFT,
-            attributes: attributes,
-            endTime: i.timeEnd.toString(),
-          };
-          return item;
-        })
-      );
-      const itemTokenId = items.filter((item) => item.tokenId === id);
-      if(itemTokenId && itemTokenId.length > 0) {
-        setItemTokenId(itemTokenId);
-      } else {
-        const nftOfProfile = await getAllNFTOfUser()
-        setItemTokenId([{
-          "tokenId": id,
-          "tokenIMG": nftOfProfile[0].img,
-          "name":  nftOfProfile[0].name,
-          "symbolNFT":  nftOfProfile[0].symbol,
-          "seller": '',
-          "price": null
-      }]);
+      const params = {
+        tokenAddress,
+        tokenId: id,
+        chainId
       }
-    } catch (error) {
-      console.log("getAllNftListMarketPlace", error);
-    }
-  };
-
-  const getAllNFTOfUser = async () => {
-    try {
-      const getcontractNFT = await ContractNFT();
-      let getItemsUser = await getcontractNFT.listNFTOfOwner(account);
-
-      const testItems = await Promise.all(
-        getItemsUser.map(async (id) => {
-          var tokenURI = await getImageNFT(id);
-          var nameNFT = await getcontractNFT.name();
-          var symbolNFT = await getcontractNFT.symbol();
-          let i = {
-            img: tokenURI,
-            name: nameNFT,
-            token_id: id.toString(),
-            symbol: symbolNFT,
-          };
-          return i;
-        })
-      );
-      return testItems
+      const res = await axiosInstance.get('/api/nft/detail', {params})
+      setItemTokenId([
+        res?.data.nft
+      ])
     } catch (error) {
       console.log(error);
     }
   }
 
   useEffect(() => {
-    getAllNftListMarketPlace();
+    getDetailNFT()     
   }, [account, Tab]);
 
   useEffect(() => {
@@ -155,15 +107,6 @@ const ItemDetails01 = () => {
   };
 
   const [dataHistory, setDataHistory] = useState([
-    // {
-    //   typeEvent: 1,
-    //   event: "Mint",
-    //   time: "8 hours ago",
-    //   from: "0x000",
-    //   to: "0x123",
-    //   price: "",
-    //   priceChange: "",
-    // },
   ]);
   const [dataEvents, setDataEvents] = useState([]);
   const getEventNFT = async () => {
@@ -302,7 +245,7 @@ const ItemDetails01 = () => {
                   <div className="media">
                     <img
                       src={`data:image/svg+xml;utf8,${encodeURIComponent(
-                        itemTokenId[0]?.tokenIMG
+                        itemTokenId[0]?.image
                       )}`}
                       alt="NFT Image"
                       width="400px"
@@ -320,7 +263,7 @@ const ItemDetails01 = () => {
                     </h2>
                     <div className="meta-item">
                       <div className="left">
-                        <span className="viewed eye">225</span>
+                        <span className="viewed eye">{itemTokenId[0]?.view}</span>
                         {/* <span className="liked heart wishlist-button mg-l-8">
                           <span className="number-like" style={{color:'#000'}} >100</span>
                         </span> */}
@@ -341,7 +284,7 @@ const ItemDetails01 = () => {
                           </div>
                           <div className="info">
                             <span>Owned By</span>
-                            <h6>{shortenAddress(itemTokenId[0].seller)}</h6>
+                            <h6>{shortenAddress(itemTokenId[0].owner)}</h6>
                           </div>
                         </div>
                       </div>
@@ -354,7 +297,7 @@ const ItemDetails01 = () => {
                             <img src={img6} alt="" />
                           </div>
                           <div className="info">
-                            <span> {itemTokenId[0].seller ? 'Create By' : 'Address'} </span>
+                            <span> {itemTokenId[0].owner ? 'Create By' : 'Address'} </span>
                             <h6>
                               {shortenAddress(eventOfNft?.args?.user) || ""}{" "}
                             </h6>
@@ -389,7 +332,7 @@ const ItemDetails01 = () => {
                             <span>Countdown</span>
                             <h6 style={{ filter: "brightness(0)" }}>
                               <Countdown
-                                date={itemTokenId[0]?.endTime * 1000 || 0}
+                                date={itemTokenId[0]?.dateCreated * 1000 || 0}
                               >
                                 <span>You are good to go!</span>
                               </Countdown>
