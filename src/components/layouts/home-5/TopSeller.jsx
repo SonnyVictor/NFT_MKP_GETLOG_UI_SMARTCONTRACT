@@ -2,51 +2,101 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import img1 from "../../../assets/images/avatar/avt-1.jpg";
-import img2 from "../../../assets/images/avatar/avt-2.jpg";
-import img3 from "../../../assets/images/avatar/avt-3.jpg";
-import img4 from "../../../assets/images/avatar/avt-4.jpg";
 import axios from "axios";
+import _ from "lodash";
+
+const DATA_TOP_TRENDING ={
+    "rows": [
+      {
+        "coverUrl": "https://public.nftstatic.com/static/nft/res/7c2bdc6c55a84d2aaff2f348522825cc.png",
+        "title": "Bored Ape Yacht Club",
+        "network": "ETH",
+        "floorPrice": "42809.3328",
+        "floorPriceRate": "4.28",
+        "verified": 1
+      },
+      {
+        "coverUrl": "https://public.nftstatic.com/static/nft/res/2c66a6e10df04bbea3eff518e06f8d73.jpeg",
+        "title": "Mutant Ape Yacht Club",
+        "network": "ETH",
+        "floorPrice": "8082.84672",
+        "floorPriceRate": "-2.3",
+        "verified": 1
+      },
+      {
+        "coverUrl": "https://public.nftstatic.com/static/nft/res/nft-cex/S3/1680315311520_bbkd4ll4i5ylykbam34twi0omc736x8p.png",
+        "title": "DeGods",
+        "network": "ETH",
+        "floorPrice": "5983.497312",
+        "floorPriceRate": "-2.08",
+        "verified": 1
+      },
+      {
+        "coverUrl": "https://public.nftstatic.com/static/nft/res/nft-extdata-loader/S3/1680744730441_4lg38ehc0z91k4qmw66teiz4xj5f9ozz.jpg",
+        "title": "Otherside Vessels",
+        "network": "ETH",
+        "floorPrice": "285.28656",
+        "floorPriceRate": "9.53",
+        "verified": 1
+      },
+      {
+        "coverUrl": "https://public.nftstatic.com/static/nft/res/nft-cex/S3/1667874736142_4iimvwacp4r3v0khr6j8sr2tlzyxs8zr.jpg",
+        "title": "Milady Maker",
+        "network": "ETH",
+        "floorPrice": "4249.05312",
+        "floorPriceRate": "-5.65",
+        "verified": 1
+      },
+      {
+        "coverUrl": "https://public.nftstatic.com/static/nft/res/nft-cex/S3/1679504422444_vjcv41ljfw58vjy9hkcyarbkxjus3u2d.png",
+        "title": "Nakamigos",
+        "network": "ETH",
+        "floorPrice": "370.790784",
+        "floorPriceRate": "-18.58",
+        "verified": 0
+      },
+      {
+        "coverUrl": "https://public.nftstatic.com/static/nft/res/9e9d1ca1a76847418c3a10ac13c627db.png",
+        "title": "Pudgy Penguins",
+        "network": "ETH",
+        "floorPrice": "7082.30016",
+        "floorPriceRate": "5.73",
+        "verified": 1
+      },
+      {
+        "coverUrl": "https://public.nftstatic.com/static/nft/res/303d4787c96242a1bb000136dd57f405.jpeg",
+        "title": "Azuki",
+        "network": "ETH",
+        "floorPrice": "6343.3344",
+        "floorPriceRate": "-2.71",
+        "verified": 1
+      },
+      {
+        "coverUrl": "https://public.nftstatic.com/static/nft/res/b8b7c6ac4743492db019ce26f7347462.jpeg",
+        "title": "CLONE X - X TAKASHI MURAKAMI",
+        "network": "ETH",
+        "floorPrice": "2201.856384",
+        "floorPriceRate": "0.3",
+        "verified": 1
+      },
+      {
+        "coverUrl": "https://public.nftstatic.com/static/nft/res/nft-cex/S3/1674158452400_vx3wp10xif320ent425wm1a378f7hr77.png",
+        "title": "Opepen Edition",
+        "network": "ETH",
+        "floorPrice": "648.883872",
+        "floorPriceRate": "-3.39",
+        "verified": 1
+      }
+    ]
+}
+
 const TopSeller = () => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState(DATA_TOP_TRENDING);
   const [keyParam, setKeyParam] = useState({
     top: "SIX_HOUR_VOLUME",
     trending: "SIX_HOUR_SALES",
   });
-  useEffect(() => {
-    const query = {
-      id: "HomePageStatsTablesLazyQuery",
-      query:
-        "query HomePageStatsTablesLazyQuery(\n  $chain: [ChainScalar!]\n  $parents: [CollectionSlug!]\n  $categories: [CategorySlug!]\n  $categoriesV2: [CategoryV2Slug!]!\n  $isCategory: Boolean!\n  $sortBy: CollectionSort\n  $trendingCollectionsSortBy: TrendingCollectionSort\n  $topCollectionsSortBy: TrendingCollectionSort\n  $fromHomePage: Boolean!\n) {\n  ...HomePageStatsTables_data_3yoAbP\n}\n\nfragment HomePageStatsTables_data_3yoAbP on Query {\n  topCollectionsByCategory(first: 15, chains: $chain, categories: $categoriesV2, sortBy: $topCollectionsSortBy) @include(if: $isCategory) {\n    edges {\n      node {\n        createdDate\n        name\n        slug\n        logo\n        isVerified\n        ...StatsHomepageCollectionCell_collection\n        ...collection_url\n        ...StatsTableHomepageRowData\n        ...StatsTableHomepageRowLiveData\n        id\n      }\n    }\n  }\n  trendingCollectionsByCategory(first: 15, topCollectionLimit: 500, chains: $chain, categories: $categoriesV2, sortBy: $trendingCollectionsSortBy) @include(if: $isCategory) {\n    edges {\n      node {\n        createdDate\n        name\n        slug\n        logo\n        isVerified\n        ...StatsHomepageCollectionCell_collection\n        ...collection_url\n        ...StatsTableHomepageRowData\n        ...StatsTableHomepageRowLiveData\n        id\n      }\n    }\n  }\n  rankings(first: 15, sortBy: $sortBy, chains: $chain, parents: $parents) @skip(if: $isCategory) {\n    edges {\n      node {\n        createdDate\n        name\n        slug\n        logo\n        isVerified\n        ...StatsHomepageCollectionCell_collection\n        ...collection_url\n        ...StatsTableHomepageRowData\n        ...StatsTableHomepageRowLiveData\n        id\n      }\n    }\n  }\n  trendingCollections(first: 15, topCollectionLimit: 500, chains: $chain, categories: $categories, sortBy: $trendingCollectionsSortBy, fromHomePage: $fromHomePage) @skip(if: $isCategory) {\n    edges {\n      node {\n        createdDate\n        name\n        slug\n        logo\n        isVerified\n        ...StatsHomepageCollectionCell_collection\n        ...collection_url\n        ...StatsTableHomepageRowData\n        ...StatsTableHomepageRowLiveData\n        id\n      }\n    }\n  }\n}\n\nfragment StatsHomepageCollectionCell_collection on CollectionType {\n  name\n  imageUrl\n  isVerified\n  slug\n}\n\nfragment StatsTableHomepageRowData on CollectionType {\n  statsV2 {\n    thirtyDayChange\n    thirtyDayVolume {\n      eth\n      unit\n      symbol\n    }\n    totalVolume {\n      eth\n      unit\n      symbol\n    }\n  }\n}\n\nfragment StatsTableHomepageRowLiveData on CollectionType {\n  statsV2 {\n    floorPrice {\n      unit\n      eth\n      symbol\n    }\n    oneHourChange\n    oneHourVolume {\n      eth\n      unit\n      symbol\n    }\n    sixHourChange\n    sixHourVolume {\n      eth\n      unit\n      symbol\n    }\n    oneDayChange\n    oneDayVolume {\n      eth\n      unit\n      symbol\n    }\n    sevenDayChange\n    sevenDayVolume {\n      eth\n      unit\n      symbol\n    }\n  }\n}\n\nfragment collection_url on CollectionType {\n  slug\n  isCategory\n}\n",
-      variables: {
-        chain: null,
-        parents: null,
-        categories: null,
-        categoriesV2: [],
-        isCategory: false,
-        sortBy: keyParam.top,
-        trendingCollectionsSortBy: keyParam.trending,
-        topCollectionsSortBy: keyParam.top,
-        fromHomePage: false,
-      },
-    };
-    const headers = {
-      // "x-signed-query":
-      //   "b9cc25ed18fe06e848a88612039b70e71682f2c299cf8793e9c6c14bcf82e2f4",
-      // "X-API-KEY": "a91348b2550340c1b15fa45c354438aa", 
-      // "Content-Type": "application/json",
-      
-    };
-    axios
-      .get('https://tofunft.com/_next/data/NlEkfXTdGmJdcueURNmZC/en/ranking.json')
-      .then((response) => {
-        console.log(response);
-        setData(response?.data?.data?.trendingCollections?.edges);
-      })
-      .catch((error) => {
-        // console.error("Error:", error);
-      });
-  }, [keyParam]);
+
   const [dataTopSellerTab] = useState([
     {
       title: "6 hour",
@@ -83,37 +133,48 @@ const TopSeller = () => {
                     ))}
                   </TabList>
                   <div className="content-tab">
-                    {dataTopSellerTab.map(() => {
+                  {dataTopSellerTab.map(() => {
+                    return <TabPanel>
+                    {DATA_TOP_TRENDING.rows.map((item, index) => {
                       return (
-                        <TabPanel>
-                          {data?.map((item, index) => {
-                            return (
-                              <div className="box-item" key={item?.node?.id}>
-                                <div className="sc-author-box style-3">
-                                  <div className="author-avatar">
-                                    <img
-                                      src={item?.node?.imageUrl}
-                                      alt="Axies"
-                                      className="avatar"
-                                    />
-                                    <div className="badge">
-                                      <i className="ripple"></i>
-                                    </div>
-                                  </div>
-                                  <div className="author-infor">
-                                    <h5>{item?.node?.name}</h5>
-                                    <span className="price">
-                                      {item?.node?.statsV2?.floorPrice?.eth}{" "}
-                                      {item?.node?.statsV2?.floorPrice?.symbol}
-                                    </span>
-                                  </div>
-                                </div>
+                        <div className="box-item" key={index}>
+                          <div className="sc-author-box style-3">
+                            <div className="author-avatar">
+                              <img
+                                src={item?.coverUrl}
+                                alt="Axies"
+                                className="avatar"
+                              />
+                              <div className="badge">
+                                <i className="ripple"></i>
                               </div>
-                            );
-                          })}
-                        </TabPanel>
+                            </div>
+                            <div
+                            style={{
+                              display: 'flex',
+                              justifyContent: 'space-between',
+                              alignItems: 'center',
+                              width: '100%',
+                              paddingRight: '50px'
+                            }}
+                            >
+                              <div className="author-infor">
+                                <h5>{item?.title}</h5>
+                                <span className="price">
+                                {item?.floorPriceRate} {item?.network} 
+                                </span>
+                              </div>
+                              <div className="author-infor">
+                                <h5>{item?.floorPriceRate} {item?.network} </h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       );
                     })}
+                  </TabPanel> 
+                  })}
+                   
                   </div>
                 </Tabs>
               </div>

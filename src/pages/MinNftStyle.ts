@@ -37,7 +37,11 @@ export const Container = styled.div`
 export const ContentBox = styled.div`
   display: flex;
   width: 100%;
-  padding: 70px 0px;
+  max-width: 1280px;
+  margin: auto;
+  padding: 70px 20px;
+  gap: 30px;
+  g
   h3 {
     font-size: 28px;
     color: #000;
@@ -70,7 +74,7 @@ export const Layout = styled.div`
   width: 100%;
   position: relative;
   @media only screen and (max-width: 1280px) {
-    margin-left: -70px;
+    /* margin-left: -70px; */
   }
 
   @media only screen and (max-width: 970px) {
@@ -102,12 +106,14 @@ export const GifLayout = styled.div`
   padding: 62px 20px;
   border-radius: 32px;
   background: #ececec;
+  max-width: 450px;
+  margin: auto;
   .view_video {
     width: 180px;
   }
   @media only screen and (max-width: 1024px) {
     top: 20%;
-    width: 350px;
+    width: 450px;
   }
   @media only screen and (max-width: 970px) {
     margin: auto;

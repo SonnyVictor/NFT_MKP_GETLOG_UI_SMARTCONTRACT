@@ -18,69 +18,51 @@ import img3right2 from '../../../assets/images/box-item/collection-item-8.jpg'
 const PopularCollection = () => {
     const [data] = useState(
         [
-            {
-                title: "Creative Art Collection",
-                imgAuthor: imgAuthor1,
-                name: "Ralph Garraway",
-                imgleft: img1left,
-                imgright1: img1right1,
-                imgright2: img1right2,
-                wishlist: "100",
-            },
-            {
-                title: "Colorful Abstract",
-                imgAuthor: imgAuthor2,
-                name: "Mason Woodward",
-                imgleft: img2left,
-                imgright1: img2right1,
-                imgright2: img2right2,
-                wishlist: "100",
-            },
-            {
-                title: "Modern Art Collection",
-                imgAuthor: imgAuthor3,
-                name: "Freddie Carpenter",
-                imgleft: img3left,
-                imgright1: img3right1,
-                imgright2: img3right2,
-                wishlist: "100",
-            },
-            {
-                title: "Creative Art Collection",
-                imgAuthor: imgAuthor1,
-                name: "Ralph Garraway",
-                imgleft: img1left,
-                imgright1: img1right1,
-                imgright2: img1right2,
-                wishlist: "100",
-            },
-            {
-                title: "Colorful Abstract",
-                imgAuthor: imgAuthor2,
-                name: "Mason Woodward",
-                imgleft: img2left,
-                imgright1: img2right1,
-                imgright2: img2right2,
-                wishlist: "100",
-            },
-            {
-                title: "Modern Art Collection",
-                imgAuthor: imgAuthor3,
-                name: "Freddie Carpenter",
-                imgleft: img3left,
-                imgright1: img3right1,
-                imgright2: img3right2,
-                wishlist: "100",
-            },
-            {
-                title: "Creative Art Collection",
-                imgAuthor: imgAuthor1,
-                name: "Ralph Garraway",
-                imgleft: img1left,
-                imgright1: img1right1,
-                imgright2: img1right2,
-                wishlist: "100",
-            },
+          {
+              title: "Rainbow House Nature",
+              imgAuthor: imgAuthor1,
+              name: "Woody Artis",
+              imgleft: 'assets/images/slider/imgc1-2.png',
+              imgright1:'assets/images/slider/imgc1-1.png',
+              imgright2: 'assets/images/slider/imgc1-3.png',
+              wishlist: "100",
+          },
+          {
+              title: "Robot Cat",
+              imgAuthor: imgAuthor2,
+              name: "Anonymous Cat",
+              imgleft: 'assets/images/slider/imgc2-2.png',
+              imgright1:'assets/images/slider/imgc2-1.png',
+              imgright2: 'assets/images/slider/imgc2-3.png',
+              wishlist: "100",
+          },
+          {
+              title: "Astronaut",
+              imgAuthor: imgAuthor3,
+              name: "Alien",
+              imgleft: 'assets/images/slider/imgc3-2.png',
+              imgright1:'assets/images/slider/imgc3-1.png',
+              imgright2: 'assets/images/slider/imgc3-3.png',
+              wishlist: "100",
+          },
+          {
+              title: "Angels and Unicorns",
+              imgAuthor: imgAuthor1,
+              name: "Red Angel",
+              imgleft: 'assets/images/slider/imgc4-2.png',
+              imgright1:'assets/images/slider/imgc4-1.png',
+              imgright2: 'assets/images/slider/imgc4-3.png',
+              wishlist: "100",
+          },
+          {
+              title: "Rainbow Boy",
+              imgAuthor: imgAuthor2,
+              name: "Crazy Artist",
+              imgleft: 'assets/images/slider/imgc5-2.png',
+              imgright1:'assets/images/slider/imgc5-1.png',
+              imgright2: 'assets/images/slider/imgc5-4.png',
+              wishlist: "100",
+          },
         ]
     )
     return (
@@ -91,7 +73,7 @@ const PopularCollection = () => {
                         <div className="heading-live-auctions">
                             <h2 className="tf-title pb-22 text-left">
                                 Popular Collection</h2>
-                            <Link to="/explore-03" className="exp style2">EXPLORE MORE</Link>
+                            <Link to="/marketplace" className="exp style2">EXPLORE MORE</Link>
                         </div>
                     </div>
                     <div className="col-md-12">

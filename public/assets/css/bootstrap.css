@@ -2668,6 +2668,11 @@ fieldset[disabled] a.btn {
   pointer-events: none;
 }
 
+.btn-pink:hover {
+  color: #fff;
+  background-color: #cd31b3;
+} 
+
 .btn-primary {
   color: #fff;
   background-color: #0275d8;

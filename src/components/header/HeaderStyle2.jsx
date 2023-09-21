@@ -295,7 +295,7 @@ const NavMb = styled.nav`
     padding-bottom: 20px;
   }
 `;
-
+ 
 const SelectNetWork = styled.div`
   @media only screen and (max-width: 440px) {
     span {

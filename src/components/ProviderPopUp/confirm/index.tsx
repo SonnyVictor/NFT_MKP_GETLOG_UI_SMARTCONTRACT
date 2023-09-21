@@ -77,7 +77,7 @@ export const ModalConfirmProvider: React.FC<Props> = ({ children }: Props) => {
 };
 
 export const ModalLayout = styled.div<{ isShowModal?: boolean }>`
-  width: 100vw;
+  width: 100%;
   height: ${({ isShowModal }) => (isShowModal ? "100vh" : "fit-content")};
   overflow: hidden;
 `;

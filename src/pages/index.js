@@ -26,6 +26,7 @@ import Contact02 from "./Contact02";
 import ArbNFTPage from "./ArbNFTPage";
 import MinNft from "./MinNft";
 import Test from "./Test";
+import MarketPlace from "./MarketPlace";
 
 const routes = [
   { path: "/", component: <Home05 /> },
@@ -55,6 +56,7 @@ const routes = [
   // { path: "/contact-01", component: <Contact01 /> },
   // { path: "/contact-02", component: <Contact02 /> },
   { path: "/nft-ai", component: <ArbNFTPage /> },
+  { path: "/marketplace", component: <MarketPlace /> },
   { path: "/test", component: <Test /> },
 ];
 

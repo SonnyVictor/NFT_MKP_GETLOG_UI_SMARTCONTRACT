@@ -93,18 +93,56 @@ const ItemDetails01 = () => {
         })
       );
       const itemTokenId = items.filter((item) => item.tokenId === id);
-      setItemTokenId(itemTokenId);
+      if(itemTokenId && itemTokenId.length > 0) {
+        setItemTokenId(itemTokenId);
+      } else {
+        const nftOfProfile = await getAllNFTOfUser()
+        setItemTokenId([{
+          "tokenId": id,
+          "tokenIMG": nftOfProfile[0].img,
+          "name":  nftOfProfile[0].name,
+          "symbolNFT":  nftOfProfile[0].symbol,
+          "seller": '',
+          "price": null
+      }]);
+      }
     } catch (error) {
       console.log("getAllNftListMarketPlace", error);
     }
   };
+
+  const getAllNFTOfUser = async () => {
+    try {
+      const getcontractNFT = await ContractNFT();
+      let getItemsUser = await getcontractNFT.listNFTOfOwner(account);
+
+      const testItems = await Promise.all(
+        getItemsUser.map(async (id) => {
+          var tokenURI = await getImageNFT(id);
+          var nameNFT = await getcontractNFT.name();
+          var symbolNFT = await getcontractNFT.symbol();
+          let i = {
+            img: tokenURI,
+            name: nameNFT,
+            token_id: id.toString(),
+            symbol: symbolNFT,
+          };
+          return i;
+        })
+      );
+      return testItems
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     getAllNftListMarketPlace();
   }, [account, Tab]);
 
   useEffect(() => {
     getAllActivityNFT(id);
-  }, []);
+  }, [id]);
   useEffect(() => {
     getEventNFT();
   }, []);
@@ -316,7 +354,7 @@ const ItemDetails01 = () => {
                             <img src={img6} alt="" />
                           </div>
                           <div className="info">
-                            <span>Create By</span>
+                            <span> {itemTokenId[0].seller ? 'Create By' : 'Address'} </span>
                             <h6>
                               {shortenAddress(eventOfNft?.args?.user) || ""}{" "}
                             </h6>
@@ -366,15 +404,18 @@ const ItemDetails01 = () => {
                       will experience XRender Ai with all the most outstanding
                       feature.
                     </p>
-                    <div
-                      onClick={() =>
-                        buyNFTTokenId(itemTokenId[0].id, itemTokenId[0].price)
-                      }
-                      className="sc-button loadmore style bag fl-button pri-3"
-                      style={{ borderRadius: "16px", border: "none" }}
-                    >
-                      <span>Buy</span>
-                    </div>
+                    {
+                      itemTokenId[0].price && 
+                      <div
+                        onClick={() =>
+                          buyNFTTokenId(itemTokenId[0].id, itemTokenId[0].price)
+                        }
+                        className="sc-button loadmore style bag fl-button pri-3"
+                        style={{ borderRadius: "16px", border: "none" }}
+                      >
+                        <span>Buy</span>
+                      </div>
+                    }
                     <div className="flat-tabs themesflat-tabs">
                       <Tabs>
                         <TabList>
@@ -412,7 +453,7 @@ const ItemDetails01 = () => {
                                           </h6>
                                           <span>
                                             {" "}
-                                            {eventMappings[item.event] || ""}
+                                            {eventMappings[item?.event] || ""}
                                           </span>
                                         </div>
                                         <span className="time">

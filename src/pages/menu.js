@@ -21,8 +21,8 @@ const menus = [
   },
   {
     id: 7,
-    name: "Whitepaper",
-    links: "/",
+    name: "Marketplace",
+    links: "/marketplace",
   },
 ];
 
