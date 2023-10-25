@@ -15,19 +15,21 @@ export const walletconnect = new WalletConnectConnector({
   pollingInterval: 15000,
 });
 
-export const walletconnect1 = new WalletConnector({});
+export const walletconnect1 = new WalletConnector({
+  supportedChainIds: [204, 7001, 42161],
+});
 
 export const injected = new InjectedConnector({
   supportedChainIds: [
     // 1, 3, 4, 5, 2000, 43114, 250, 10, 42, 56, 66, 97, 137, 5611, 42161, 204,
     // 80001,
-    204,
+    204, 7001, 56, 42161,
   ],
 });
 
 export const bsc = new BscConnector({
   supportedChainIds: [
     // 1, 3, 4, 5, 2000, 43114, 250, 10, 42, 56, 97, 137, 5611, 80001,
-    204,
+    204, 7001, 56, 42161,
   ],
 });

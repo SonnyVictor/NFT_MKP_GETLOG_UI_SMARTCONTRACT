@@ -17,7 +17,6 @@ import { RefreshContext } from "../../context/RefreshContext";
 const HeaderStyle2 = () => {
   const { pathname } = useLocation();
   const { onOpen, onClose } = useContext(ModalConfirmContext);
-  const { handleCheckNetWork } = useContext(RefreshContext);
 
   const headerRef = useRef(null);
   useEffect(() => {
@@ -295,7 +294,7 @@ const NavMb = styled.nav`
     padding-bottom: 20px;
   }
 `;
- 
+
 const SelectNetWork = styled.div`
   @media only screen and (max-width: 440px) {
     span {

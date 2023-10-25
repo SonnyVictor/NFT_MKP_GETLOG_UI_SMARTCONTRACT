@@ -1,24 +1,19 @@
 import React, { useState, Fragment, useContext } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { Tab, Tabs, TabList, TabPanel  } from 'react-tabs';
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { ImageNft, Nodata } from "./TodayPicksStyle";
-import CardModalBuy from "../CardModalUpdatePrice";
-import { convertTime } from "../../../utils/formartTime";
 import { shortenAddress } from "../../../utils/formartAddress";
-import { convertTimeEnd } from "../../../utils/formartTime";
-import { convertendTime } from "../../../utils/formartTime";
 import Countdown from "react-countdown";
-import ItemDetails01 from "../../../pages/ItemDetails01";
 import NodataImg from "../../../assets/images/logo/No-nft.svg";
 import styled from "styled-components";
 import { RefreshContext } from "../../../context/RefreshContext";
 import avat1 from "../../../assets/images/avatar/avt-11.jpg";
-import './style.css'
+import "./style.css";
 
 const TodayPicks = (props) => {
   const data = props.data;
-  const isMarketPlace  =  props.isMarketPlace 
+  const isMarketPlace = props.isMarketPlace;
   const [visible, setVisible] = useState(8);
   const { chainIdConnect, handleCheckNetWork } = useContext(RefreshContext);
   const showMoreItems = () => {
@@ -41,88 +36,101 @@ const TodayPicks = (props) => {
       image: "/assets/icon/icon-zeta.png",
       name: "ZetaChain",
     },
-    
   ]);
-  const [dataTab] = useState(
-    [
-        {
-            id: 1,
-            title: "All",
-        },
-        {
-            id: 2,
-            title: "XRender Luffy",
-        },
-        {
-            id: 3,
-            title: "XRender AI",
-        },
-        {
-          id: 4,
-          title: "XRender Art",
-      },
-    ]
-)
+  const [dataTab] = useState([
+    {
+      id: 1,
+      title: "All",
+    },
+    {
+      id: 2,
+      title: "XRender Luffy",
+    },
+    {
+      id: 3,
+      title: "XRender AI",
+    },
+    {
+      id: 4,
+      title: "XRender Art",
+    },
+  ]);
 
-const [tabActive, setTabActive] = useState(1)
-const [chainActive, setChainActive] = useState(1)
+  const [tabActive, setTabActive] = useState(1);
+  const [chainActive, setChainActive] = useState(1);
 
-const handleFilter = (id) => {
-  setTabActive(id)
-}
+  const handleFilter = (id) => {
+    setTabActive(id);
+  };
 
-const handleSelectChain = (id) => {
-  setChainActive(id)
-}
+  const handleSelectChain = (id) => {
+    setChainActive(id);
+  };
+
   return (
     <Fragment>
       <section lassName="tf-section today-pick">
         <div className="themesflat-container">
           <div className="row">
             <div className="col-md-12 mt-4">
-              {
-              !isMarketPlace  ? 
+              {!isMarketPlace ? (
                 <div className="heading-live-auctions mg-bt-21">
                   <h2 className="tf-title">Marketplace</h2>
                   <Link to="/marketplace" className="exp style2">
                     EXPLORE MORE
                   </Link>
-                </div> : 
+                </div>
+              ) : (
                 <FilterBox>
-                   <div className="sc-explore-2">
+                  <div className="sc-explore-2">
                     <div className="flat-tabs explore-tab">
-                        <Tabs >
-                            <TabList
+                      <Tabs>
+                        <TabList
+                          style={{
+                            marginBottom: "25px",
+                          }}
+                        >
+                          {dataTab.map((data) => (
+                            <Tab
                               style={{
-                                marginBottom: '25px'
+                                boxShadow:
+                                  "0px 2px 6px 0px rgb(47 83 109 / 10%)",
+                                fontWeight: 600,
+                                background: tabActive !== data.id && "#fff",
                               }}
+                              key={data.id}
+                              onClick={() => handleFilter(data.id)}
                             >
-                                {
-                                  dataTab.map(data=> (
-                                      <Tab 
-                                        style={{
-                                          boxShadow: '0px 2px 6px 0px rgb(47 83 109 / 10%)',
-                                          fontWeight: 600,
-                                          background: tabActive !== data.id && '#fff',
-                                        }} 
-                                      key={data.id} 
-                                      onClick={() => handleFilter(data.id)}
-                                      >{data.title}</Tab>
-                                  ))
-                                }
-                            </TabList>
-                        </Tabs>
-                      </div>
-                   </div>
+                              {data.title}
+                            </Tab>
+                          ))}
+                        </TabList>
+                      </Tabs>
+                    </div>
+                  </div>
                   <div className="widget widget-filter style-2 mgbt-0">
                     <ul className="box-check">
                       {dataFilter.map((item, index) => (
-                        <li onClick={() => handleSelectChain(item.id)} key={index}>
-                          <Link className={chainActive === item.id ? 'box-widget-filter active-chain' : 'box-widget-filter'} to="#" >
-                            <img style={{
-                              width: '24px',
-                              marginRight: '10px'
-                            }} src={item.image} alt={item.name} />
+                        <li
+                          onClick={() => handleSelectChain(item.id)}
+                          key={index}
+                        >
+                          <Link
+                            className={
+                              chainActive === item.id
+                                ? "box-widget-filter active-chain"
+                                : "box-widget-filter"
+                            }
+                            to="#"
+                          >
+                            <img
+                              style={{
+                                width: "24px",
+                                marginRight: "10px",
+                              }}
+                              src={item.image}
+                              alt={item.name}
+                            />
                             {item.name}
                           </Link>
                         </li>
@@ -130,7 +138,7 @@ const handleSelectChain = (id) => {
                     </ul>
                   </div>
                 </FilterBox>
-              }
+              )}
             </div>
             {chainIdConnect === 204 ? (
               <>

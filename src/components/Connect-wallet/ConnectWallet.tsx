@@ -58,8 +58,6 @@ const ConnectWallet = () => {
         });
     }
   }
-
-  console.log("!23");
   useEffect(() => {
     setInitialValue(localStorage.getItem("chain"));
   }, [localStorage.getItem("chain")]);

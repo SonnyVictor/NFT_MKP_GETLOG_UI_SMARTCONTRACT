@@ -22,6 +22,7 @@ export const MAPPING_CHAINID = {
   opbnb: "0xcc",
   beptest: "0x61",
   opbnbtest: "0x15eb",
+  zetatest: "0x1b59",
 };
 export const CHAINID_CONVERT = {
   56: "bep",
@@ -32,6 +33,7 @@ export const CHAINID_CONVERT = {
   204: "opbnb",
   97: "beptest",
   5611: "opbnbtest",
+  7001: "zeta",
 };
 
 // wallet list
@@ -59,7 +61,7 @@ export const SC_MULTISEND = {
   // 97: "0xdA58a41854a6B6b9cf4b24D81b59d5Fa111C83Ec", // no fee
   56: "0x4675d6D1A8949173456567CA245f479AFBAaD2Be",
   97: "0x1FCc22c7E65B3104C86c8e66775728D47dCb1DDD",
-  5611: "https://opbnb-testnet-rpc.bnbchain.org",
+  // 5611: "https://opbnb-testnet-rpc.bnbchain.org",
 };
 export const SC_MULTISEND_TOKEN_and_FEE = {
   56: "0x35Be25d0998f85F4f8980906d126bfA373097d20",
@@ -76,6 +78,7 @@ export const SCAN_URL = {
   97: "https://testnet.bscscan.com",
   1: "https://etherscan.io",
   5611: "https://opbnb-testnet-rpc.bnbchain.org",
+  7001: "https://zetachain-athens-evm.blockpi.network/v1/rpc/public",
 };
 export const HTTPS_NETWORK = {
   56: "https://bsc-dataseed.binance.org/",
@@ -84,4 +87,5 @@ export const HTTPS_NETWORK = {
   97: "https://data-seed-prebsc-1-s3.binance.org:8545",
   1: "https://mainnet.infura.io/v3/ffba1579926a470e98adb34ffb50bd4d",
   5611: "https://opbnb-testnet-rpc.bnbchain.org",
+  7001: "https://zetachain-athens-evm.blockpi.network/v1/rpc/public",
 };

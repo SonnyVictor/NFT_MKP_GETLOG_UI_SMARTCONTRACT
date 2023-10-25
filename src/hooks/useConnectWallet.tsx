@@ -23,9 +23,12 @@ export default function useConnectWallet() {
         if (chainId === 204) {
           window.localStorage.setItem("chain", "opbnb");
         }
-        // if (chainId === 56) {
-        //   window.localStorage.setItem("chain", "bep");
-        // }
+        if (chainId === 70001) {
+          window.localStorage.setItem("chain", "zeta");
+        }
+        if (chainId === 42161) {
+          window.localStorage.setItem("chain", "arb");
+        }
         // if (chainId === 137) {
         //   window.localStorage.setItem("chain", "poly");
         // }

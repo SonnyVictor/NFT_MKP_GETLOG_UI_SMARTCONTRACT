@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
-import ABI_NFT_LUFFY from "../ABI/NFT_Lufffy_ABI.json";
-import ABI_MKP_LISTBUYSELL from "../ABI/MKP_BuySell_Contract_ABI.json";
+import ABI_NFT_LUFFY from "../ABI/OPBNB_NFT_Lufffy_ABI.json";
+import ABI_MKP_LISTBUYSELL from "../ABI/OPBNB_MKP_BuySell_Contract_ABI.json";
 
 export const address_NFT_LUFFY_OPBNB_TESTNET =
   "0x304e964DdbAa4517118d1d7D500b773998374B63";
@@ -16,12 +16,12 @@ export const getProviderOrSigner = async (needSigner = false) => {
   return provider;
 };
 
-export const ContractNFT = async () => {
+export const ContractNFT = async (address_NFT_Chain, abi_NFT_Chain) => {
   try {
     const provider = await getProviderOrSigner(false);
     const contract = new ethers.Contract(
-      address_NFT_LUFFY_OPBNB_TESTNET,
-      ABI_NFT_LUFFY,
+      address_NFT_Chain,
+      abi_NFT_Chain,
       provider
     );
 
@@ -30,12 +30,12 @@ export const ContractNFT = async () => {
     console.log("error contractNFT", error);
   }
 };
-export const SignerContractNFT = async () => {
+export const SignerContractNFT = async (address_NFT_Chain, abi_NFT_Chain) => {
   try {
     const provider = await getProviderOrSigner(true);
     const contract = new ethers.Contract(
-      address_NFT_LUFFY_OPBNB_TESTNET,
-      ABI_NFT_LUFFY,
+      address_NFT_Chain,
+      abi_NFT_Chain,
       provider
     );
 
@@ -45,21 +45,21 @@ export const SignerContractNFT = async () => {
   }
 };
 
-export const contractMarketPlace = async () => {
+export const contractMarketPlace = async (address_MKP_Chain, abi_MKP_Chain) => {
   try {
     const provider = await getProviderOrSigner(false);
     const contractMKP = new ethers.Contract(
-      address_MKP_LISTBUYSELL_OPBNB_TESTNET,
-      ABI_MKP_LISTBUYSELL,
+      address_MKP_Chain,
+      abi_MKP_Chain,
       provider
     );
     return contractMKP;
   } catch (error) {}
 };
 
-export const getTokenURI = async (id) => {
+export const getTokenURI = async (id, address_NFT_Chain, abi_NFT_Chain) => {
   try {
-    const contract = await ContractNFT();
+    const contract = await ContractNFT(address_NFT_Chain, abi_NFT_Chain);
     const getURI = await contract.tokenURI(id);
     return getURI;
   } catch (error) {
@@ -67,9 +67,9 @@ export const getTokenURI = async (id) => {
   }
 };
 
-export const getNameNFT = async () => {
+export const getNameNFT = async (address_NFT_Chain, abi_NFT_Chain) => {
   try {
-    const contract = await ContractNFT();
+    const contract = await ContractNFT(address_NFT_Chain, abi_NFT_Chain);
     const nameNft = await contract.name();
     return nameNft.toString();
   } catch (error) {
@@ -77,9 +77,9 @@ export const getNameNFT = async () => {
   }
 };
 
-export const getSymbolNFT = async () => {
+export const getSymbolNFT = async (address_NFT_Chain, abi_NFT_Chain) => {
   try {
-    const contract = await ContractNFT();
+    const contract = await ContractNFT(address_NFT_Chain, abi_NFT_Chain);
     const symbolNft = await contract.symbol();
     return symbolNft.toString();
   } catch (error) {
@@ -87,12 +87,16 @@ export const getSymbolNFT = async () => {
   }
 };
 
-export const getImageNFT = async (tokenID) => {
+export const getImageNFT = async (
+  tokenID,
+  address_NFT_Chain,
+  abi_NFT_Chain
+) => {
   try {
     const provider = await getProviderOrSigner(false);
     const contract = new ethers.Contract(
-      address_NFT_LUFFY_OPBNB_TESTNET,
-      ABI_NFT_LUFFY,
+      address_NFT_Chain,
+      abi_NFT_Chain,
       provider
     );
 
@@ -105,14 +109,16 @@ export const getImageNFT = async (tokenID) => {
 
 export const approveContractNFT = async (
   addressContractMarketPlace,
-  tokenId
+  tokenId,
+  address_NFT_Chain,
+  abi_NFT_Chain
 ) => {
   try {
     const provier = await getProviderOrSigner(false);
     const signer = await getProviderOrSigner(true);
     const contract = new ethers.Contract(
-      address_NFT_LUFFY_OPBNB_TESTNET,
-      ABI_NFT_LUFFY,
+      address_NFT_Chain,
+      abi_NFT_Chain,
       signer
     );
     const gasPrice = await provier.getGasPrice();
@@ -129,13 +135,19 @@ export const approveContractNFT = async (
   }
 };
 
-export const listSellContractNFT = async (tokenId, price, time) => {
+export const listSellContractNFT = async (
+  tokenId,
+  price,
+  time,
+  address_MKP_Chain,
+  abi_MKP_Chain
+) => {
   try {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      address_MKP_LISTBUYSELL_OPBNB_TESTNET,
-      ABI_MKP_LISTBUYSELL,
+      address_MKP_Chain,
+      abi_MKP_Chain,
       signer
     );
     const gasPrice = await provider.getGasPrice();
@@ -152,13 +164,16 @@ export const listSellContractNFT = async (tokenId, price, time) => {
   }
 };
 
-export const getAllValueMarketPlace = async () => {
+export const getAllValueMarketPlace = async (
+  address_MKP_Chain,
+  abi_MKP_Chain
+) => {
   try {
     const provider = await getProviderOrSigner(false);
 
     const contractMarketPlace = new ethers.Contract(
-      address_MKP_LISTBUYSELL_OPBNB_TESTNET,
-      ABI_MKP_LISTBUYSELL,
+      address_MKP_Chain,
+      abi_MKP_Chain,
       provider
     );
     const getAllValue = contractMarketPlace.fetchMarketplaceItems();
@@ -168,13 +183,18 @@ export const getAllValueMarketPlace = async () => {
   }
 };
 
-export const setbuyNFT = async (tokenId, valuePrice) => {
+export const setbuyNFT = async (
+  tokenId,
+  valuePrice,
+  address_MKP_Chain,
+  abi_MKP_Chain
+) => {
   try {
     const provider = await getProviderOrSigner(false);
     const signer = await getProviderOrSigner(true);
     const contractMarketPlace = new ethers.Contract(
-      address_MKP_LISTBUYSELL_OPBNB_TESTNET,
-      ABI_MKP_LISTBUYSELL,
+      address_MKP_Chain,
+      abi_MKP_Chain,
       signer
     );
     const gasPrice = await provider.getGasPrice();
@@ -191,12 +211,12 @@ export const setbuyNFT = async (tokenId, valuePrice) => {
   }
 };
 
-export const unListNFT = async (id) => {
+export const unListNFT = async (id, address_MKP_Chain, abi_MKP_Chain) => {
   try {
     const signer = await getProviderOrSigner(true);
     const contractMKP = new ethers.Contract(
-      address_MKP_LISTBUYSELL_OPBNB_TESTNET,
-      ABI_MKP_LISTBUYSELL,
+      address_MKP_Chain,
+      abi_MKP_Chain,
       signer
     );
     await contractMKP.unListNftOnSale(id);
@@ -205,12 +225,17 @@ export const unListNFT = async (id) => {
   }
 };
 
-export const upDatePriceNFTMarketPlace = async (id, price) => {
+export const upDatePriceNFTMarketPlace = async (
+  id,
+  price,
+  address_MKP_Chain,
+  abi_MKP_Chain
+) => {
   try {
     const signer = await getProviderOrSigner(true);
     const contract = new ethers.Contract(
-      address_MKP_LISTBUYSELL_OPBNB_TESTNET,
-      ABI_MKP_LISTBUYSELL,
+      address_MKP_Chain,
+      abi_MKP_Chain,
       signer
     );
     const upPrice = await contract.updatePriceNftOnSale(id, price);
@@ -228,9 +253,13 @@ export const getEventEmitBuyNFTMKP = async () => {
   }
 };
 
-export const getDataTokenURI = async (tokenId) => {
+export const getDataTokenURI = async (
+  tokenId,
+  address_NFT_Chain,
+  abi_NFT_Chain
+) => {
   try {
-    const contract = await ContractNFT();
+    const contract = await ContractNFT(address_NFT_Chain, abi_NFT_Chain);
     const getActivity = await contract.tokenURI(tokenId);
 
     return getActivity;

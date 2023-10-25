@@ -27,7 +27,6 @@ export const ConnectPopUp = () => {
     try {
       const rs = await walletLogin(connectorId);
       localStorage.setItem("isCheck", "1");
-      handleCheckNetWork();
       onClose?.();
     } catch (e) {
       console.error("Login failed");

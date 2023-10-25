@@ -107,8 +107,25 @@ const switchNetworkChain = async (chainId: any, value: any) => {
                 blockExplorerUrls: ["https://mainnet.opbnbscan.com/"],
               },
             ],
-          });
-        } 
+          });}
+          else if(chainId === "0x1b59"){
+            await provider.request({
+              method: "wallet_addEthereumChain",
+              params: [
+                {
+                  chainName: "opBNB Mainnet",
+                  chainId: "0xcc",
+                  rpcUrls: ["https://opbnb-mainnet-rpc.bnbchain.org/"],
+                  nativeCurrency: {
+                    name: "opBNB Mainnet",
+                    symbol: "BNB",
+                    decimals: 18,
+                  },
+                  blockExplorerUrls: ["https://mainnet.opbnbscan.com/"],
+                },
+              ],
+            })
+          }
         else {
           await provider.request({
             method: "wallet_addEthereumChain",
